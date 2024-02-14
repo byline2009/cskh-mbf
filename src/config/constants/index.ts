@@ -110,21 +110,18 @@ const menuCategory = [
     link: '/',
   },
   {
-    label: 'Phân tích',
-    link: '/phan-tich',
+    label: 'Hỗ trợ khách hàng',
+    link: '/ho-tro-khach-hang',
   },
   {
-    label: 'Thị trường',
-    link: '/thi-truong',
+    label: 'Câu hỏi thường gặp',
+    link: '/cau-hoi-thuong-gap',
   },
   {
-    label: 'Kiến thức',
-    link: '/kien-thuc',
+    label: 'Dịch vụ di động',
+    link: '/dich-vu-di-dong',
   },
-  {
-    label: 'Đầu tư',
-    link: '/dau-tu',
-  },
+ 
 ]
 
 const topNews = [

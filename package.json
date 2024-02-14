@@ -30,6 +30,8 @@
     "slick-carousel": "^1.8.1",
     "swr": "^2.2.2",
     "typescript": "5.2.2"
+
+
   },
   "devDependencies": {
     "eslint": "^8",

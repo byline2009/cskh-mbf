@@ -18,13 +18,12 @@ const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
         <div className="group-logo">
           <Link href="/" passHref>
             <img
-              src="/imgs/logo-primary.svg"
+              src="/imgs/logo-primary.png"
               alt="logo"
               width="80"
               height="24"
             />
           </Link>
-          <span className="title-category">Blog</span>
         </div>
         <button
           className={`btn-toggleMenu ${isOpen && "isOpen"}`}
@@ -36,15 +35,15 @@ const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
         </button>
       </div>
       <div className="hotline-menu-mobile">
-        <a href="tel:0886048899" className={`btn-houze btn-solid`}>
+        <a href="tel:18001090 " className={`btn-houze btn-solid`}>
           <PhoneComponent color="#fff" />
-          <span>0886 048 899</span>
+          <span>18001090 </span>
         </a>
       </div>
-      <div className="houzevn-mb">
-        <b>Houze.vn</b>
-        <a href="https://houze.vn/" target="_blank" rel="noreferrer">
-          Truy cập houze.vn
+      <div className="mbf-mb">
+        {/* <b>MobiFone.vn</b> */}
+        <a href="https://mobifone.vn/" target="_blank" rel="noreferrer">
+          Truy cập mobifone.vn
         </a>
       </div>
       <div className="navigation-menu no-line">
@@ -53,17 +52,10 @@ const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
           <MenuItem key={index} itemMenuLink={item} />
         ))}
       </div>
-      {/* <div className="menu-houzevn">
-        <h3>Houze.vn</h3>
-        <div className="navigation-menu blog-houzevn">
-          {menuData.map((item: any, index) => (
-            <MenuItem key={index} itemMenuLink={item} />
-          ))}
-        </div>
-      </div> */}
+
       <div className="info-menu-mobile">
         <p>
-          <i className="icon-call-connecting"></i> Hotline 0886 048 899
+          <i className="icon-call-connecting"></i> Hotline 18001090
         </p>
         <ul className="social-menu">
           <li>

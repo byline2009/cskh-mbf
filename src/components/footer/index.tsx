@@ -7,7 +7,7 @@ import Link from "next/link";
 const Footer: FC = () => {
   const { NEXT_PUBLIC_APP_ENV } = process.env;
   const str =
-    "Houze đang cải thiện tính năng này để giúp bạn có một trải nghiệm sử dụng tốt hơn. Mong bạn thông cảm";
+    "MobiFone 7 đang cải thiện tính năng này để giúp bạn có một trải nghiệm sử dụng tốt hơn. Mong bạn thông cảm";
   return (
     <footer className="footer">
       <div className="top-footer">
@@ -17,29 +17,30 @@ const Footer: FC = () => {
               <div className="info-footer">
                 <div className="logo-footer">
                   <Image
-                    src="/imgs/logo.svg"
+                    src="/imgs/logo-mbf.png"
                     alt="logo"
-                    width="134"
+                    width="150"
                     height="40"
                   />
                 </div>
-                <h3>Công ty Cổ phần Houze Group</h3>
+                <h3>Tổng công ty Viễn Thông MobiFone</h3>
                 <div className="short-desc">
-                  Giấy chứng nhận Đăng ký Kinh doanh số 0316177275 do Sở Kế
-                  hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 05/03/2020
+                  <img
+                    src="https://www.mobifone.vn/assets/source/icons/tham-dinh.png"
+                    alt="so-cong-thuong"
+                  />
                 </div>
                 <p>
                   <i className="icon-location"></i>
-                  46 - 48 Tạ Hiện, phường Thạnh Mỹ Lợi, Thành phố Thủ Đức, Thành
-                  phố Hồ Chí Minh
+                  Số 01 phố Phạm Văn Bạch, Yên Hòa, Cầu Giấy, Hà Nội.
                 </p>
                 <p>
                   <i className="icon-call"></i>
-                  0886 048 899
+                  (+84-24) 3783 1800
                 </p>
                 <p>
                   <i className="icon-mail"></i>
-                  support@houze.vn
+                  support@mobifone.vn
                 </p>
               </div>
             </div>
@@ -66,7 +67,7 @@ const Footer: FC = () => {
                 <ul className="social-icon">
                   <li>
                     <a
-                      href="https://www.facebook.com/houze.group/"
+                      href="https://www.facebook.com/mobifone/"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -75,7 +76,7 @@ const Footer: FC = () => {
                   </li>
                   <li>
                     <a
-                      href="https://vm.tiktok.com/ZSdMYoJ7r/"
+                      href="https://www.tiktok.com/@mobifone.official/"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -84,7 +85,7 @@ const Footer: FC = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.linkedin.com/company/houze-group/"
+                      href="https://www.linkedin.com/company/mobifone/"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -93,7 +94,7 @@ const Footer: FC = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.youtube.com/c/HouzeGroup"
+                      href="https://www.youtube.com/@mobifone.official"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -108,13 +109,13 @@ const Footer: FC = () => {
       </div>
       <div className="bottom-footer">
         <div className="copyright">
-          Copyright 2022 © Houze Group - All Rights Reserved
+          Copyright 2022 © MobiFone - All Rights Reserved
         </div>
         <div className="term-policy">
-          <Link href={"https://houze.vn/dieu-khoan-su-dung"} passHref>
+          <Link href={"https://mobifone.vn/dieu-khoan-su-dung"} passHref>
             <span>Điều khoản sử dụng</span>
           </Link>
-          <Link href={"https://houze.vn"} passHref>
+          <Link href={"https://mobifone.vn"} passHref>
             <span>Chính sách bảo mật</span>
           </Link>
           <a

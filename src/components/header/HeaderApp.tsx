@@ -2,9 +2,10 @@
 import React, { FC, useState, useEffect } from "react";
 import Nav from "react-bootstrap/Nav";
 import Link from "next/link";
-import { menuCategory } from "../../../config/contants";
+import { menuCategory } from "@config/constants";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type HeaderProps = {
   toggleMenu: () => void;
@@ -66,24 +67,24 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
           <div className="block-center">
             <div className="logo">
               <Link href="/" passHref>
-                <img src={`/imgs/logo-primary.svg`} alt="logo" />
+                <img src={`imgs/logo-primary.png`} alt="logo" />
               </Link>
             </div>
-            <div className="main-title">Blog</div>
+            <div className="main-title">7</div>
           </div>
         </div>
         <div className="hotline">
           <a
-            href="https://houze.vn/"
+            href="https://www.mobifone.vn/"
             target="_blank"
             rel="noreferrer"
-            className="back-houzevn"
+            className="back-mbf"
           >
-            Truy cập houze.vn
+            Truy cập mobifone.vn
           </a>
-          <a href="tel:0886048899" className={`btn-houze btn-solid`}>
+          <a href="tel:18001090" className={`btn-houze btn-solid`}>
             <i className="icon-call-connecting" />
-            <span>0886 048 899</span>
+            <span>18001090</span>
           </a>
         </div>
       </div>
