@@ -118,38 +118,38 @@ const menuCategory = [
     link: '/cau-hoi-thuong-gap',
   },
   {
-    label: 'Dịch vụ di động',
-    link: '/dich-vu-di-dong',
+    label: 'Tuyển dụng',
+    link: '/tuyen-dung',
   },
  
 ]
 
-const topNews = [
+const topSliders = [
   {
-    title:
-      'Khánh thành cầu Thủ Thiêm 2 - Cầu dây văng thứ hai tại TP.HCM, nối Quận 1 và TP...',
-    publishDay: '12 giờ',
-    imgSrc: 'top-news-1.jpg',
-    linkBlog: '/blog-detail',
+    
+    imgSrc: 'imgs/sliders/slider-1.jpeg',
   },
   {
-    title: 'Sở hữu "Landmark 81" ngay tại thành phố Thủ Đức? Tại sao kh...',
-    publishDay: '20 Tháng 3, 2022',
-    imgSrc: 'top-news-2.jpg',
-    linkBlog: '/blog-detail',
+   
+    imgSrc: 'imgs/sliders/slider-2.jpg',
   },
   {
-    title: 'Nhà đầu tư tay ngang khó thoát hàng khi sốt đất hạ nhiệt',
-    publishDay: '24 Tháng 3, 2022',
-    imgSrc: 'top-news-3.jpg',
-    linkBlog: '/blog-detail',
+    
+    imgSrc: 'imgs/sliders/slider-3.jpeg',
   },
   {
-    title: 'Đã xuất hiện bong bóng cục bộ trên thị trường bất động sản',
-    publishDay: '10 Tháng 5, 2022',
-    imgSrc: 'top-news-4.jpg',
-    linkBlog: '/blog-detail',
+    
+    imgSrc: 'imgs/sliders/slider-4.jpg',
   },
+  {
+    
+    imgSrc: 'imgs/sliders/slider-5.jpg',
+  },
+  {
+    
+    imgSrc: 'imgs/sliders/slider-6.jpeg',
+  }
+  
 ]
 
 const mostRead = [
@@ -428,7 +428,7 @@ export {
   dataWellRead,
   mostRead,
   newBlog,
-  topNews,
+  topSliders,
   menuCategory,
   searchData,
 }
