@@ -13,6 +13,7 @@
 @import "./pages/home-page.scss";
 @import "./pages/blog-category.scss";
 @import "./pages/blog-detail.scss";
+@import "./pages/question.scss";
 
 html,
 body {
@@ -44,6 +45,7 @@ a {
   min-height: 100vh;
   .content-page {
     margin-top: 130px;
+    background-color: #f8fbfc;
   }
 }
 .navigation-header {
