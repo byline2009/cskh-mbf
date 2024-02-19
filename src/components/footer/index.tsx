@@ -57,7 +57,7 @@ const Footer: FC = () => {
                 </div>
                 <div className="col-md-4 mb-3">
                   <CollapseCategory
-                    subject={"Dịch vụ"}
+                    subject={"Điều khoản & Bảo mật"}
                     listLink={serviceLink}
                   />
                 </div>
