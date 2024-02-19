@@ -14,7 +14,7 @@ type CategoryProps = {
 
 const CollapseCategory: FC<CategoryProps> = ({ subject, listLink }) => {
   const str =
-    "Houze đang cải thiện tính năng này để giúp bạn có một trải nghiệm sử dụng tốt hơn. Mong bạn thông cảm";
+    "MobiFone đang cải thiện tính năng này để giúp bạn có một trải nghiệm sử dụng tốt hơn. Mong bạn thông cảm";
   const [open, setOpen] = useState(true);
   const [widthWindow, setWidthWindow] = useState(0);
 

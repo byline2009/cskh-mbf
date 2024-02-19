@@ -5,12 +5,12 @@
 
 const infoLink = [
   {
-    label: "Gửi phản ánh",
-    link: "https://www.mobifone.vn/tai-khoan/dang-nhap-nhanh?referal=https%3A%2F%2Fwww.mobifone.vn%2Fho-tro-khach-hang%2Fphan-anh",
+    label: "Hỗ trợ khách hàng",
+    link: "/ho-tro-khach-hang",
   },
   {
     label: "Câu hỏi thường gặp",
-    link: "https://www.mobifone.vn/ho-tro-khach-hang/cau-hoi-thuong-gap",
+    link: "/cau-hoi-thuong-gap",
   },
   {
     label: "Đăng kí thông tin",
@@ -25,8 +25,8 @@ const companyLink = [
     newTab: true,
   },
   {
-    label: "Hợp tác MobiFone",
-    link: "https://mobifone.vn/hop-tac-voi-mobifone",
+    label: "Hợp tác với MobiFone",
+    link: "https://mobifone.group/gioi-thieu/hop-tac-voi-mobifone",
     newTab: true,
   },
   {
@@ -34,44 +34,21 @@ const companyLink = [
     link: "https://mobifone.vn/tuyen-dung",
     newTab: true,
   },
-
   {
     label: "Tải Logo",
-    link: "#",
-    isFunc: true,
-  },
-  {
-    label: "Liên hệ",
-    link: "https://mobifone.vn/lien-he",
+    link: "https://www.mobifone.vn/assets/source/file/logofontchuMobiFone.rar",
     newTab: true,
   },
 ] as any[];
 
 const serviceLink = [
   {
-    label: "Bán & Cho thuê nhà",
-    link: "#",
-    isFunc: true,
+    label: "Điều khoản sử dụng",
+    link: "https://www.mobifone.vn/dieu-khoan-su-dung",
   },
   {
-    label: "Mua nhà",
-    link: "https://houze.vn/mua-nha-voi-houze",
-    newTab: true,
-  },
-  {
-    label: "Thuê nhà ",
-    link: "#",
-    isFunc: true,
-  },
-  {
-    label: "Gói hỗ trợ vay mua ",
-    link: "#",
-    isFunc: true,
-  },
-  {
-    label: "Gặp chuyên viên tư vấn",
-    link: "https://houze.vn/chuyen-vien-tu-van",
-    newTab: true,
+    label: "Bảo mật thông tin",
+    link: "https://www.mobifone.vn/bao-mat-thong-tin",
   },
 ] as any[];
 
@@ -141,6 +118,37 @@ const topSliders = [
   },
   {
     imgSrc: "imgs/sliders/slider-6.jpeg",
+  },
+];
+
+const questions1 = [
+  {
+    q: "Mua thẻ cào nạp tiền nhưng hệ thống báo thẻ đã nạp tôi phải làm gì?",
+    a: " Khách hàng liên hệ lại nơi mua thẻ để được hỗ trợ.",
+  },
+  {
+    q: "TB trả sau và trả trước đang chuyển vùng quốc tế có thể nạp tiền hay thanh toán bằng mobiEZ được không?",
+    a: "Được",
+  },
+  {
+    q: "Thuê bao Fast Connnect trả trước có ngày sử dụng tối đa là bao nhiêu ngày?",
+    a: "60 ngày sử dụng",
+  },
+  {
+    q: "Thuê bao Fast Connnect trả trước có ngày sử dụng tối đa là bao nhiêu ngày?",
+    a: "60 ngày sử dụng",
+  },
+  {
+    q: "Thời hạn giữ số của thuê bao khi bị khóa 2 chiều là bao nhiêu ngày?",
+    a: "30 ngày",
+  },
+  {
+    q: "Chuyển đổi giữa các hình thức thuê bao trả trước được miễn phí phải không?",
+    a: "Nếu tài khoản chính của thuê bao dưới 50.000đ thì phí chuyển đổi là 5.000đ/ lần. Nếu tài khoản chính của thuê bao từ 50.000đ trở lên thì phí chuyển đổi là 10% tài khoản chính/ lần",
+  },
+  {
+    q: "Mỗi KH cá nhân có thể đứng tên bao nhiêu thuê bao trả sau?",
+    a: "Tối đa 5TB",
   },
 ];
 
@@ -423,4 +431,5 @@ export {
   topSliders,
   menuCategory,
   searchData,
+  questions1,
 };
