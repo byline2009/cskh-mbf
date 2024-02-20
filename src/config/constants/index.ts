@@ -52,35 +52,6 @@ const serviceLink = [
   },
 ] as any[];
 
-const dataWellRead = [
-  {
-    id: "wr-1",
-    title: "Russian Hackers Broke Into Federal Agencies, US Officials",
-    imgSrc: "well-read-1.jpg",
-  },
-  {
-    id: "wr-2",
-    title:
-      "First to Get Vaccine: A Black Nurse Who Hopes to Persua Who Hopes to Pe...",
-    imgSrc: "well-read-2.jpg",
-  },
-  {
-    id: "wr-3",
-    title: "The People Who Actually Had a Pretty Great Year",
-    imgSrc: "well-read-3.jpg",
-  },
-  {
-    id: "wr-4",
-    title: "An Ode To The Before Times",
-    imgSrc: "well-read-4.jpg",
-  },
-  {
-    id: "wr-5",
-    title: "Should Companies Require Employee to Take the Vaccine?",
-    imgSrc: "well-read-5.jpg",
-  },
-];
-
 const menuCategory = [
   {
     label: "Trang chủ",
@@ -125,6 +96,7 @@ const questions1 = [
   {
     q: "Mua thẻ cào nạp tiền nhưng hệ thống báo thẻ đã nạp tôi phải làm gì?",
     a: " Khách hàng liên hệ lại nơi mua thẻ để được hỗ trợ.",
+    id: "goi-cuoc-1",
   },
   {
     q: "TB trả sau và trả trước đang chuyển vùng quốc tế có thể nạp tiền hay thanh toán bằng mobiEZ được không?",
@@ -419,17 +391,499 @@ const menuData = [
     link: "https://integration-houze-vn.houze.io/about-us",
   },
 ];
+const errorMsale = [
+  {
+    error:
+      "0252, java.lang.Exception: Không lấy được thông tin thuê bao trên IN",
+    explain:
+      "Không lấy được thông tin thuê bao trên IN. Người dùng thực hiện lại",
+  },
+  {
+    error: "0252, Lỗi trong quá trình gọi API đối soát CSDL QG DC",
+    explain: "Lỗi trong quá trình gọi API đối soát CSDL QG DC",
+  },
+  {
+    error: "0278, Huyện hoặc Phường",
+    explain: "Mã địa bàn Huyện/Phường chưa khớp dữ liệu, vui lòng kiểm tra lại",
+  },
+  {
+    error: "0279,Thuê bao không được thay đổi dịch vụ GPRS",
+    explain:
+      "Thuê bao không được hủy dịch vụ GPRS khi đấu mới, vui lòng kiểm tra lại",
+  },
+  {
+    error: "0666, Không tồn tại IMSI",
+    explain: "IMSI/Serial Sim không chính xác, vui lòng kiểm tra lại",
+  },
+  {
+    error: "0749, Lỗi từ hệ thống: ERR - ISDN, chua duoc gan loai so",
+    explain: "Thuê bao {Số TB} chưa được gán loại số, vui lòng kiểm tra lại",
+  },
+  {
+    error:
+      "1731, Theo quy định mới, thuê bao doanh nghiệp số hợp đồng phải trùng với số GPKD",
+    explain:
+      "Theo quy định mới, thuê bao doanh nghiệp, số hợp đồng phải trùng với số GPKD",
+  },
+  {
+    error: "9991, User không thuộc cửa hàng đã chọn,",
+    explain:
+      "Tài khoản đấu nối không thuộc cửa hàng đã chọn, vui lòng kiểm tra lại",
+  },
+  {
+    error: "9994, Thong tin xac thuc khong chinh xac",
+    explain:
+      "Thông tin tài khoản đấu nối không chính xác, vui lòng kiểm tra lại",
+  },
+  {
+    error: "9994, User name hoac Mat khau nguoi su dung khong hop le",
+    explain:
+      "Tài khoản hoặc Mật khẩu đấu nối của người sử dụng không hợp lệ, vui lòng kiểm tra lại",
+  },
+  {
+    error: "An invalid response was received from the upstream server",
+  },
+  {
+    error: "arrRegProm khong hop le",
+    explain: "Bộ tham số mã khuyến mại không hợp lệ, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Bạn không có quyền thực hiện chức năng này",
+    explain: "Bạn không có quyền thực hiện chức năng này",
+  },
+  {
+    error: "bị cấm thực hiện tác động này",
+    explain: "Tài khoản bị cấm thực hiện tác động này",
+  },
+  {
+    error: "Broken pipe(Write failed)",
+  },
+  {
+    error: "cen_code và shop_code không hợp lệ",
+    explain:
+      "Mã Cencode (Trung tâm) và ShopCode (Cửa hàng) không hợp lệ, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Có lỗi từ hệ thống OCS Support (HLRGW)",
+    explain: "Có lỗi từ hệ thống OCS Support (HLRGW)",
+  },
+  {
+    error: "Có lỗi từ hệ thống VASP_PROM",
+    explain: "Có lỗi từ hệ thống VASP_PROM",
+  },
+  {
+    error: "com.google.gson.stream.MalformedJsonException",
+  },
+  {
+    error: "Cung giay to khac ten(ten dai dien) voi thue bao tra truoc",
+    explain:
+      "Cùng số giấy tờ khác tên (tên đại diện) với thuê bao trả trước {Số TB}, vui lòng kiểm tra lại",
+  },
+  {
+    error: "dang duoc gan chi dau tra sau",
+    explain:
+      "Thuê bao {Số TB} đang được gán chỉ đấu trả sau, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Dia chi IP",
+    explain:
+      "Tài khoản đấu nối chưa được khai báo địa chỉ IP mSale Pro, vui lòng kiểm tra lại",
+  },
+  {
+    error: "duoc phan cho cua hang truc tuyen",
+    explain:
+      "Thuê bao {Số TB} được phân cho cửa hàng trực tuyến {Mã cửa hàng}, vui lòng kiểm tra lại",
+  },
+  {
+    error: "duoc phan cho trung tam",
+    explain:
+      "Thuê bao {Số TB} được phân cho trung tâm {Mã trung tâm}, vui lòng kiểm tra lại",
+  },
+  {
+    error: "E05, khong duoc DKTT TBTT hoa mang sau ngay",
+    explain: "Không được DKTT TBTT hòa mạng sau ngày {Ngày}",
+  },
+  {
+    error: "E06 Cung giay to khac ten(ten dai dien) voi thue bao tra truoc",
+    explain:
+      "Cùng số giấy tờ khác tên (tên đại diện) với thuê bao trả trước {Số TB}, {Tên KH}. Vui lòng kiểm tra lại",
+  },
+  {
+    error: "ERR - ISDN",
+    explain: "Người dùng kiểm tra lại số thuê bao",
+  },
+  {
+    error: "ERR008, So IMSI dang dau cho so",
+    explain:
+      "Số IMSI/Serial Sim đang đấu cho số {Số TB}, vui lòng kiểm tra lại",
+  },
+  {
+    error: "FIS-WS-E029",
+  },
+  {
+    error: "FSS-00009, Database.getValue Additional info",
+  },
+  {
+    error: "HLR9820",
+  },
+  {
+    error: "HoatDong",
+  },
+  {
+    error: "khong duoc phan cho cua hang cua ban, ban khong co quyen thuc hien",
+    explain:
+      "Thuê bao {Số TB} không được phân cho cửa hàng của bạn, bạn không có quyền thực hiện",
+  },
+  {
+    error:
+      "không được phép lock/release vì không phải số mới hoặc không phải số đã ngưng sử dụng",
+    explain:
+      "Thuê bao {Số TB} không được phép lock/release vì không phải số mới hoặc không phải số đã ngưng sử dụng, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Không tồn tại thông tin số thuê bao",
+    explain: "Không tồn tại thông tin số thuê bao",
+  },
+  {
+    error: "la so danh rieng cho cua hang",
+    explain:
+      "Thuê bao {Số TB} là số dành riêng cho cửa hàng {Mã cửa hàng}, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Mat khau cua ban da het han su dung!",
+    explain:
+      "Mật khẩu tài khoản đấu nối đã hết hạn sử dụng. Vui lòng cập nhật lại",
+  },
+  {
+    error: "ngung su dung chua qua 30 ngay",
+    explain: "Thuê bao {Số TB} ngừng sử dụng chưa quá 30 ngày",
+  },
+  {
+    error: "Read timed out, error.ccGw.remoteException",
+    explain:
+      "Quá thời gian phản hồi, người dùng kiểm tra lại trạng thái thuê bao và thực hiện lại",
+  },
+  {
+    error: "Số Imsi Đã hết hiệu lực hoặc không tồn tại",
+    explain:
+      "Số IMSI/Serial Sim đã hết hiệu lực hoặc không tồn tại, vui lòng kiểm tra lại.",
+  },
+  {
+    error: "ERR024: So 788615968 la so danh rieng cho cua hang 3DNA10006",
+    explain:
+      "Thuê bao {Số TB} là số dành riêng cho cửa hàng {Mã cửa hàng}, vui lòng kiểm tra lại",
+  },
+  {
+    error:
+      "java.lang.Exception: session=71100000016166124,transid=1702311086496,message=Wait message timeout,command=create_sub,status=-1;, error.ccGw.webserviceError",
+    explain:
+      "Quá thời gian phản hồi, người dùng kiểm tra lại trạng thái thuê bao và thực hiện lại",
+  },
+  {
+    error:
+      "E02|2262_MOBIFONE_KHCN_User da thuc hien 01 giao dich trong vong 1 phut",
+    explain:
+      "Tài khoản đấu nối của người dùng đã thực hiện 01 giao dịch trong vòng 1 phút. Vui lòng thực hiện lại sau 1 phút.",
+  },
+  {
+    error:
+      "Số 906240186 không được phép lock/release vì không phải số mới hoặc không phải số đã ngưng sử dụng!",
+    explain:
+      "Thuê bao {Số TB} không được phép lock/release vì không phải số mới hoặc không phải số đã ngưng sử dụng, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Tham số strAppObject có đầu vào không hợp lệ",
+    explain:
+      "Tham số đối tượng khách hàng có đầu vào không hợp lệ, vui lòng kiểm tra lại.",
+  },
+  {
+    error: "Thoi gian truy cap khong hop le",
+    explain:
+      "Thời gian truy cập hệ thống không hợp lệ ({Thời gian}), vui lòng kiểm tra lại",
+  },
+  {
+    error: "Thong tin xac thuc khong chinh xac!",
+    explain:
+      "Thông tin tài khoản đấu nối không chính xác, vui lòng kiểm tra lại",
+  },
+  {
+    error: "tồn tại trên HLR",
+    explain:
+      "Thuê bao {Số TB} đã tồn tại trên HLR. Người dùng động bộ lại trên TC QLKH",
+  },
+  {
+    error: "XuatKho",
+    explain: "Xuất kho BHM eSim thành công",
+  },
+  {
+    error:
+      "E15|Thue bao khong phai M2M, tong dai khong duoc chon doi tuong cho thiet bi.",
+    explain:
+      "Thuê bao không phải M2M, người dùng không được chọn đối tượng Cho thiết bị, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Quốc tịch không hợp lệ",
+    explain: "Quốc tịch không hợp lệ, vui lòng kiểm tra lại",
+  },
+  {
+    error: "SIM/So 902111903 dang duoc su dung boi User khac",
+    explain:
+      "Thuê bao {Số TB} đang được sử dụng bởi Tài khoản đấu nối khác. Vui lòng kiểm tra lại",
+  },
+  {
+    error:
+      "User name hoac Mat khau nguoi su dung khong hop le!. Ban chi con 5 lan nhap sai password",
+    explain:
+      "Mật khẩu tài khoản đấu nối của người sử dụng không hợp lệ. Bạn chỉ còn {Số lần} lần nhập sai Mật khẩu.",
+  },
+  {
+    error:
+      "E04|2262_MOBIFONE_KHCN_CMND/HC 044069008478 qua 3 TB User khong duoc phep dang ky",
+    explain: "Số giấy tờ {Số giấy tờ} quá 3 thuê bao, không được phép đăng ký",
+  },
+  {
+    error: "Tham số strAppObject có đầu vào không hợp lệ",
+    explain:
+      "Tham số đối tượng khách hàng có đầu vào không hợp lệ, vui lòng kiểm tra lại",
+  },
+  {
+    error: ", Đối soát không khớp với thông tin CSDL QG DC",
+    explain: "Đối soát không khớp với thông tin CSDL QG DC",
+  },
+  {
+    error:
+      "Thuê bao 706006662 vừa thực hiện chặn/mở. Bạn vui lòng thực hiện sau 2 phút!",
+    explain:
+      "Thuê bao {Số TB} vừa thực hiện chặn/mở. Vui lòng thực hiện sau {Số phút} phút",
+  },
+  {
+    error:
+      "(R2.841.898) Không tìm thấy thông tin nhân viên trên hệ thống TCQLKH-KHDN tương ứng với use",
+    explain:
+      "Không tìm thấy thông tin nhân viên trên hệ thống TCQLKH-KHDN tương ứng với Tài khoản đấu nối đang thực hiện",
+  },
+  {
+    error: "Bạn phải nhập trường RegType",
+    explain: "Bạn phải nhập trường số điện thoại khi đấu thuê bao FC",
+  },
+  {
+    error: "Tham số strAppObject có đầu vào không hợp lệ]",
+    explain:
+      "Tham số đối tượng khách hàng có đầu vào không hợp lệ, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Thiếu tham số nghiệp vụ đầu vào strReason]",
+    explain:
+      "Thiếu tham số nghiệp vụ đầu vào lý do tác động, vui lòng kiểm tra lại",
+  },
+  {
+    error: "SIM/So 762904918 dang duoc su dung boi chuc nang khac",
+    explain:
+      "Thuê bao {Số TB} đang được sử dụng bởi một nghiệp vụ khác, vui lòng kiểm tra lại",
+  },
+  {
+    error: "User đại lý không được phép thực hiện thao tác này",
+    explain:
+      "Tài khoản đấu nối của Đại lý không được phép thực hiện nghiệp vụ này.",
+  },
+  {
+    error:
+      "E15|Thue bao khong phai M2M, tong dai khong duoc chon doi tuong cho thiet bi",
+    explain:
+      "Thuê bao không phải M2M, người dùng không được chọn đối tượng Cho thiết bị, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Lỗi trong khi đổi sim Sim được đưa vào danh sách cắt hủy khỏi AUC",
+    explain: "Sim được đưa vào danh sách cắt hủy khỏi AUC",
+  },
+  {
+    error: "Thoi gian truy cap khong hop le (06:40:44)",
+    explain:
+      "Thời gian truy cập hệ thống không hợp lệ ({Thời gian}), vui lòng kiểm tra lại",
+  },
+  {
+    error: "Tham số strIdIssueDate phải nhỏ hơn ngày hiện tại",
+    explain:
+      "Tham số ngày cấp phải nhỏ hơn ngày hiện tại, vui lòng kiểm tra lại",
+  },
+  {
+    error: ", Bạn phải nhập trường strContactName",
+    explain:
+      "Bạn phải nhập trường dữ liệu thông tin liên hệ, vui lòng kiểm tra lại",
+  },
+  {
+    error:
+      "User name hoac Mat khau nguoi su dung khong hop le!. Ban chi con 4 lan nhap sai password",
+    explain:
+      "Mật khẩu tài khoản đấu nối của người sử dụng không hợp lệ. Bạn chỉ còn {Số lần} lần nhập sai Mật khẩu.",
+  },
+  {
+    error:
+      "Lỗi từ hệ thống: Thuê bao 931998145 đang Chặn 1C(KHYC) phải mở Bình thường Trước!",
+    explain:
+      "Thuê bao {Số TB} đang ở trạng thái {Tên trạng thái}. Vui lòng mở {Trạng thái} trước",
+  },
+  {
+    error: "Không tồn tại thông tin số thuê bao 974217612",
+    explain:
+      "Không tồn tại thông tin số thuê bao {Số TB}, vui lòng kiểm tra lại",
+  },
+  {
+    error: "ERR Khong ton tai thong tin Doanh Nghiep",
+    explain: "Không tồn tại thông tin Doanh nghiệp, vui lòng kiểm tra lại",
+  },
+  {
+    error:
+      "[java.sql.SQLException: ORA-06502: PL/SQL: numeric or value error: character string buffer too small",
+  },
+  {
+    error: 'ORA-06512: at "CUSMAN_API.API_KHDN_GET_CORPORATE", line 268',
+  },
+  {
+    error: "ORA-06512: at line 4",
+  },
+  {
+    error: "Response return from TCQLKH: E|ERR01 : Khong tim thay thue bao",
+    explain: "Không tìm thấy thông tin thuê bao, vui lòng kiểm tra lại",
+  },
+  {
+    error: "[502 Bad Gateway: [{",
+  },
+  {
+    error:
+      '"message":"An invalid response was received from the upstream server',
+  },
+  {
+    error: "Mã Tỉnh/Thành, Quận/Huyện hoặc Phường/Xã không tồn tại",
+    explain: "Mã Tỉnh/Thành, Quận/Huyện hoặc Phường/Xã không tồn tại",
+  },
+  {
+    error:
+      "E06|936231773|Z6544544: Cung giay to khac ten(ten dai dien) voi thue bao tra truoc: 936228974, Dey Shantanu",
+    explain:
+      "Cùng số giấy tờ khác tên (tên đại diện) với thuê bao trả trước {Số TB}, {Tên KH}. Vui lòng kiểm tra lại",
+  },
+  {
+    error: "Số thuê bao 793487079 bị cấm thực hiện tác động này!",
+    explain: "Thuê bao {Số TB} bị cấm thực hiện tác động này",
+  },
+  {
+    error: "Ngày cấp CMT không nhỏ quá 15 năm",
+    explain: "Ngày cấp CMT không nhỏ quá 15 năm",
+  },
+  {
+    error: "sim không thuộc cửa hàng đã chọn",
+    explain:
+      "Sim không thuộc cửa hàng đã chọn {Mã cửa hàng}, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Bạn phải nhập trường strTel",
+    explain: "Bạn phải nhập trường số điện thoại khi đấu thuê bao FC",
+  },
+  {
+    error: "Lỗi không tìm thấy số liệu khi kết nối đến CSDL QG DC",
+    explain: "Lỗi không tìm thấy số liệu khi kết nối đến CSDL QG DC",
+  },
+  {
+    error:
+      "Lỗi trong khi đổi sim Số IMSI và SERIAL đang được sử dụng trong hệ thống",
+    explain:
+      "Lỗi trong khi đổi sim: Số IMSI và Serial Sim đang được sử dụng trong hệ thống",
+  },
+  {
+    error: "Mã nhân viên phát triển không tồn tại",
+    explain: "Mã nhân viên phát triển không tồn tại, vui lòng kiểm tra lại",
+  },
+  {
+    error: ", Bạn phải nhập trường strRegBussiness",
+    explain: "Bạn phải nhập trường dữ liệu Mã Doanh nghiệp",
+  },
+  {
+    error: ", ERR-003, Khong con eSim tren kho TCQLKH",
+    explain: "Không còn eSim trên kho TCQLKH",
+  },
+  {
+    error: "0666, Không tồn tại IMSI",
+    explain: "Không tồn tại IMSI, vui lòng kiểm tra lại",
+  },
+  {
+    error: "Tham số strAppObject có đầu vào không hợp lệ",
+    explain:
+      "Tham số đối tượng khách hàng có đầu vào không hợp lệ, vui lòng kiểm tra lại",
+  },
+  {
+    error: "So ISDN 901515426 dang duoc gan chi dau tra sau.",
+    explain: "Thuê bao {Số TB} đang được gán chỉ đấu trả sau",
+  },
+  {
+    error: "Additional info: validateImsiIsdn",
+    explain: "Vui lòng kiểm tra lại Serial Sim và số thuê bao",
+  },
+  {
+    error: "ERR - ISDN: So 705836225 duoc phan cho trung tam 5.",
+    explain: "Thuê bao {Số TB} được phân cho trung tâm {Mã trung tâm}",
+  },
+  {
+    error: "Additional info: validateImsiIsdn, error.ccGw.webserviceError",
+    explain: "Vui lòng kiểm tra lại Serial Sim và số thuê bao",
+  },
+  {
+    error: ", Thuê bao không được thay đổi dịch vụ GPRS",
+    explain: "Thuê bao không được hủy dịch vụ GPRS khi đấu mới",
+  },
+  {
+    error:
+      ", E04|2262_MOBIFONE_KHCN_CMND/HC 060302001183 qua 3 TB User khong duoc phep dang ky!",
+    explain: "Số giấy tờ {Số giấy tờ} quá 3 thuê bao, không được phép đăng ký",
+  },
+  {
+    error: "ERR - ISDN: So 795294438 duoc phan cho cua hang truc tuyen",
+    explain: "Thuê bao {Số TB} được phân cho cửa hàng trực tuyến {Mã cửa hàng}",
+  },
+  {
+    error: "Số Imsi Đã hết hiệu lực hoặc không tồn tạ",
+    explain:
+      "Số IMSI / Serial Sim đã hết hiệu lực hoặc không tồn tại, vui lòng kiểm tra lại.",
+  },
+  {
+    error: "Số thuê bao 901701379 đang được gán cho doanh nghiệp có GPKD 139",
+    explain: "Thuê bao {Số TB} đang được gán cho Doanh nghiệp có GPKD 139",
+  },
+  {
+    error: "User không có quyền tác động số TCT",
+    explain: "Tài khoản đấu nối không có quyền tác động số Tổng Công ty.",
+  },
+  {
+    error: "So ISDN 936404736 ngung su dung chua qua 30 ngay.",
+    explain: "Thuê bao {Số TB} ngừng sử dụng chưa quá 30 ngày",
+  },
+  {
+    error: "Additional info: validateImsiIsdn",
+    explain: "Vui lòng kiểm tra lại Serial Sim và số thuê bao",
+  },
+  {
+    error:
+      '"[BusinessError(super=com.mobifone.msaleservice.common.service.BusinessError@f5320111, errorCode=error.changeSimBhmEsim.simTypeNotValid, params=[Response Result: 0], errorMessage=null)]"',
+    explain: "Loại sim của BHM esim ban đầu không phải esim",
+  },
+  {
+    error:
+      '"Lỗi kết nối khi thực hiện gửi lệnh tới CC-Gateway (readTimeOut). Chi tiết: [I/O error on POST request for &quot;http://10.38.29.90:80/msale-intergration-modules/api/ccGwWs/prepaidRegExForSupport&quot;: Read timed out; nested exception is java.net.SocketTimeoutException: Read timed out]"',
+    explain:
+      "Quá thời gian phản hồi, người dùng kiểm tra lại trạng thái thuê bao và thực hiện lại",
+  },
+];
 
 export {
   infoLink,
   companyLink,
   serviceLink,
   menuData,
-  dataWellRead,
   mostRead,
   newBlog,
   topSliders,
   menuCategory,
   searchData,
   questions1,
+  errorMsale,
 };

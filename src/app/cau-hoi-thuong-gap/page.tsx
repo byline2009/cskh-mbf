@@ -1,11 +1,18 @@
 "use client";
-import { questions1 } from "@config/constants";
+import { errorMsale, questions1 } from "@config/constants";
+import Link from "next/link";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+
 import React, { useEffect } from "react";
 
 const Page = () => {
+  const params = useSearchParams();
+  const router = useRouter();
+
   useEffect(() => {
     const tabs = document.querySelectorAll(".tab_btn");
     const contents = document.querySelectorAll(".content");
+
     tabs.forEach((tab, index) => {
       tab.addEventListener("click", (e) => {
         tabs.forEach((tab1) => {
@@ -29,6 +36,10 @@ const Page = () => {
         acc.classList.add("active");
       });
     });
+    console.log(params.get("type"));
+    if (!params.get("type")) {
+      router.push("cau-hoi-thuong-gap?type=goi-cuoc", undefined);
+    }
 
     return () => {
       tabs.forEach((tab, index) => {
@@ -40,7 +51,11 @@ const Page = () => {
     <div className="questions">
       <div className="container">
         <div className="tab_box">
-          <button className="tab_btn">
+          <Link
+            className="tab_btn"
+            href={"/cau-hoi-thuong-gap?type=goi-cuoc"}
+            passHref
+          >
             <div className="nav-item__thumb">
               <img
                 className="img-active"
@@ -55,8 +70,12 @@ const Page = () => {
             </div>
 
             <p>Gói cước</p>
-          </button>
-          <button className="tab_btn">
+          </Link>
+          <Link
+            className="tab_btn"
+            href={"/cau-hoi-thuong-gap?type=msale"}
+            passHref
+          >
             <div className="nav-item__thumb">
               <img
                 className="img-active"
@@ -70,9 +89,13 @@ const Page = () => {
               />
             </div>
 
-            <p>Dịch vụ</p>
-          </button>{" "}
-          <button className="tab_btn">
+            <p>Msale</p>
+          </Link>{" "}
+          <Link
+            className="tab_btn"
+            href={"/cau-hoi-thuong-gap?type=thanh-toan-cuoc"}
+            passHref
+          >
             <div className="nav-item__thumb">
               <img
                 className="img-active"
@@ -87,8 +110,12 @@ const Page = () => {
             </div>
 
             <p>Thanh toán cước</p>
-          </button>{" "}
-          <button className="tab_btn">
+          </Link>{" "}
+          <Link
+            className="tab_btn"
+            href={"/cau-hoi-thuong-gap?type=nap-tien"}
+            passHref
+          >
             <div className="nav-item__thumb">
               <img
                 className="img-active"
@@ -103,7 +130,7 @@ const Page = () => {
             </div>
 
             <p>Nạp tiền</p>
-          </button>{" "}
+          </Link>{" "}
           <div className="line"></div>
         </div>
         <div className="content_box">
@@ -119,7 +146,7 @@ const Page = () => {
                 </div>
               </div>
             ))} */}
-            <div id="accordion">
+            <div id="accordion1">
               {questions1.map((item, index) => (
                 <div className="card" key={index}>
                   <div className="card-header" id={`heading${index}`}>
@@ -139,7 +166,7 @@ const Page = () => {
                     id={`collapse${index}`}
                     className="collapse"
                     aria-labelledby={`heading${index}`}
-                    data-parent="#accordion"
+                    data-parent="#accordion1"
                   >
                     <div className="card-body">{item.a}</div>
                   </div>
@@ -148,7 +175,34 @@ const Page = () => {
             </div>
           </div>
           <div className="content">
-            <h2>Dịch vụ</h2>
+            <h2>Msale</h2>
+            <div id="accordion2">
+              {errorMsale.map((item, index) => (
+                <div className="card" key={index}>
+                  <div className="card-header" id={`heading${index}`}>
+                    <button
+                      className="btn btn-link btn-collapse"
+                      data-toggle="collapse"
+                      data-target={`#collapse${index}`}
+                      aria-expanded="false"
+                      aria-controls={`collapse${index}`}
+                    >
+                      <p>{item.error}</p>
+                      <i className="fa-solid fa-chevron-down"></i>
+                    </button>
+                  </div>
+
+                  <div
+                    id={`collapse${index}`}
+                    className="collapse"
+                    aria-labelledby={`heading${index}`}
+                    data-parent="#accordion2"
+                  >
+                    <div className="card-body">{item.explain}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="content">
             <h2>Thanh toán cước</h2>
