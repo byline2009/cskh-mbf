@@ -25,8 +25,7 @@ const Page = () => {
         contents[index].classList.add("active");
       });
     });
-    tabs[0].classList.add("active");
-    contents[0].classList.add("active");
+
     var accordions = document.querySelectorAll("accordion");
     accordions.forEach((acc, index) => {
       accordions.forEach((acc1) => {
@@ -39,6 +38,13 @@ const Page = () => {
     console.log(params.get("type"));
     if (!params.get("type")) {
       router.push("cau-hoi-thuong-gap?type=goi-cuoc", undefined);
+      tabs[0].classList.add("active");
+      contents[0].classList.add("active");
+    } else {
+      if (params.get("type") == "msale") {
+        tabs[1].classList.add("active");
+        contents[1].classList.add("active");
+      }
     }
 
     return () => {
@@ -179,13 +185,13 @@ const Page = () => {
             <div id="accordion2">
               {errorMsale.map((item, index) => (
                 <div className="card" key={index}>
-                  <div className="card-header" id={`heading${index}`}>
+                  <div className="card-header" id={`heading2${index}`}>
                     <button
                       className="btn btn-link btn-collapse"
                       data-toggle="collapse"
-                      data-target={`#collapse${index}`}
+                      data-target={`#collapse2${index}`}
                       aria-expanded="false"
-                      aria-controls={`collapse${index}`}
+                      aria-controls={`collapse2${index}`}
                     >
                       <p>{item.error}</p>
                       <i className="fa-solid fa-chevron-down"></i>
@@ -193,9 +199,9 @@ const Page = () => {
                   </div>
 
                   <div
-                    id={`collapse${index}`}
+                    id={`collapse2${index}`}
                     className="collapse"
-                    aria-labelledby={`heading${index}`}
+                    aria-labelledby={`heading2${index}`}
                     data-parent="#accordion2"
                   >
                     <div className="card-body">{item.explain}</div>
