@@ -86,6 +86,9 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             <i className="icon-call-connecting" />
             <span>18001090</span>
           </a>
+          <a href="/login" className={`btn-houze btn-solid`}>
+            <span>Login</span>
+          </a>
         </div>
       </div>
       <div className="header-bottom">

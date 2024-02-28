@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from "react";
 import { topSliders } from "@config/constants";
+import LoginForm from "../components/login/LoginForm";
 type ISlider = {
   imgSrc: string;
 };
@@ -33,6 +34,7 @@ export default function Home() {
   return (
     <div className="home-page">
       <div className="top-news">
+        <LoginForm />
         <Slider {...settingTopnews}>
           {topNews.map((item, index) => (
             <div key={index}>

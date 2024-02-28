@@ -10,6 +10,7 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
+    console.log("check");
     const tabs = document.querySelectorAll(".tab_btn");
     const contents = document.querySelectorAll(".content");
 

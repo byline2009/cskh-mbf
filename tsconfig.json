@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,33 +16,20 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@public/*": [
-        "./public/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@styles/*": [
-        "./styles/*"
-      ],
-      "@config/*": [
-        "./src/config/*"
-      ],
-      "@helpers/*": [
-        "./helpers/*"
-      ],
-      "@redux/*": [
-        "./redux/*"
-      ],
-      "@api/*": [
-        "./src/api/*"
-      ],
+      "@public/*": ["./public/*"],
+      "@components/*": ["./src/components/*"],
+      "@styles/*": ["./styles/*"],
+      "@config/*": ["./src/config/*"],
+      "@helpers/*": ["./helpers/*"],
+      "@redux/*": ["./redux/*"],
+      "@api/*": ["./src/api/*"],
       "@/*": ["./src/*"]
-
     },
-    "plugins": [{
-      "name": "next"
-    }]
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -55,7 +38,5 @@
     "next.env.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules", ".next"]
 }
