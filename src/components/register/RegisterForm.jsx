@@ -2,11 +2,13 @@
 import React from "react";
 import Link from "next/link";
 import { useState } from "react";
+import {useRouter} from "next/navigation";
 const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !email || !password) {
@@ -37,6 +39,7 @@ const RegisterForm = () => {
       if (res.ok) {
         const form = e.target;
         form.reset();
+        router.push("/");
       } else {
         console.log("user registration failed");
       }

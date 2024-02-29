@@ -8,6 +8,7 @@ import "react-modern-drawer/dist/index.css";
 import MobileMenu from "@components/MobileMenu";
 import dynamic from "next/dynamic";
 import Footer from "@components/footer";
+import {AuthProvider} from "./Providers.js"
 const Drawer = dynamic(() => import("react-modern-drawer"), {
   ssr: false,
 });
@@ -54,7 +55,8 @@ export default function RootLayout({
           integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
           crossOrigin="anonymous"
         ></script>
-        <HeaderApp toggleMenu={toggleDrawer} isOpen={isOpen} />
+        <AuthProvider>
+          <HeaderApp toggleMenu={toggleDrawer} isOpen={isOpen} />
         <div className="main-layout">
           <div className="content-page">{children}</div>
         </div>
@@ -70,6 +72,9 @@ export default function RootLayout({
         >
           <MobileMenu toggleMenu={toggleDrawer} isOpen={isOpen} />
         </Drawer>
+
+        </AuthProvider>
+        
       </body>
     </html>
   );
