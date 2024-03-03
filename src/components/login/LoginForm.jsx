@@ -21,7 +21,8 @@ const LoginForm = () => {
         setError("Invalid credentials");
         return;
       }
-      router.replace("dashboard");
+      router.replace("/");
+      router.refresh();
     } catch (e) {}
   };
 

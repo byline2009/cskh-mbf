@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-sync-scripts */
-"use client";
-
 import "../styles/global.scss";
 import HeaderApp from "src/components/header/HeaderApp";
 import React from "react";
@@ -8,20 +5,14 @@ import "react-modern-drawer/dist/index.css";
 import MobileMenu from "@components/MobileMenu";
 import dynamic from "next/dynamic";
 import Footer from "@components/footer";
-import {AuthProvider} from "./Providers.js"
-const Drawer = dynamic(() => import("react-modern-drawer"), {
-  ssr: false,
-});
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [isOpen, setIsOpen] = React.useState(false);
+import { AuthProvider } from "./Providers.js";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import Layout from "../components/layout/Layout";
 
-  const toggleDrawer = () => {
-    setIsOpen((prev) => !prev);
-  };
+const RootLayout = async ({ children }) => {
+  const session = await getServerSession(authOptions);
 
   return (
     <html lang="en">
@@ -56,26 +47,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></script>
         <AuthProvider>
-          <HeaderApp toggleMenu={toggleDrawer} isOpen={isOpen} />
-        <div className="main-layout">
-          <div className="content-page">{children}</div>
-        </div>
-        <Footer />
-
-        <Drawer
-          open={isOpen}
-          onClose={toggleDrawer}
-          direction="left"
-          className="houze-drawer"
-          size={300}
-          zIndex={9999}
-        >
-          <MobileMenu toggleMenu={toggleDrawer} isOpen={isOpen} />
-        </Drawer>
-
+          {session ? <Layout>{children}</Layout> : children}
         </AuthProvider>
-        
       </body>
     </html>
   );
-}
+};
+export default RootLayout;

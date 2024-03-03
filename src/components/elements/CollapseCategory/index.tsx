@@ -1,3 +1,4 @@
+"use client";
 import React, { FC, useState, useEffect } from "react";
 import { Collapse } from "react-bootstrap";
 import Link from "next/link";

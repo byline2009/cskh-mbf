@@ -6,6 +6,7 @@ import { menuCategory } from "@config/constants";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { signOut } from "next-auth/react";
 
 type HeaderProps = {
   toggleMenu: () => void;
@@ -86,9 +87,9 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             <i className="icon-call-connecting" />
             <span>18001090</span>
           </a>
-          <a href="/login" className={`btn-houze btn-solid`}>
-            <span>Login</span>
-          </a>
+          <button onClick={() => signOut()} className={`btn-houze btn-solid`}>
+            <span>Logout</span>
+          </button>
         </div>
       </div>
       <div className="header-bottom">

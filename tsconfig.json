@@ -25,11 +25,9 @@
       "@api/*": ["./src/api/*"],
       "@/*": ["./src/*"]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "plugins": [{
+      "name": "next"
+    }]
   },
   "include": [
     "next-env.d.ts",
@@ -37,7 +35,7 @@
     "**/*.tsx",
     "next.env.js",
     ".next/types/**/*.ts",
-    "src/app/api/auth/[...nextauth]/route.js"
+    "src/app/api/auth/[...nextauth]/route.js", "src/app/layout.jsx", "src/app/page.jsx"
   ],
   "exclude": ["node_modules", ".next"]
 }
