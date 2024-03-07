@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 const Page = () => {
   const [typePassword, setTypePassword] = useState("password");
-  const [password, usePassword] = useState("");
+  const [password, setPassword] = useState("");
   const [loginTitle, setLoginTitle] = useState("Please login to use platform");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -15,6 +15,7 @@ const Page = () => {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+    console.log("check login", email, password);
     try {
       const res = await signIn("credentials", {
         email,
@@ -117,7 +118,14 @@ const Page = () => {
               </div>
               <div className="page password-page">
                 <div className="input-box">
-                  <input type={typePassword} className="password" required />
+                  <input
+                    type={typePassword}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                    className="password"
+                    required
+                  />
                   <label htmlFor="password">Enter your password</label>
                 </div>
                 <div className="forgot show">
@@ -139,7 +147,7 @@ const Page = () => {
                     <div role="status">
                       <svg
                         aria-hidden="true"
-                        class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                        className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                         viewBox="0 0 100 101"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +161,7 @@ const Page = () => {
                           fill="currentFill"
                         />
                       </svg>
-                      <span class="sr-only">Loading...</span>
+                      <span className="sr-only">Loading...</span>
                     </div>
                   )}
                   {!loading && (

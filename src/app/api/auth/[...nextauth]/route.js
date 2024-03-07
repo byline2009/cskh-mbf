@@ -1,9 +1,10 @@
 import { SessionStrategy } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { connectMongoDB } from "../../../../../lib/mongodb";
+import { connectMongoDB } from "../../../../lib/mongodb";
 import User from "../../../../../models/user";
 import bcrypt from "bcryptjs";
+import { login } from "@/lib/api";
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -12,15 +13,18 @@ export const authOptions = {
       async authorize(credentials) {
         const { email, password } = credentials;
         try {
-          await connectMongoDB();
-          const user = await User.findOne({ email });
+          // await connectMongoDB();
+          // const user = await User.findOne({ email });
+          const user = await login(email, password);
+
           if (!user) {
             return null;
           }
-          const passwordMatch = await bcrypt.compare(password, user.password);
-          if (!passwordMatch) {
-            return null;
-          }
+          console.log("user", user);
+          // const passwordMatch = await bcrypt.compare(password, user.password);
+          // if (!passwordMatch) {
+          //   return null;
+          // }
           return user;
         } catch (error) {
           console.log("Error", error);
