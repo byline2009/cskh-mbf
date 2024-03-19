@@ -28,14 +28,15 @@
     "react": "^18",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18",
+    "react-loader-spinner": "^5.3.4",
     "react-modern-drawer": "^1.2.2",
+    "react-paginate": "^8.2.0",
     "react-slick": "^0.29.0",
+    "react-xml-parser": "^1.1.8",
     "sass": "^1.67.0",
     "slick-carousel": "^1.8.1",
     "swr": "^2.2.2",
-    "typescript": "5.2.2",
-    "react-loader-spinner": "^5.3.4",
-    "react-paginate": "^8.2.0"
+    "typescript": "5.2.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

@@ -7,6 +7,8 @@ import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
 import moment from "moment";
 import { checkPackage } from "@/lib/api";
+import XMLParser from "react-xml-parser";
+
 const limit = 10;
 const Page = () => {
   const [isSearch, setIsSearch] = useState(false);
@@ -20,37 +22,56 @@ const Page = () => {
   const [pageTotal, setPageTotal] = useState(getPageNumber(totalCount, limit));
   const [skip, setSkip] = useState(0);
   const renderAfterCalled = useRef(false);
-
+  const [arrCodeJson, setArrCodeJson] = useState([]);
   useEffect(() => {
     setPageTotal(getPageNumber(totalCount, limit));
   }, [totalCount]);
-  const handleSearch = (e: any) => {
+  const handleSearch = (e) => {
     if (e.key === "Enter") {
       setIsSearch(false);
       setSearchVal("");
     }
   };
 
-  const handlePageChange = (event: any) => {
+  const handlePageChange = (event) => {
     setLoading(true);
     setSkip(event.selected + 1 == -1 ? 0 : event.selected * limit);
     setForcePageIndex(event.selected);
   };
+
   return (
     <div className="check_isdn">
       <SearchHeader
         textSearch={textSearch}
         textHolder="Nhập thông tin ..."
         callback={async (e) => {
-          console.log("e", e);
+          setLoading(true);
           const response = await fetch(`api/checkPackage?isdn=${e}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
           });
-          const result = await response.json();
-          console.log("check ne", result);
+          setLoading(false);
+          const res = await response.json();
+          const removeXML = new XMLParser()
+            .parseFromString(res.result)
+            .children[0].value.split(":")[1];
+          const arrCode = removeXML.split(",");
+          if (arrCode) {
+            arrCode.map((item, index) => {
+              const arrSub = item.split("|");
+              const object = {
+                code: arrSub[0],
+                subCode: arrSub[1],
+                price: arrSub[2],
+                date: arrSub[3],
+              };
+              console.log("object", object);
+
+              setArrCodeJson((prev) => [...prev, object]);
+            });
+          }
         }}
       />
 
@@ -67,23 +88,19 @@ const Page = () => {
               <table className="table table-row-dashed table-striped  table-row-gray-300 align-middle gs-0 gy-3">
                 <thead className="">
                   <tr>
-                    <th scope="col">Tỉnh</th>
-                    <th scope="col">Shopcode</th>
-                    <th scope="col">Shopname</th>
-                    <th scope="col">Mã nvpt</th>
-                    <th scope="col">Họ và tên</th>
-                    <th scope="col">Ngày kích hoạt</th>
-                    <th scope="col">Tháng tính lương</th>
+                    <th scope="col">code</th>
+                    <th scope="col">subCode</th>
+                    <th scope="col">Gia</th>
+                    <th scope="col">Ngay su dung</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[0, 1, 2, 3, 5].map((item: any, index: number) => (
+                  {arrCodeJson.map((item, index) => (
                     <tr key={index}>
-                      <th>0</th>
-                      <th>1</th>
-                      <th>2</th>
-                      <th>3</th>
-                      <th>5</th>
+                      <th>{item.code}</th>
+                      <th>{item.subCode}</th>
+                      <th>{item.price}</th>
+                      <th>{item.date}</th>
                     </tr>
                   ))}
                 </tbody>
@@ -118,7 +135,7 @@ const Page = () => {
     </div>
   );
 };
-export function getPageNumber(total: number, limit: number) {
+export function getPageNumber(total, limit) {
   return Math.ceil(total / limit);
 }
 

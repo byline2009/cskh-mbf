@@ -25,9 +25,11 @@
       "@api/*": ["./src/api/*"],
       "@/*": ["./src/*"]
     },
-    "plugins": [{
-      "name": "next"
-    }]
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -35,7 +37,11 @@
     "**/*.tsx",
     "next.env.js",
     ".next/types/**/*.ts",
-    "src/app/api/auth/[...nextauth]/route.js", "src/app/layout.jsx", "src/app/page.jsx", "src/app/login/page.jsx"
-  ],
+    "src/app/api/auth/[...nextauth]/route.js",
+    "src/app/layout.jsx",
+    "src/app/page.jsx",
+    "src/app/login/page.jsx",
+    "src/until/helper.js"
+, "src/app/kiem-tra-thue-bao/page.jsx"  ],
   "exclude": ["node_modules", ".next"]
 }

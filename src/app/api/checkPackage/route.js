@@ -2,13 +2,14 @@ import { NextResponse } from "next/server";
 import User from "../../../../models/user";
 import bcrypt from "bcryptjs";
 import { checkPackage } from "./../../../lib/api";
+import { xml2json } from "./../../../until/helper";
 
 export async function GET(req, context) {
   try {
     const isdn = getQSParamFromURL("isdn", req.url);
 
-    const result = await checkPackage(isdn);
-    return NextResponse.json(result);
+    const res = await checkPackage(isdn);
+    return NextResponse.json(res);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
