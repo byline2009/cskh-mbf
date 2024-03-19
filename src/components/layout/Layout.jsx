@@ -5,9 +5,12 @@ import "react-modern-drawer/dist/index.css";
 import MobileMenu from "@components/MobileMenu";
 import dynamic from "next/dynamic";
 import Footer from "@components/footer";
+import "@ionic/react/css/core.css";
+import { setupIonicReact } from "@ionic/react";
 const Drawer = dynamic(() => import("react-modern-drawer"), {
   ssr: false,
 });
+setupIonicReact();
 const Layout = ({ children }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 

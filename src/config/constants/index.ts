@@ -58,8 +58,8 @@ const menuCategory = [
     link: "/",
   },
   {
-    label: "Hỗ trợ khách hàng",
-    link: "/ho-tro-khach-hang",
+    label: "Kiểm tra thuê bao",
+    link: "/kiem-tra-thue-bao",
   },
   {
     label: "Câu hỏi thường gặp",

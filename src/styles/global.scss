@@ -11,11 +11,13 @@
 @import "../components/MobileMenu/mobile-menu.scss";
 @import "../components/footer/footer.scss";
 @import "../components/login/login-form.scss";
+@import "../components/search/search-header.scss";
 @import "./pages/home-page.scss";
 @import "./pages/blog-category.scss";
 @import "./pages/blog-detail.scss";
 @import "./pages/question.scss";
 @import "./pages/login-test.scss";
+@import "./pages/check_isdn.scss";
 
 @tailwind base;
 @tailwind components;
@@ -50,6 +52,7 @@ a {
   width: 100%;
   min-height: 100vh;
   .content-page {
+    padding: 0 16px;
     margin-top: 130px;
     @media (max-width: 9690) {
       margin-top: 30px;

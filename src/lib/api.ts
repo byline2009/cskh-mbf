@@ -1,12 +1,13 @@
 import axios from "axios";
 const API_URL = process.env.NEXTAUTH_APP_API_URL;
-console.log("API_URL", API_URL);
 
 export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`;
 // export const LOGIN_URL = `${API_URL}/sys-user/login`
 export const LOGIN_URL = `${API_URL}/login`;
 export const REGISTER_URL = `${API_URL}/register`;
 export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`;
+export const CHECK_PACKAGE_URL = `${API_URL}/website/package`;
+
 axios.interceptors.response.use(
   function (response) {
     // Do something with response data
@@ -67,4 +68,8 @@ export function getUserByToken(token: string) {
   //  axios.post<UserModel>(GET_USER_BY_ACCESSTOKEN_URL, {
   //   api_token: token,
   // })
+}
+
+export function checkPackage(searchVal?: string) {
+  return axios.get(CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
 }

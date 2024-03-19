@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 const Page = () => {
   const [typePassword, setTypePassword] = useState("password");
   const [password, setPassword] = useState("");
-  const [loginTitle, setLoginTitle] = useState("Please login to use platform");
+  const [loginTitle, setLoginTitle] = useState(
+    "Chào mừng bạn đến với MobiFone"
+  );
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
@@ -96,6 +98,9 @@ const Page = () => {
                     required
                     onChange={(e) => {
                       setEmail(e.target.value);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Tab") e.preventDefault();
                     }}
                   />
                   <label htmlFor="email">Enter your email</label>
