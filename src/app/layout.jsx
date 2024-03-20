@@ -13,7 +13,6 @@ import Layout from "../components/layout/Layout";
 
 const RootLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
-
   return (
     <html lang="en">
       <link rel="icon" type="image/png" href="imgs/favicon.png" />

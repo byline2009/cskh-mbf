@@ -1,7 +1,5 @@
 "use client";
 import SearchHeader from "@components/search/SearchHeader";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
@@ -10,37 +8,41 @@ import { checkPackage } from "@/lib/api";
 import XMLParser from "react-xml-parser";
 
 const limit = 10;
+function paginate(array, skip, limit) {
+  // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+  return array.slice(skip, skip + limit);
+}
 const Page = () => {
-  const [isSearch, setIsSearch] = useState(false);
-  const [searchVal, setSearchVal] = useState("");
-  const router = useRouter();
-  const pathname = usePathname();
   const [textSearch, setTextSearch] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [forcePageIndex, setForcePageIndex] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [pageTotal, setPageTotal] = useState(getPageNumber(totalCount, limit));
   const [skip, setSkip] = useState(0);
-  const renderAfterCalled = useRef(false);
   const [arrCodeJson, setArrCodeJson] = useState([]);
+  const [arrPaginate, setArrPaginate] = useState([]);
+  const [error, setError] = useState("");
+
   useEffect(() => {
-    setPageTotal(getPageNumber(totalCount, limit));
-  }, [totalCount]);
-  const handleSearch = (e) => {
-    if (e.key === "Enter") {
-      setIsSearch(false);
-      setSearchVal("");
+    if (typeof window !== "undefined") {
+      // browser code
+      setPageTotal(getPageNumber(totalCount, limit));
+      setArrPaginate(arrCodeJson.slice(skip, limit + skip));
     }
-  };
+  }, [totalCount]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setArrPaginate(arrCodeJson.slice(skip, limit + skip));
+    }
+  }, [skip]);
 
   const handlePageChange = (event) => {
-    setLoading(true);
     setSkip(event.selected + 1 == -1 ? 0 : event.selected * limit);
     setForcePageIndex(event.selected);
   };
 
   return (
-    <div className="check_isdn">
+    <div className="check_isdn pt-5">
       <SearchHeader
         textSearch={textSearch}
         textHolder="Nhập thông tin ..."
@@ -54,28 +56,44 @@ const Page = () => {
           });
           setLoading(false);
           const res = await response.json();
-          const removeXML = new XMLParser()
-            .parseFromString(res.result)
-            .children[0].value.split(":")[1];
-          const arrCode = removeXML.split(",");
-          if (arrCode) {
-            arrCode.map((item, index) => {
-              const arrSub = item.split("|");
-              const object = {
-                code: arrSub[0],
-                subCode: arrSub[1],
-                price: arrSub[2],
-                date: arrSub[3],
-              };
-              console.log("object", object);
+          if (res.result) {
+            const removeXML = new XMLParser()
+              .parseFromString(res.result)
+              .children[0].value.split(":")[1];
+            if (removeXML) {
+              if (removeXML.includes("Hien tai he thong dang ban")) {
+                setError("Hệ thống bận, xin vui lòng thử lại sau");
+                setArrCodeJson([]);
+              } else {
+                const arrCode = removeXML.split(",");
+                if (arrCode) {
+                  setError("");
+                  const arrTemp = arrCode.map((item, index) => {
+                    const arrSub = item.split("|");
+                    const object = {
+                      code: arrSub[0],
+                      subCode: arrSub[1],
+                      price: arrSub[2],
+                      date: arrSub[3],
+                    };
 
-              setArrCodeJson((prev) => [...prev, object]);
-            });
+                    return object;
+                  });
+                  setArrCodeJson(arrTemp);
+                  setTotalCount(arrTemp.length);
+                }
+              }
+            } else {
+              setError("Hệ thống bận, xin vui lòng thử lại sau");
+            }
+          } else {
+            setArrPaginate([]);
           }
         }}
       />
 
-      <div>
+      <div className="border-1 mt-5">
+        {error && <div className="text-danger">{error}</div>}
         <div className="list-subscriber">
           {loading ? (
             <div className="empty-content">
@@ -88,19 +106,19 @@ const Page = () => {
               <table className="table table-row-dashed table-striped  table-row-gray-300 align-middle gs-0 gy-3">
                 <thead className="">
                   <tr>
-                    <th scope="col">code</th>
-                    <th scope="col">subCode</th>
-                    <th scope="col">Gia</th>
-                    <th scope="col">Ngay su dung</th>
+                    <th scope="col">Gói cước</th>
+                    {/* <th scope="col">subCode</th> */}
+                    <th scope="col">Giá</th>
+                    <th scope="col">Ngày sử dụng</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {arrCodeJson.map((item, index) => (
+                  {arrPaginate.map((item, index) => (
                     <tr key={index}>
                       <th>{item.code}</th>
-                      <th>{item.subCode}</th>
-                      <th>{item.price}</th>
-                      <th>{item.date}</th>
+                      {/* <th>{item.subCode}</th> */}
+                      <th>{item.price} đồng</th>
+                      <th>{item.date} ngày</th>
                     </tr>
                   ))}
                 </tbody>
@@ -109,7 +127,7 @@ const Page = () => {
           )}
           <div className="d-flex justify-content-end align-items-center flex-wrap pt-10">
             <div className="fs-6 me-2 fw-bold text-gray-700">{`Showing 1 to 10 of ${totalCount} entries`}</div>
-            {/* <ReactPaginate
+            <ReactPaginate
               previousLabel="Previous"
               nextLabel="Next"
               pageClassName="page-item"
@@ -128,7 +146,7 @@ const Page = () => {
               containerClassName="pagination"
               activeClassName="active"
               forcePage={forcePageIndex}
-            /> */}
+            />
           </div>
         </div>
       </div>
