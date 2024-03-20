@@ -1,3 +1,6 @@
 .check_isdn {
   padding: 0 16px;
+  @media (max-width: 460px) {
+    padding: 0;
+  }
 }

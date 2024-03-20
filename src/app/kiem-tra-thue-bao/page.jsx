@@ -6,12 +6,10 @@ import { TailSpin } from "react-loader-spinner";
 import moment from "moment";
 import { checkPackage } from "@/lib/api";
 import XMLParser from "react-xml-parser";
+import { arrayPackage } from "@config/constants";
 
 const limit = 10;
-function paginate(array, skip, limit) {
-  // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
-  return array.slice(skip, skip + limit);
-}
+
 const Page = () => {
   const [textSearch, setTextSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,7 +17,7 @@ const Page = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [pageTotal, setPageTotal] = useState(getPageNumber(totalCount, limit));
   const [skip, setSkip] = useState(0);
-  const [arrCodeJson, setArrCodeJson] = useState([]);
+  const [arrSorted, setArrSorted] = useState([]);
   const [arrPaginate, setArrPaginate] = useState([]);
   const [error, setError] = useState("");
 
@@ -27,13 +25,11 @@ const Page = () => {
     if (typeof window !== "undefined") {
       // browser code
       setPageTotal(getPageNumber(totalCount, limit));
-      setArrPaginate(arrCodeJson.slice(skip, limit + skip));
+      setArrPaginate(arrSorted.slice(skip, limit + skip));
     }
   }, [totalCount]);
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setArrPaginate(arrCodeJson.slice(skip, limit + skip));
-    }
+    setArrPaginate(arrSorted.slice(skip, limit + skip));
   }, [skip]);
 
   const handlePageChange = (event) => {
@@ -79,7 +75,14 @@ const Page = () => {
 
                     return object;
                   });
-                  setArrCodeJson(arrTemp);
+                  arrTemp.forEach((item) => {
+                    const hasValue = arrayPackage.includes(item.code);
+                    if (hasValue) {
+                      const sortingFunction = (a, _) =>
+                        a.code === item.code ? -1 : +1;
+                      setArrSorted(arrTemp.sort(sortingFunction));
+                    }
+                  });
                   setTotalCount(arrTemp.length);
                 }
               }
@@ -141,7 +144,7 @@ const Page = () => {
               breakLinkClassName="page-link"
               pageCount={pageTotal}
               marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
+              pageRangeDisplayed={2}
               onPageChange={handlePageChange}
               containerClassName="pagination"
               activeClassName="active"
