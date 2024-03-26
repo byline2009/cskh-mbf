@@ -51,20 +51,26 @@ const Page = () => {
             },
           });
           setLoading(false);
+          setForcePageIndex(0);
           const res = await response.json();
-          if (res.result) {
+          console.log("res", res);
+          if (
+            res.result &&
+            res &&
+            new XMLParser().parseFromString(res.result)
+          ) {
             const removeXML = new XMLParser()
               .parseFromString(res.result)
               .children[0].value.split(":")[1];
             if (removeXML) {
               if (removeXML.includes("Hien tai he thong dang ban")) {
                 setError("Hệ thống bận, xin vui lòng thử lại sau");
-                setArrCodeJson([]);
+                setArrPaginate([]);
               } else {
                 const arrCode = removeXML.split(",");
                 if (arrCode) {
                   setError("");
-                  const arrTemp = arrCode.map((item, index) => {
+                  let arrTemp = arrCode.map((item, index) => {
                     const arrSub = item.split("|");
                     const object = {
                       code: arrSub[0],
@@ -75,21 +81,52 @@ const Page = () => {
 
                     return object;
                   });
-                  arrTemp.forEach((item) => {
-                    const hasValue = arrayPackage.includes(item.code);
-                    if (hasValue) {
+                  let arrayUpdated = arrTemp;
+
+                  arrTemp.forEach((item, indexArrayItem) => {
+                    const indexObject = arrayPackage.findIndex(
+                      (o) => o.code == item.code
+                    );
+                    const o = arrayPackage[indexObject];
+                    if (indexObject != -1) {
+                      arrayUpdated[indexArrayItem] = {
+                        code: item.code,
+                        price: item.price,
+                        date: item.date,
+                        cycle: o.cycle,
+                        revenueOld: o.revenueOld,
+                        revenue: o.revenue,
+                        type: o.type,
+                        sms: o.sms,
+                        inAudio: o.inAudio,
+                        outAudio: o.outAudio,
+                        data: o.Data,
+                        permission: o.permission,
+                        subcriber: o.subcriber,
+                        typeCycle: o.typeCycle,
+                        typeSubcriber: o.typeSubcriber,
+                        autoSubcriber: o.autoSubcriber,
+                        methodSubcriber: o.methodSubcriber,
+                        cancelSubcriber: o.cancelSubcriber,
+                        cancelAutoSubriber: o.cancelAutoSubriber,
+                      };
+                    }
+
+                    if (indexObject != -1) {
                       const sortingFunction = (a, _) =>
                         a.code === item.code ? -1 : +1;
-                      setArrSorted(arrTemp.sort(sortingFunction));
+                      setArrSorted(arrayUpdated.sort(sortingFunction));
                     }
                   });
-                  setTotalCount(arrTemp.length);
+                  setTotalCount(arrayUpdated.length);
                 }
               }
             } else {
               setError("Hệ thống bận, xin vui lòng thử lại sau");
             }
           } else {
+            setError("Hệ thống bận, xin vui lòng thử lại sau");
+            setLoading(false);
             setArrPaginate([]);
           }
         }}
@@ -113,6 +150,7 @@ const Page = () => {
                     {/* <th scope="col">subCode</th> */}
                     <th scope="col">Giá</th>
                     <th scope="col">Ngày sử dụng</th>
+                    <th scope=" col col-2">Ưu đãi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,6 +160,39 @@ const Page = () => {
                       {/* <th>{item.subCode}</th> */}
                       <th>{item.price} đồng</th>
                       <th>{item.date} ngày</th>
+                      <th className="text-wrap">
+                        {`${
+                          item.subcriber
+                            ? "Đối tượng ưu đãi :" + item.subcriber
+                            : ""
+                        }`}
+                        <br />
+                        {`  ${item.data ? "Data :" + item.data : ""} `} <br /> {`${
+                          item.permission
+                            ? "Quyền truy cập :" + item.permission
+                            : ""
+                        } `}
+                        <br />
+                        {`${
+                          item.typeSubcriber
+                            ? "Loại thuê bao :" + item.typeSubcriber
+                            : ""
+                        } `}
+                        <br />
+                        {` ${
+                          item.typeCycle ? "Loại gói : " + item.typeCycle : ""
+                        }`}
+                        <br />
+                        {` ${
+                          item.methodSubcriber
+                            ? "Đăng kí  : " + item.methodSubcriber
+                            : ""
+                        }, ${
+                          item.cancelSubcriber
+                            ? "Hủy : " + item.cancelSubcriber
+                            : ""
+                        }`}
+                      </th>
                     </tr>
                   ))}
                 </tbody>
