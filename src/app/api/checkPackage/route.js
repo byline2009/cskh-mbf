@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import User from "../../../../models/user";
 import bcrypt from "bcryptjs";
 import { checkPackage } from "./../../../lib/api";
 import { xml2json } from "./../../../until/helper";
