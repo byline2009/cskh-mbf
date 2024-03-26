@@ -3,8 +3,6 @@ import SearchHeader from "@components/search/SearchHeader";
 import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
-import moment from "moment";
-import { checkPackage } from "@/lib/api";
 import XMLParser from "react-xml-parser";
 import { arrayPackage } from "@config/constants";
 
@@ -27,7 +25,7 @@ const Page = () => {
       setPageTotal(getPageNumber(totalCount, limit));
       setArrPaginate(arrSorted.slice(skip, limit + skip));
     }
-  }, [totalCount]);
+  }, [arrSorted]);
   useEffect(() => {
     setArrPaginate(arrSorted.slice(skip, limit + skip));
   }, [skip]);
@@ -43,7 +41,15 @@ const Page = () => {
         textSearch={textSearch}
         textHolder="Nhập thông tin ..."
         callback={async (e) => {
+          if (e == textSearch) {
+            return;
+          } else {
+            setTextSearch(e);
+          }
           setLoading(true);
+          setForcePageIndex(0);
+          setPageTotal(0);
+          setTotalCount(0);
           const response = await fetch(`api/checkPackage?isdn=${e}`, {
             method: "GET",
             headers: {
@@ -51,9 +57,7 @@ const Page = () => {
             },
           });
           setLoading(false);
-          setForcePageIndex(0);
           const res = await response.json();
-          console.log("res", res);
           if (
             res.result &&
             res &&
@@ -118,6 +122,7 @@ const Page = () => {
                       setArrSorted(arrayUpdated.sort(sortingFunction));
                     }
                   });
+                  console.log("check ne", arrSorted);
                   setTotalCount(arrayUpdated.length);
                 }
               }
@@ -166,28 +171,33 @@ const Page = () => {
                             ? "Đối tượng ưu đãi :" + item.subcriber
                             : ""
                         }`}
-                        <br />
-                        {`  ${item.data ? "Data :" + item.data : ""} `} <br /> {`${
+                        {item.data ? <br /> : null}
+                        {`  ${item.data ? "Data :" + item.data : ""} `}
+
+                        {item.permission ? <br /> : null}
+
+                        {`${
                           item.permission
                             ? "Quyền truy cập :" + item.permission
                             : ""
                         } `}
-                        <br />
+                        {item.typeSubcriber ? <br /> : null}
+
                         {`${
                           item.typeSubcriber
                             ? "Loại thuê bao :" + item.typeSubcriber
                             : ""
                         } `}
-                        <br />
+                        {item.typeCycle ? <br /> : null}
                         {` ${
                           item.typeCycle ? "Loại gói : " + item.typeCycle : ""
                         }`}
-                        <br />
+                        {item.methodSubcriber ? <br /> : null}
                         {` ${
                           item.methodSubcriber
                             ? "Đăng kí  : " + item.methodSubcriber
                             : ""
-                        }, ${
+                        }- ${
                           item.cancelSubcriber
                             ? "Hủy : " + item.cancelSubcriber
                             : ""

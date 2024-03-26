@@ -7,21 +7,21 @@ const Page = () => {
   const [password, usePassword] = useState("");
   const [loginTitle, setLoginTitle] = useState("Please login to use platform");
   useEffect(() => {}, []);
-  const handleNextClick = (e: any) => {
-    e.preventDefault();
-    const pageBox = document.querySelector(".page-box");
-    const loginTitle = document.querySelector(".loginTitle-text");
+  // const handleNextClick = (e: any) => {
+  //   e.preventDefault();
+  //   const pageBox = document.querySelector(".page-box");
+  //   const loginTitle = document.querySelector(".loginTitle-text");
 
-    pageBox?.classList.add("active-pass");
-    if (loginTitle != undefined) {
-      loginTitle!.innerHTML = "Wellcome";
-    }
-    setLoginTitle(email);
-    // const passwordInput = document.querySelector<HTMLInputElement>(".password");
-    // if (passwordInput) {
-    //   passwordInput.focus();
-    // }
-  };
+  //   pageBox?.classList.add("active-pass");
+  //   if (loginTitle != undefined) {
+  //     loginTitle!.innerHTML = "Wellcome";
+  //   }
+  //   setLoginTitle(email);
+  //   // const passwordInput = document.querySelector<HTMLInputElement>(".password");
+  //   // if (passwordInput) {
+  //   //   passwordInput.focus();
+  //   // }
+  // };
   const handleBackClick = (e: any) => {
     e.preventDefault();
     const pageBox = document.querySelector(".page-box");
@@ -68,18 +68,13 @@ const Page = () => {
                   />
                   <label htmlFor="email">Enter your email</label>
                 </div>
-                <div className="forgot">
-                  <a href="#">Forgot email?</a>
-                </div>
 
-                <div className="btn-box">
+                {/* <div className="btn-box">
                   <a href="#">Create account</a>
                   <button onClick={handleNextClick} className="bnt-next">
                     Next
                   </button>
-                </div>
-              </div>
-              <div className="page password-page">
+                </div> */}
                 <div className="input-box">
                   <input type={typePassword} className="password" required />
                   <label htmlFor="password">Enter your password</label>
@@ -105,6 +100,7 @@ const Page = () => {
                   </button>
                 </div>
               </div>
+              <div className="page password-page"></div>
             </div>
           </form>
         </div>
