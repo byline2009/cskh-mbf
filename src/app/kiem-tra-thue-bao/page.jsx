@@ -50,6 +50,9 @@ const Page = () => {
           setForcePageIndex(0);
           setPageTotal(0);
           setTotalCount(0);
+          setSkip(0);
+          setArrSorted([]);
+          setArrPaginate([]);
           const response = await fetch(`api/checkPackage?isdn=${e}`, {
             method: "GET",
             headers: {
@@ -122,7 +125,6 @@ const Page = () => {
                       setArrSorted(arrayUpdated.sort(sortingFunction));
                     }
                   });
-                  console.log("check ne", arrSorted);
                   setTotalCount(arrayUpdated.length);
                 }
               }
@@ -148,8 +150,8 @@ const Page = () => {
             </div>
           ) : (
             <div className="table-responsive">
-              <table className="table table-row-dashed table-striped  table-row-gray-300 align-middle gs-0 gy-3">
-                <thead className="">
+              <table className="table table-row-dashed table-striped  table-row-gray-300 align-middle gs-0 gy-3 ">
+                <thead className="thead-light">
                   <tr>
                     <th scope="col">Gói cước</th>
                     {/* <th scope="col">subCode</th> */}
