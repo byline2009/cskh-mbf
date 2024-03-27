@@ -1,13 +1,14 @@
 "use client";
 import SearchHeader from "@components/search/SearchHeader";
+import MySelectSingle from "@components/selects/MySelectSingle";
 import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
 import XMLParser from "react-xml-parser";
 import { arrayPackage } from "@config/constants";
+import { ErrorMessage, Form, Formik } from "formik";
 
 const limit = 10;
-
 const Page = () => {
   const [textSearch, setTextSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,8 @@ const Page = () => {
   const [arrSorted, setArrSorted] = useState([]);
   const [arrPaginate, setArrPaginate] = useState([]);
   const [error, setError] = useState("");
-
+  const [typeCycle, setTypeCycle] = useState("");
+  const [arrayMem, setArrayMem] = useState([]);
   useEffect(() => {
     if (typeof window !== "undefined") {
       // browser code
@@ -36,108 +38,138 @@ const Page = () => {
   };
 
   return (
-    <div className="check_isdn pt-5">
-      <SearchHeader
-        textSearch={textSearch}
-        textHolder="Nhập thông tin ..."
-        callback={async (e) => {
-          if (e == textSearch) {
-            return;
-          } else {
-            setTextSearch(e);
-          }
-          setLoading(true);
-          setForcePageIndex(0);
-          setPageTotal(0);
-          setTotalCount(0);
-          setSkip(0);
-          setArrSorted([]);
-          setArrPaginate([]);
-          const response = await fetch(`api/checkPackage?isdn=${e}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          setLoading(false);
-          const res = await response.json();
-          if (
-            res.result &&
-            res &&
-            new XMLParser().parseFromString(res.result)
-          ) {
-            const removeXML = new XMLParser()
-              .parseFromString(res.result)
-              .children[0].value.split(":")[1];
-            if (removeXML) {
-              if (removeXML.includes("Hien tai he thong dang ban")) {
-                setError("Hệ thống bận, xin vui lòng thử lại sau");
-                setArrPaginate([]);
-              } else {
-                const arrCode = removeXML.split(",");
-                if (arrCode) {
-                  setError("");
-                  let arrTemp = arrCode.map((item, index) => {
-                    const arrSub = item.split("|");
-                    const object = {
-                      code: arrSub[0],
-                      subCode: arrSub[1],
-                      price: arrSub[2],
-                      date: arrSub[3],
-                    };
-
-                    return object;
-                  });
-                  let arrayUpdated = arrTemp;
-
-                  arrTemp.forEach((item, indexArrayItem) => {
-                    const indexObject = arrayPackage.findIndex(
-                      (o) => o.code == item.code
-                    );
-                    const o = arrayPackage[indexObject];
-                    if (indexObject != -1) {
-                      arrayUpdated[indexArrayItem] = {
-                        code: item.code,
-                        price: item.price,
-                        date: item.date,
-                        cycle: o.cycle,
-                        revenueOld: o.revenueOld,
-                        revenue: o.revenue,
-                        type: o.type,
-                        sms: o.sms,
-                        inAudio: o.inAudio,
-                        outAudio: o.outAudio,
-                        data: o.Data,
-                        permission: o.permission,
-                        subcriber: o.subcriber,
-                        typeCycle: o.typeCycle,
-                        typeSubcriber: o.typeSubcriber,
-                        autoSubcriber: o.autoSubcriber,
-                        methodSubcriber: o.methodSubcriber,
-                        cancelSubcriber: o.cancelSubcriber,
-                        cancelAutoSubriber: o.cancelAutoSubriber,
+    <div className="check_isdn  pt-5">
+      <div className="d-flex flex-wrap flex-start align-items-center">
+        <SearchHeader
+          textSearch={textSearch}
+          textHolder="Nhập thông tin ..."
+          callback={async (e) => {
+            if (e == textSearch) {
+              return;
+            } else {
+              setTextSearch(e);
+            }
+            setLoading(true);
+            setForcePageIndex(0);
+            setPageTotal(0);
+            setTotalCount(0);
+            setSkip(0);
+            setArrSorted([]);
+            setArrPaginate([]);
+            const response = await fetch(`api/checkPackage?isdn=${e}`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            setLoading(false);
+            const res = await response.json();
+            if (
+              res.result &&
+              res &&
+              new XMLParser().parseFromString(res.result)
+            ) {
+              const removeXML = new XMLParser()
+                .parseFromString(res.result)
+                .children[0].value.split(":")[1];
+              if (removeXML) {
+                if (removeXML.includes("Hien tai he thong dang ban")) {
+                  setError("Hệ thống bận, xin vui lòng thử lại sau");
+                  setArrPaginate([]);
+                } else {
+                  const arrCode = removeXML.split(",");
+                  if (arrCode) {
+                    setError("");
+                    let arrTemp = arrCode.map((item, index) => {
+                      const arrSub = item.split("|");
+                      const object = {
+                        code: arrSub[0],
+                        subCode: arrSub[1],
+                        price: arrSub[2],
+                        date: arrSub[3],
                       };
-                    }
 
-                    if (indexObject != -1) {
-                      const sortingFunction = (a, _) =>
-                        a.code === item.code ? -1 : +1;
-                      setArrSorted(arrayUpdated.sort(sortingFunction));
-                    }
-                  });
-                  setTotalCount(arrayUpdated.length);
+                      return object;
+                    });
+                    let arrayUpdated = arrTemp;
+
+                    arrTemp.forEach((item, indexArrayItem) => {
+                      const indexObject = arrayPackage.findIndex(
+                        (o) => o.code == item.code
+                      );
+                      const o = arrayPackage[indexObject];
+                      if (indexObject != -1) {
+                        arrayUpdated[indexArrayItem] = {
+                          code: o.code,
+                          price: o.price,
+                          date: o.date,
+                          cycle: o.cycle,
+                          revenueOld: o.revenueOld,
+                          revenue: o.revenue,
+                          type: o.type,
+                          sms: o.sms,
+                          inAudio: o.inAudio,
+                          outAudio: o.outAudio,
+                          data: o.data,
+                          permission: o.permission,
+                          subcriber: o.subcriber,
+                          typeCycle: o.typeCycle,
+                          unlimitEntertainment: o.unlimitEntertainment,
+                          education: o.education,
+                          mp3Television: o.mp3Television,
+                          argiculture: o.argiculture,
+                          budget: o.budget,
+                        };
+                      }
+
+                      if (indexObject != -1) {
+                        const sortingFunction = (a, _) =>
+                          a.code === item.code ? -1 : +1;
+                        setArrSorted(arrayUpdated.sort(sortingFunction));
+                        setArrayMem(arrayUpdated.sort(sortingFunction));
+                      }
+                    });
+                    setTotalCount(arrayUpdated.length);
+                  }
                 }
+              } else {
+                setError("Hệ thống bận, xin vui lòng thử lại sau");
               }
             } else {
               setError("Hệ thống bận, xin vui lòng thử lại sau");
+              setLoading(false);
+              setArrPaginate([]);
             }
-          } else {
-            setError("Hệ thống bận, xin vui lòng thử lại sau");
-            setLoading(false);
-            setArrPaginate([]);
-          }
-        }}
-      />
+          }}
+        />
+        <SearchHeader
+          textSearch={textSearch}
+          textHolder="Tìm kiếm gói cước trả về.."
+          className="ms-5"
+          callback={async (e) => {
+            const arrayFilter = arrayMem.filter((item) => {
+              return item.code === e.trim();
+            });
+            setTotalCount(arrayFilter.length);
+            setArrSorted(arrayFilter);
+          }}
+        />
+        <MySelectSingle
+          className="ms-4"
+          options={[
+            { label: "Ngày", value: "Ngày" },
+            { label: "Đơn kì", value: "Đơn kì" },
+            { label: "Dài kì", value: "Dài kì" },
+          ]}
+          onChange={(e) => {
+            const arrayFilter = arrayMem.filter((item) => {
+              return item.typeCycle === e.value;
+            });
+            setTotalCount(arrayFilter.length);
+            setArrSorted(arrayFilter);
+          }}
+        />
+      </div>
 
       <div className="border-1 mt-5">
         {error && <div className="text-danger">{error}</div>}
@@ -154,7 +186,7 @@ const Page = () => {
                 <thead className="thead-light">
                   <tr>
                     <th scope="col">Gói cước</th>
-                    {/* <th scope="col">subCode</th> */}
+                    <th scope="col">Loại gói</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Ngày sử dụng</th>
                     <th scope=" col col-2">Ưu đãi</th>
@@ -164,7 +196,7 @@ const Page = () => {
                   {arrPaginate.map((item, index) => (
                     <tr key={index}>
                       <th>{item.code}</th>
-                      {/* <th>{item.subCode}</th> */}
+                      <th>{item.typeCycle}</th>
                       <th>{item.price} đồng</th>
                       <th>{item.date} ngày</th>
                       <th className="text-wrap">
@@ -175,16 +207,13 @@ const Page = () => {
                         }`}
                         {item.data ? <br /> : null}
                         {`  ${item.data ? "Data :" + item.data : ""} `}
-
                         {item.permission ? <br /> : null}
-
                         {`${
                           item.permission
                             ? "Quyền truy cập :" + item.permission
                             : ""
                         } `}
                         {item.typeSubcriber ? <br /> : null}
-
                         {`${
                           item.typeSubcriber
                             ? "Loại thuê bao :" + item.typeSubcriber
@@ -194,15 +223,16 @@ const Page = () => {
                         {` ${
                           item.typeCycle ? "Loại gói : " + item.typeCycle : ""
                         }`}
-                        {item.methodSubcriber ? <br /> : null}
+                        {item.unlimitEntertainment ? <br /> : null}
                         {` ${
-                          item.methodSubcriber
-                            ? "Đăng kí  : " + item.methodSubcriber
+                          item.unlimitEntertainment
+                            ? "Giải trí không giới hạn  : " +
+                              item.unlimitEntertainment
                             : ""
-                        }- ${
-                          item.cancelSubcriber
-                            ? "Hủy : " + item.cancelSubcriber
-                            : ""
+                        }`}
+                        {item.education ? <br /> : null}
+                        {` ${
+                          item.education ? "Giáo dục : " + item.education : ""
                         }`}
                       </th>
                     </tr>

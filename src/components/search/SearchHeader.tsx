@@ -10,6 +10,7 @@ const SearchHeader: FC<PropsType> = ({
   textSearch,
   callback,
   textHolder,
+  className,
 }: any) => {
   const [keywords, setKeywords] = useState<string>(textSearch || "");
 
@@ -26,7 +27,7 @@ const SearchHeader: FC<PropsType> = ({
   };
 
   return (
-    <div className="search-header">
+    <div className={` ${className} search-header`}>
       <div className="search-text">
         {keywords.length > 0 && (
           <button className="clearF" onClick={() => setKeywords("")}>
