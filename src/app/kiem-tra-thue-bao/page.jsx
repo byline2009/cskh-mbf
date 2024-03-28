@@ -234,8 +234,8 @@ const Page = () => {
                     <th scope="col" style={{ minWidth: 180 }}>
                       Giá / Ngày sử dụng
                     </th>
-                    <th scope="col">Đối tượng</th>
                     <th scope=" col col-2">Ưu đãi</th>
+                    <th scope="col">Đối tượng</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -250,14 +250,7 @@ const Page = () => {
                         }).format(item.price)}{" "}
                         / {item.cycle} ngày
                       </td>
-                      <td>
-                        {" "}
-                        {`${
-                          item.subcriber
-                            ? "Đối tượng ưu đãi : " + item.subcriber
-                            : ""
-                        }`}
-                      </td>
+
                       <td className="text-wrap">
                         {`  ${item.data ? "Data : " + item.data : ""} `}
                         {item.permission ? <br /> : null}
@@ -321,6 +314,14 @@ const Page = () => {
 
                         {/* {item.budget ? <br /> : null}
                         {` ${item.budget ? "Ngân sách : " + item.budget : ""}`} */}
+                      </td>
+                      <td>
+                        {" "}
+                        {`${
+                          item.subcriber
+                            ? "Đối tượng ưu đãi : " + item.subcriber
+                            : ""
+                        }`}
                       </td>
                     </tr>
                   ))}
