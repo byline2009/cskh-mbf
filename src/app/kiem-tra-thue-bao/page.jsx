@@ -19,8 +19,10 @@ const Page = () => {
   const [arrSorted, setArrSorted] = useState([]);
   const [arrPaginate, setArrPaginate] = useState([]);
   const [error, setError] = useState("");
-  const [typeCycle, setTypeCycle] = useState("");
   const [arrayMem, setArrayMem] = useState([]);
+  const [typeCycle, setTypeCycle] = useState("all");
+  const [budget, setBudget] = useState("all");
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // browser code
@@ -32,6 +34,24 @@ const Page = () => {
     setArrPaginate(arrSorted.slice(skip, limit + skip));
   }, [skip]);
 
+  useEffect(() => {
+    let arrayTemp = [];
+    if (typeCycle === "all") {
+      arrayTemp = arrayMem;
+    } else {
+      arrayTemp = arrayMem.filter((item) => {
+        return item.typeCycle === typeCycle;
+      });
+      if (budget !== "all") {
+        arrayTemp = arrayTemp.filter((item) => {
+          return item.budget === budget;
+        });
+      }
+    }
+    setTotalCount(arrayTemp.length);
+    setArrSorted(arrayTemp);
+  }, [budget, typeCycle]);
+
   const handlePageChange = (event) => {
     setSkip(event.selected + 1 == -1 ? 0 : event.selected * limit);
     setForcePageIndex(event.selected);
@@ -39,8 +59,9 @@ const Page = () => {
 
   return (
     <div className="check_isdn  pt-5">
-      <div className="d-flex flex-wrap flex-start align-items-center">
+      <div className="d-flex flex-wrap flex-start justify-content-start align-items-center">
         <SearchHeader
+          className="me-5"
           textSearch={textSearch}
           textHolder="Nhập thông tin ..."
           callback={async (e) => {
@@ -117,8 +138,9 @@ const Page = () => {
                           unlimitEntertainment: o.unlimitEntertainment,
                           education: o.education,
                           mp3Television: o.mp3Television,
-                          argiculture: o.argiculture,
+                          agriculture: o.agriculture,
                           budget: o.budget,
+                          dataOnly: o.data_only,
                         };
                       }
 
@@ -145,7 +167,7 @@ const Page = () => {
         <SearchHeader
           textSearch={textSearch}
           textHolder="Tìm kiếm gói cước trả về.."
-          className="ms-5"
+          className="me-5"
           callback={async (e) => {
             const arrayFilter = arrayMem.filter((item) => {
               return item.code === e.trim();
@@ -155,18 +177,31 @@ const Page = () => {
           }}
         />
         <MySelectSingle
-          className="ms-4"
+          className="me-4"
+          placeholder="Loại gói"
           options={[
+            { label: "Tất cả", value: "all" },
             { label: "Ngày", value: "Ngày" },
             { label: "Đơn kì", value: "Đơn kì" },
             { label: "Dài kì", value: "Dài kì" },
           ]}
           onChange={(e) => {
-            const arrayFilter = arrayMem.filter((item) => {
-              return item.typeCycle === e.value;
-            });
-            setTotalCount(arrayFilter.length);
-            setArrSorted(arrayFilter);
+            setTypeCycle(e.value);
+          }}
+        />
+
+        <MySelectSingle
+          placeholder="Ngân Sách"
+          options={[
+            { label: "Tất cả", value: "all" },
+            { label: "<50k", value: "<50k" },
+            { label: "50k-100k", value: "50k-100k" },
+            { label: "100k-200k", value: "100k-200k" },
+            { label: "200k-500k", value: "200k-500k" },
+            { label: ">500k", value: ">500k" },
+          ]}
+          onChange={(e) => {
+            setBudget(e.value);
           }}
         />
       </div>
@@ -223,6 +258,10 @@ const Page = () => {
                         {` ${
                           item.typeCycle ? "Loại gói : " + item.typeCycle : ""
                         }`}
+                        {item.dataOnly ? <br /> : null}
+                        {` ${
+                          item.dataOnly ? "Data only : " + item.dataOnly : ""
+                        }`}
                         {item.unlimitEntertainment ? <br /> : null}
                         {` ${
                           item.unlimitEntertainment
@@ -234,6 +273,20 @@ const Page = () => {
                         {` ${
                           item.education ? "Giáo dục : " + item.education : ""
                         }`}
+                        {item.mp3Television ? <br /> : null}
+                        {` ${
+                          item.mp3Television
+                            ? "Truyền hình - nghe nhạc : " + item.mp3Television
+                            : ""
+                        }`}
+                        {item.agriculture ? <br /> : null}
+                        {` ${
+                          item.agriculture
+                            ? "Truyền hình - nghe nhạc : " + item.agriculture
+                            : ""
+                        }`}
+                        {item.budget ? <br /> : null}
+                        {` ${item.budget ? "Ngân sách : " + item.budget : ""}`}
                       </th>
                     </tr>
                   ))}

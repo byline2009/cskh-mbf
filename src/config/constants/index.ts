@@ -893,7 +893,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -915,7 +915,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -937,7 +937,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -959,7 +959,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -981,7 +981,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -1003,7 +1003,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -1025,7 +1025,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -1048,7 +1048,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -1071,7 +1071,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1094,7 +1094,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1117,7 +1117,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -1140,7 +1140,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1163,7 +1163,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -1186,7 +1186,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -1209,7 +1209,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -1232,8 +1232,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12MXH80",
@@ -1255,8 +1255,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6MXH100",
@@ -1278,8 +1278,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6MXH80",
@@ -1301,7 +1301,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -1324,8 +1324,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "3TK135",
@@ -1347,7 +1347,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -1370,8 +1370,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12PT70",
@@ -1393,8 +1393,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "3PT70",
@@ -1416,7 +1416,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -1439,7 +1439,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -1462,8 +1462,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12MF159",
@@ -1485,8 +1485,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "CD",
@@ -1509,7 +1509,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -1532,7 +1532,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -1555,7 +1555,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -1578,7 +1578,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "có",
+    agriculture: "có",
     budget: "<50k",
   },
   {
@@ -1602,7 +1602,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -1626,7 +1626,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1649,7 +1649,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1673,7 +1673,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1696,7 +1696,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1719,7 +1719,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1742,7 +1742,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1766,7 +1766,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1788,7 +1788,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "có",
+    agriculture: "có",
     budget: "50k-100k",
   },
   {
@@ -1812,7 +1812,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -1835,7 +1835,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -1858,7 +1858,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -1881,7 +1881,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -1905,8 +1905,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "3CD",
@@ -1929,7 +1929,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -1953,8 +1953,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "7CD",
@@ -1977,7 +1977,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -2001,7 +2001,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -2025,7 +2025,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -2048,7 +2048,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -2071,7 +2071,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -2095,8 +2095,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12MXH90",
@@ -2118,8 +2118,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6MXH120",
@@ -2142,8 +2142,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6MXH90",
@@ -2165,8 +2165,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "MXH120",
@@ -2189,7 +2189,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -2213,7 +2213,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -2236,7 +2236,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -2260,8 +2260,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12KC150",
@@ -2284,8 +2284,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12KC90",
@@ -2307,8 +2307,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12TK159",
@@ -2330,8 +2330,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12TK219",
@@ -2353,8 +2353,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "3KC120",
@@ -2377,7 +2377,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -2401,7 +2401,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -2424,7 +2424,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -2447,7 +2447,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -2470,8 +2470,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6KC120",
@@ -2494,8 +2494,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6KC150",
@@ -2518,8 +2518,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6KC90",
@@ -2541,8 +2541,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6TK159",
@@ -2564,8 +2564,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6TK219",
@@ -2587,8 +2587,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "KC120",
@@ -2611,7 +2611,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -2635,7 +2635,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -2658,7 +2658,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -2681,7 +2681,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -2705,7 +2705,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -2729,7 +2729,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -2752,7 +2752,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -2775,7 +2775,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -2798,7 +2798,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -2821,8 +2821,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12NA70",
@@ -2844,8 +2844,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12NA90",
@@ -2867,8 +2867,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12PT120",
@@ -2890,8 +2890,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12PT90",
@@ -2913,8 +2913,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "3NA120",
@@ -2936,7 +2936,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -2959,7 +2959,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -2982,7 +2982,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3005,7 +3005,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3028,7 +3028,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3051,8 +3051,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6NA70",
@@ -3074,7 +3074,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3097,8 +3097,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6PT120",
@@ -3120,8 +3120,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6PT90",
@@ -3143,8 +3143,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "NA120",
@@ -3166,7 +3166,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3189,7 +3189,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3212,7 +3212,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3235,7 +3235,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3258,7 +3258,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3281,8 +3281,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6HD200",
@@ -3304,8 +3304,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6HD300",
@@ -3327,8 +3327,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "HD120",
@@ -3350,7 +3350,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3373,7 +3373,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3396,7 +3396,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3419,7 +3419,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3442,7 +3442,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3466,7 +3466,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3489,7 +3489,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3513,8 +3513,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12MT190",
@@ -3537,8 +3537,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "3MT120",
@@ -3561,7 +3561,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3585,8 +3585,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6MT190",
@@ -3609,8 +3609,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "MS100",
@@ -3633,7 +3633,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3657,7 +3657,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3681,7 +3681,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3705,7 +3705,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3729,7 +3729,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3753,7 +3753,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3776,7 +3776,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3799,7 +3799,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3822,7 +3822,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3845,7 +3845,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3868,7 +3868,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3891,7 +3891,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -3914,7 +3914,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3938,7 +3938,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -3960,7 +3960,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -3983,7 +3983,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -4006,7 +4006,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -4030,7 +4030,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4054,7 +4054,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -4078,7 +4078,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -4102,7 +4102,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4127,7 +4127,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4151,7 +4151,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4174,7 +4174,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -4196,7 +4196,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -4219,7 +4219,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -4242,7 +4242,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -4265,7 +4265,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -4289,8 +4289,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12MFY",
@@ -4313,8 +4313,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12MFY200",
@@ -4337,8 +4337,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6MFV250",
@@ -4361,8 +4361,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6MFY",
@@ -4385,8 +4385,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6MFY200",
@@ -4409,8 +4409,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "LD",
@@ -4432,7 +4432,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -4455,7 +4455,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4478,7 +4478,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -4502,7 +4502,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -4526,7 +4526,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4550,7 +4550,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -4573,7 +4573,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4596,7 +4596,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -4619,7 +4619,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -4642,7 +4642,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -4665,7 +4665,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4688,7 +4688,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4711,7 +4711,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -4734,7 +4734,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4757,7 +4757,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -4780,7 +4780,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -4803,7 +4803,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -4826,7 +4826,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -4849,7 +4849,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4873,7 +4873,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -4896,7 +4896,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -4920,7 +4920,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "có",
+    agriculture: "có",
     budget: "100k-200k",
   },
   {
@@ -4944,8 +4944,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "có",
-    budget: ">5000k",
+    agriculture: "có",
+    budget: ">500k",
   },
   {
     code: "3AG90",
@@ -4968,7 +4968,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "có",
+    agriculture: "có",
     budget: "200k-500k",
   },
   {
@@ -4992,8 +4992,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "có",
-    budget: ">5000k",
+    agriculture: "có",
+    budget: ">500k",
   },
   {
     code: "AG100",
@@ -5016,7 +5016,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "có",
+    agriculture: "có",
     budget: "100k-200k",
   },
   {
@@ -5040,7 +5040,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "có",
+    agriculture: "có",
     budget: "50k-100k",
   },
   {
@@ -5063,7 +5063,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -5085,7 +5085,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -5108,7 +5108,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -5132,7 +5132,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -5154,7 +5154,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "có",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -5179,7 +5179,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -5203,7 +5203,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "<50k",
   },
   {
@@ -5227,8 +5227,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12NCT85",
@@ -5251,8 +5251,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "6NCT105",
@@ -5275,8 +5275,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "có",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "NCT100",
@@ -5299,7 +5299,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -5323,7 +5323,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "có",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -5345,7 +5345,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "100k-200k",
   },
   {
@@ -5367,7 +5367,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -5389,7 +5389,7 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "50k-100k",
   },
   {
@@ -5412,7 +5412,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -5435,8 +5435,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12MF219",
@@ -5458,8 +5458,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "MF329",
@@ -5481,7 +5481,7 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
+    agriculture: "",
     budget: "200k-500k",
   },
   {
@@ -5504,8 +5504,8 @@ const arrayPackage = [
     unlimitEntertainment: "có",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
   {
     code: "12MF329",
@@ -5527,8 +5527,8 @@ const arrayPackage = [
     unlimitEntertainment: "",
     education: "",
     mp3Television: "",
-    argiculture: "",
-    budget: ">5000k",
+    agriculture: "",
+    budget: ">500k",
   },
 ];
 

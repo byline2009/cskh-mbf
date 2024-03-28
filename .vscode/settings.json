@@ -3,5 +3,6 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "cSpell.words": ["isdn"]
+  "cSpell.words": ["isdn"],
+  "editor.formatOnSaveMode": "modifications"
 }
