@@ -175,7 +175,7 @@ const Page = () => {
           className="me-5"
           callback={async (e) => {
             const arrayFilter = arrayMem.filter((item) => {
-              return item.code === e.toUpperCase.trim();
+              return item.code === e.toUpperCase().trim();
             });
             setTotalCount(arrayFilter.length);
             setArrSorted(arrayFilter);
@@ -234,14 +234,21 @@ const Page = () => {
                     <th scope="col" style={{ minWidth: 180 }}>
                       Giá / Ngày sử dụng
                     </th>
-                    <th scope=" col col-2">Ưu đãi</th>
+                    <th scope=" col col-2" style={{ minWidth: 180 }}>
+                      Ưu đãi
+                    </th>
                     <th scope="col">Đối tượng</th>
                   </tr>
                 </thead>
                 <tbody>
                   {arrPaginate.map((item, index) => (
                     <tr key={index}>
-                      <td>{item.code}</td>
+                      <td>
+                        {" "}
+                        <span className="fw-bold">
+                          {item.code ? item.code : null}
+                        </span>{" "}
+                      </td>
                       <td>{item.typeCycle}</td>
                       <td>
                         {new Intl.NumberFormat("vi-VN", {
@@ -252,76 +259,79 @@ const Page = () => {
                       </td>
 
                       <td className="text-wrap">
-                        {`  ${item.data ? "Data : " + item.data : ""} `}
+                        <span className="fw-bold">
+                          {item.data ? "Data : " : null}
+                        </span>{" "}
+                        {`  ${item.data ? item.data : ""} `}
                         {item.permission ? <br /> : null}
-                        {`${
-                          item.permission
-                            ? "Quyền truy cập :" + item.permission
-                            : ""
-                        } `}
+                        <span className="fw-bold">
+                          {item.permission ? "Quyền truy cập : " : null}
+                        </span>{" "}
+                        {`${item.permission ? item.permission : ""} `}
                         {item.typeSubcriber ? <br /> : null}
-                        {`${
-                          item.typeSubcriber
-                            ? "Loại thuê bao : " + item.typeSubcriber
-                            : ""
-                        } `}
+                        <span className="fw-bold">
+                          {item.typeSubcriber ? "Loại thuê bao : " : null}
+                        </span>{" "}
+                        {`${item.typeSubcriber ? item.typeSubcriber : ""} `}
                         {/* {item.typeCycle ? <br /> : null}
                         {` ${
                           item.typeCycle ? "Loại gói : " + item.typeCycle : ""
                         }`} */}
                         {item.dataOnly ? <br /> : null}
-                        {` ${
-                          item.dataOnly ? "Data only : " + item.dataOnly : ""
-                        }`}
+                        <span className="fw-bold">
+                          {item.dataOnly ? "Data only : " : null}
+                        </span>{" "}
+                        {` ${item.dataOnly ? item.dataOnly : ""}`}
+                        <span className="fw-bold">
+                          {item.unlimitEntertainment
+                            ? "Giải trí không giới hạn  : "
+                            : null}
+                        </span>{" "}
                         {item.unlimitEntertainment ? <br /> : null}
                         {` ${
                           item.unlimitEntertainment
-                            ? "Giải trí không giới hạn  : " +
-                              item.unlimitEntertainment
+                            ? item.unlimitEntertainment
                             : ""
                         }`}
                         {item.education ? <br /> : null}
-                        {` ${
-                          item.education ? "Giáo dục : " + item.education : ""
-                        }`}
+                        <span className="fw-bold">
+                          {item.education ? "Giáo dục : " : null}
+                        </span>{" "}
+                        {` ${item.education ? item.education : ""}`}
                         {item.agriculture ? <br /> : null}
-                        {` ${
-                          item.agriculture
-                            ? "Nông nghiệp : " + item.agriculture
-                            : ""
-                        }`}
+                        <span className="fw-bold">
+                          {item.agriculture ? "Nông nghiệp : " : null}
+                        </span>{" "}
+                        {` ${item.agriculture ? item.agriculture : ""}`}
                         {item.inAudio ? <br /> : null}
-                        {` ${
-                          item.inAudio
-                            ? "Ưu đãi thoại nội mạng : " + item.inAudio
-                            : ""
-                        }`}
+                        <span className="fw-bold">
+                          {item.inAudio ? "thoại nội mạng : " : null}
+                        </span>{" "}
+                        {` ${item.inAudio ? item.inAudio : ""}`}
                         {item.outAudio ? <br /> : null}
-                        {` ${
-                          item.outAudio
-                            ? "Ưu đãi thoại ngoại mạng : " + item.outAudio
-                            : ""
-                        }`}
+                        <span className="fw-bold">
+                          {item.outAudio ? "thoại ngoại mạng : " : null}
+                        </span>{" "}
+                        {` ${item.outAudio ? item.outAudio : ""}`}
                         {item.sms ? <br /> : null}
-                        {` ${item.sms ? "Ưu đãi SMS : " + item.sms : ""}`}
-
+                        <span className="fw-bold">
+                          {item.sms ? "SMS : " : null}
+                        </span>{" "}
+                        {` ${item.sms ? item.sms : ""}`}
                         {/* {item.mp3Television ? <br /> : null} */}
                         {/* {` ${
                           item.mp3Television
                             ? "Truyền hình - nghe nhạc : " + item.mp3Television
                             : ""
                         }`} */}
-
                         {/* {item.budget ? <br /> : null}
                         {` ${item.budget ? "Ngân sách : " + item.budget : ""}`} */}
                       </td>
                       <td>
-                        {" "}
-                        {`${
-                          item.subcriber
-                            ? "Đối tượng ưu đãi : " + item.subcriber
-                            : ""
-                        }`}
+                        <span className="fw-bold">
+                          {item.subcriber ? "Đối tượng ưu đãi : " : null}
+                        </span>{" "}
+                        {`${item.subcriber ? item.subcriber : ""}`}
                       </td>
                     </tr>
                   ))}
