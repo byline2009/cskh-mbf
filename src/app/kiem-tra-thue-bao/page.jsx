@@ -38,6 +38,11 @@ const Page = () => {
     let arrayTemp = [];
     if (typeCycle === "all") {
       arrayTemp = arrayMem;
+      if (budget !== "all") {
+        arrayTemp = arrayTemp.filter((item) => {
+          return item.budget === budget;
+        });
+      }
     } else {
       arrayTemp = arrayMem.filter((item) => {
         return item.typeCycle === typeCycle;
@@ -170,7 +175,7 @@ const Page = () => {
           className="me-5"
           callback={async (e) => {
             const arrayFilter = arrayMem.filter((item) => {
-              return item.code === e.trim();
+              return item.code === e.toUpperCase.trim();
             });
             setTotalCount(arrayFilter.length);
             setArrSorted(arrayFilter);
@@ -226,9 +231,8 @@ const Page = () => {
                     <th scope="col" style={{ minWidth: 100 }}>
                       Loại gói
                     </th>
-                    <th scope="col">Giá</th>
-                    <th scope="col " style={{ minWidth: 120 }}>
-                      Ngày sử dụng
+                    <th scope="col" style={{ minWidth: 180 }}>
+                      Giá / Ngày sử dụng
                     </th>
                     <th scope="col">Đối tượng</th>
                     <th scope=" col col-2">Ưu đãi</th>
@@ -243,9 +247,9 @@ const Page = () => {
                         {new Intl.NumberFormat("vi-VN", {
                           style: "currency",
                           currency: "VND",
-                        }).format(item.price)}
+                        }).format(item.price)}{" "}
+                        / {item.cycle} ngày
                       </td>
-                      <td>{item.date} ngày</td>
                       <td>
                         {" "}
                         {`${
