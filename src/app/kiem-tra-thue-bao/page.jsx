@@ -166,7 +166,7 @@ const Page = () => {
         />
         <SearchHeader
           textSearch={textSearch}
-          textHolder="Tìm kiếm gói cước trả về.."
+          textHolder="Tìm gói cước"
           className="me-5"
           callback={async (e) => {
             const arrayFilter = arrayMem.filter((item) => {
@@ -220,28 +220,42 @@ const Page = () => {
               <table className="table table-row-dashed table-striped  table-row-gray-300 align-middle gs-0 gy-3 ">
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Gói cước</th>
-                    <th scope="col">Loại gói</th>
+                    <th scope="col" style={{ minWidth: 100 }}>
+                      Gói cước
+                    </th>
+                    <th scope="col" style={{ minWidth: 100 }}>
+                      Loại gói
+                    </th>
                     <th scope="col">Giá</th>
-                    <th scope="col">Ngày sử dụng</th>
+                    <th scope="col " style={{ minWidth: 120 }}>
+                      Ngày sử dụng
+                    </th>
+                    <th scope="col">Đối tượng</th>
                     <th scope=" col col-2">Ưu đãi</th>
                   </tr>
                 </thead>
                 <tbody>
                   {arrPaginate.map((item, index) => (
                     <tr key={index}>
-                      <th>{item.code}</th>
-                      <th>{item.typeCycle}</th>
-                      <th>{item.price} đồng</th>
-                      <th>{item.date} ngày</th>
-                      <th className="text-wrap">
+                      <td>{item.code}</td>
+                      <td>{item.typeCycle}</td>
+                      <td>
+                        {new Intl.NumberFormat("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        }).format(item.price)}
+                      </td>
+                      <td>{item.date} ngày</td>
+                      <td>
+                        {" "}
                         {`${
                           item.subcriber
-                            ? "Đối tượng ưu đãi :" + item.subcriber
+                            ? "Đối tượng ưu đãi : " + item.subcriber
                             : ""
                         }`}
-                        {item.data ? <br /> : null}
-                        {`  ${item.data ? "Data :" + item.data : ""} `}
+                      </td>
+                      <td className="text-wrap">
+                        {`  ${item.data ? "Data : " + item.data : ""} `}
                         {item.permission ? <br /> : null}
                         {`${
                           item.permission
@@ -251,13 +265,13 @@ const Page = () => {
                         {item.typeSubcriber ? <br /> : null}
                         {`${
                           item.typeSubcriber
-                            ? "Loại thuê bao :" + item.typeSubcriber
+                            ? "Loại thuê bao : " + item.typeSubcriber
                             : ""
                         } `}
-                        {item.typeCycle ? <br /> : null}
+                        {/* {item.typeCycle ? <br /> : null}
                         {` ${
                           item.typeCycle ? "Loại gói : " + item.typeCycle : ""
-                        }`}
+                        }`} */}
                         {item.dataOnly ? <br /> : null}
                         {` ${
                           item.dataOnly ? "Data only : " + item.dataOnly : ""
@@ -273,21 +287,37 @@ const Page = () => {
                         {` ${
                           item.education ? "Giáo dục : " + item.education : ""
                         }`}
-                        {item.mp3Television ? <br /> : null}
-                        {` ${
-                          item.mp3Television
-                            ? "Truyền hình - nghe nhạc : " + item.mp3Television
-                            : ""
-                        }`}
                         {item.agriculture ? <br /> : null}
                         {` ${
                           item.agriculture
-                            ? "Truyền hình - nghe nhạc : " + item.agriculture
+                            ? "Nông nghiệp : " + item.agriculture
                             : ""
                         }`}
-                        {item.budget ? <br /> : null}
-                        {` ${item.budget ? "Ngân sách : " + item.budget : ""}`}
-                      </th>
+                        {item.inAudio ? <br /> : null}
+                        {` ${
+                          item.inAudio
+                            ? "Ưu đãi thoại nội mạng : " + item.inAudio
+                            : ""
+                        }`}
+                        {item.outAudio ? <br /> : null}
+                        {` ${
+                          item.outAudio
+                            ? "Ưu đãi thoại ngoại mạng : " + item.outAudio
+                            : ""
+                        }`}
+                        {item.sms ? <br /> : null}
+                        {` ${item.sms ? "Ưu đãi SMS : " + item.sms : ""}`}
+
+                        {/* {item.mp3Television ? <br /> : null} */}
+                        {/* {` ${
+                          item.mp3Television
+                            ? "Truyền hình - nghe nhạc : " + item.mp3Television
+                            : ""
+                        }`} */}
+
+                        {/* {item.budget ? <br /> : null}
+                        {` ${item.budget ? "Ngân sách : " + item.budget : ""}`} */}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
