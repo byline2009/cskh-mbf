@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const API_URL = process.env.NEXTAUTH_APP_API_URL;
 
 export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`;
@@ -18,9 +19,10 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 // Server should return AuthModel
 export function login(email: string, password: string) {
-  return postData("http://localhost:8100/login", {
+  return postData(LOGIN_URL, {
     username: email,
     password,
   });
@@ -71,7 +73,7 @@ export function getUserByToken(token: string) {
 }
 
 export function checkPackage(searchVal?: string) {
-  return axios.get(CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
+  return fetch(CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
 }
 
 async function postData(url = "", data = {}) {
