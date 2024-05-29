@@ -20,7 +20,7 @@ axios.interceptors.response.use(
 );
 // Server should return AuthModel
 export function login(email: string, password: string) {
-  return axios.post(LOGIN_URL, {
+  return axios.post("http://localhost:8100/login", {
     username: email,
     password,
   });
