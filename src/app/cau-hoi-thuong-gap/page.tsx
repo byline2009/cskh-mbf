@@ -153,7 +153,7 @@ const Page = () => {
                 </div>
               </div>
             ))} */}
-            <div id="accordion1">
+            <div id="accordion">
               {questions1.map((item, index) => (
                 <div className="card" key={index}>
                   <div className="card-header" id={`heading${index}`}>
@@ -161,7 +161,7 @@ const Page = () => {
                       className="btn btn-link btn-collapse"
                       data-toggle="collapse"
                       data-target={`#collapse${index}`}
-                      aria-expanded="false"
+                      aria-expanded="true"
                       aria-controls={`collapse${index}`}
                     >
                       <p>{item.q}</p>
@@ -173,9 +173,12 @@ const Page = () => {
                     id={`collapse${index}`}
                     className="collapse"
                     aria-labelledby={`heading${index}`}
-                    data-parent="#accordion1"
+                    data-parent="#accordion"
                   >
-                    <div className="card-body">{item.a}</div>
+                    <div className="card-body">
+                      {" "}
+                      <p>{item.a}</p>
+                    </div>
                   </div>
                 </div>
               ))}
