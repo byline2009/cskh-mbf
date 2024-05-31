@@ -95,7 +95,6 @@ const Page = () => {
             );
             setLoading(false);
             const res = await response.json();
-            console.log("check,res", res);
             if (
               res.result &&
               res &&
@@ -181,7 +180,7 @@ const Page = () => {
           className="me-5"
           callback={async (e) => {
             let arrayFilter = [];
-            if ((e.trim().length = 0)) {
+            if ((e == '')) {
               arrayFilter = arrayMem;
             } else {
               arrayFilter = arrayMem.filter((item) => {
