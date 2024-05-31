@@ -6,7 +6,9 @@ import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
 import XMLParser from "react-xml-parser";
 import { arrayPackage } from "@config/constants";
-import { ErrorMessage, Form, Formik } from "formik";
+
+const API_URL = process.env.NEXTAUTH_APP_API_URL;
+const CHECK_PACKAGE_URL = `${API_URL}/website/package`;
 
 const limit = 10;
 const Page = () => {
@@ -31,30 +33,34 @@ const Page = () => {
     }
   }, [arrSorted]);
   useEffect(() => {
-    setArrPaginate(arrSorted.slice(skip, limit + skip));
+    if (typeof window !== "undefined") {
+      setArrPaginate(arrSorted.slice(skip, limit + skip));
+    }
   }, [skip]);
 
   useEffect(() => {
-    let arrayTemp = [];
-    if (typeCycle === "all") {
-      arrayTemp = arrayMem;
-      if (budget !== "all") {
-        arrayTemp = arrayTemp.filter((item) => {
-          return item.budget === budget;
+    if (typeof window !== "undefined") {
+      let arrayTemp = [];
+      if (typeCycle === "all") {
+        arrayTemp = arrayMem;
+        if (budget !== "all") {
+          arrayTemp = arrayTemp.filter((item) => {
+            return item.budget === budget;
+          });
+        }
+      } else {
+        arrayTemp = arrayMem.filter((item) => {
+          return item.typeCycle === typeCycle;
         });
+        if (budget !== "all") {
+          arrayTemp = arrayTemp.filter((item) => {
+            return item.budget === budget;
+          });
+        }
       }
-    } else {
-      arrayTemp = arrayMem.filter((item) => {
-        return item.typeCycle === typeCycle;
-      });
-      if (budget !== "all") {
-        arrayTemp = arrayTemp.filter((item) => {
-          return item.budget === budget;
-        });
-      }
+      setTotalCount(arrayTemp.length);
+      setArrSorted(arrayTemp);
     }
-    setTotalCount(arrayTemp.length);
-    setArrSorted(arrayTemp);
   }, [budget, typeCycle]);
 
   const handlePageChange = (event) => {
@@ -82,12 +88,15 @@ const Page = () => {
             setSkip(0);
             setArrSorted([]);
             setArrPaginate([]);
-            const response = await fetch(`api/checkPackage?isdn=${e}`, {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            });
+            const response = await fetch(
+              `${CHECK_PACKAGE_URL}/checkPackage?isdn=${e}`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
             setLoading(false);
             const res = await response.json();
             console.log("check,res", res);

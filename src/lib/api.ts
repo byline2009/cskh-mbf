@@ -73,7 +73,7 @@ export function getUserByToken(token: string) {
 }
 
 export function checkPackage(searchVal?: string) {
-  return axios.get(CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
+  return fetch(CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
 }
 
 async function postData(url = "", data = {}) {
