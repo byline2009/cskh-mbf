@@ -90,6 +90,7 @@ const Page = () => {
             });
             setLoading(false);
             const res = await response.json();
+            console.log("check,res", res);
             if (
               res.result &&
               res &&
