@@ -180,7 +180,7 @@ const Page = () => {
           textHolder="Tìm gói cước"
           className="me-5"
           callback={async (e) => {
-            const arrayFilter = [];
+            let arrayFilter = [];
             if ((e.trim().length = 0)) {
               arrayFilter = arrayMem;
             } else {
