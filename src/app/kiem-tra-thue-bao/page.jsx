@@ -76,11 +76,7 @@ const Page = () => {
           textSearch={textSearch}
           textHolder="Nhập thông tin ..."
           callback={async (e) => {
-            if (e == textSearch) {
-              return;
-            } else {
-              setTextSearch(e);
-            }
+            setTextSearch(e);
             setLoading(true);
             setForcePageIndex(0);
             setPageTotal(0);
@@ -184,9 +180,14 @@ const Page = () => {
           textHolder="Tìm gói cước"
           className="me-5"
           callback={async (e) => {
-            const arrayFilter = arrayMem.filter((item) => {
-              return item.code === e.toUpperCase().trim();
-            });
+            const arrayFilter = [];
+            if ((e.trim().length = 0)) {
+              arrayFilter = arrayMem;
+            } else {
+              arrayFilter = arrayMem.filter((item) => {
+                return item.code === e.toUpperCase().trim();
+              });
+            }
             setTotalCount(arrayFilter.length);
             setArrSorted(arrayFilter);
           }}
