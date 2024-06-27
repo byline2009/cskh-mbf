@@ -4,7 +4,6 @@ import MySelectSingle from "@components/selects/MySelectSingle";
 import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
-import XMLParser from "react-xml-parser";
 import { arrayPackage } from "@config/constants";
 
 const API_URL = process.env.NEXTAUTH_APP_API_URL;
@@ -95,74 +94,63 @@ const Page = () => {
             );
             setLoading(false);
             const res = await response.json();
-            if (
-              res.result &&
-              res &&
-              new XMLParser().parseFromString(res.result)
-            ) {
-              const removeXML = new XMLParser()
-                .parseFromString(res.result)
-                .children[0].value.split(":")[1];
-              if (removeXML) {
-                if (removeXML.includes("Hien tai he thong dang ban")) {
+            if (res.result && res) {
+              const arrayResponse = res.result;
+              if (arrayResponse) {
+                if (arrayResponse.includes("Hien tai he thong dang ban")) {
                   setError("Hệ thống bận, xin vui lòng thử lại sau");
                   setArrPaginate([]);
                 } else {
-                  const arrCode = removeXML.split(",");
-                  if (arrCode) {
-                    setError("");
-                    let arrTemp = arrCode.map((item, index) => {
-                      const arrSub = item.split("|");
-                      const object = {
-                        code: arrSub[0],
-                        subCode: arrSub[1],
-                        price: arrSub[2],
-                        date: arrSub[3],
+                  setError("");
+                  let arrTemp = arrayResponse.map((item, index) => {
+                    const object = {
+                      code: item.CODE,
+                      price: item.CHARGE_PRICE,
+                      type: item.PACKAGE_TYPE,
+                    };
+
+                    return object;
+                  });
+                  let arrayUpdated = arrTemp;
+
+                  arrTemp.forEach((item, indexArrayItem) => {
+                    const indexObject = arrayPackage.findIndex(
+                      (o) => o.code == item.code
+                    );
+                    const o = arrayPackage[indexObject];
+                    if (indexObject != -1) {
+                      arrayUpdated[indexArrayItem] = {
+                        code: o.code,
+                        price: o.price,
+                        date: o.date,
+                        cycle: o.cycle,
+                        revenueOld: o.revenueOld,
+                        revenue: o.revenue,
+                        type: o.type,
+                        sms: o.sms,
+                        inAudio: o.inAudio,
+                        outAudio: o.outAudio,
+                        data: o.data,
+                        permission: o.permission,
+                        subcriber: o.subcriber,
+                        typeCycle: o.typeCycle,
+                        unlimitEntertainment: o.unlimitEntertainment,
+                        education: o.education,
+                        mp3Television: o.mp3Television,
+                        agriculture: o.agriculture,
+                        budget: o.budget,
+                        dataOnly: o.data_only,
                       };
+                    }
 
-                      return object;
-                    });
-                    let arrayUpdated = arrTemp;
-
-                    arrTemp.forEach((item, indexArrayItem) => {
-                      const indexObject = arrayPackage.findIndex(
-                        (o) => o.code == item.code
-                      );
-                      const o = arrayPackage[indexObject];
-                      if (indexObject != -1) {
-                        arrayUpdated[indexArrayItem] = {
-                          code: o.code,
-                          price: o.price,
-                          date: o.date,
-                          cycle: o.cycle,
-                          revenueOld: o.revenueOld,
-                          revenue: o.revenue,
-                          type: o.type,
-                          sms: o.sms,
-                          inAudio: o.inAudio,
-                          outAudio: o.outAudio,
-                          data: o.data,
-                          permission: o.permission,
-                          subcriber: o.subcriber,
-                          typeCycle: o.typeCycle,
-                          unlimitEntertainment: o.unlimitEntertainment,
-                          education: o.education,
-                          mp3Television: o.mp3Television,
-                          agriculture: o.agriculture,
-                          budget: o.budget,
-                          dataOnly: o.data_only,
-                        };
-                      }
-
-                      if (indexObject != -1) {
-                        const sortingFunction = (a, _) =>
-                          a.code === item.code ? -1 : +1;
-                        setArrSorted(arrayUpdated.sort(sortingFunction));
-                        setArrayMem(arrayUpdated.sort(sortingFunction));
-                      }
-                    });
-                    setTotalCount(arrayUpdated.length);
-                  }
+                    if (indexObject != -1) {
+                      const sortingFunction = (a, _) =>
+                        a.code === item.code ? -1 : +1;
+                      setArrSorted(arrayUpdated.sort(sortingFunction));
+                      setArrayMem(arrayUpdated.sort(sortingFunction));
+                    }
+                  });
+                  setTotalCount(arrayUpdated.length);
                 }
               } else {
                 setError("Hệ thống bận, xin vui lòng thử lại sau");
@@ -180,7 +168,7 @@ const Page = () => {
           className="me-5"
           callback={async (e) => {
             let arrayFilter = [];
-            if ((e == '')) {
+            if (e == "") {
               arrayFilter = arrayMem;
             } else {
               arrayFilter = arrayMem.filter((item) => {
