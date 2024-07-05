@@ -45,7 +45,6 @@ const Page = () => {
         arrayTemp = arrayMem.filter((item) => {
           return item.code === namePackage.toUpperCase().trim();
         });
-        console.log("check ne", arrayTemp);
 
         if (typeCycle === "all") {
           if (budget !== "all") {
@@ -101,6 +100,9 @@ const Page = () => {
           textSearch={textSearch}
           textHolder="Nhập thông tin ..."
           callback={async (e) => {
+            setTypeCycle("all");
+            setBudget("all");
+            setNamePackage("");
             setTextSearch(e);
             setLoading(true);
             setForcePageIndex(0);
@@ -110,8 +112,6 @@ const Page = () => {
             setArrSorted([]);
             setArrPaginate([]);
             setNamePackage("");
-            setBudget("all");
-            setTypeCycle("all");
             const response = await fetch(
               `${CHECK_PACKAGE_URL}/checkPackage?isdn=${e}`,
               {
@@ -192,8 +192,9 @@ const Page = () => {
           }}
         />
         <SearchHeader
-          textSearch={textSearch}
+          textSearch={namePackage}
           textHolder="Tìm gói cước"
+          nameInput="searchPackage"
           className="me-5"
           callback={async (e) => {
             setNamePackage(e);
@@ -202,6 +203,12 @@ const Page = () => {
         <MySelectSingle
           className="me-4"
           placeholder="Loại gói"
+          value={[
+            { label: "Tất cả", value: "all" },
+            { label: "Ngày", value: "Ngày" },
+            { label: "Đơn kì", value: "Đơn kì" },
+            { label: "Dài kì", value: "Dài kì" },
+          ].filter((option) => option.value === typeCycle)}
           options={[
             { label: "Tất cả", value: "all" },
             { label: "Ngày", value: "Ngày" },
@@ -209,11 +216,20 @@ const Page = () => {
             { label: "Dài kì", value: "Dài kì" },
           ]}
           onChange={(e) => {
+            console.log("e", e);
             setTypeCycle(e.value);
           }}
         />
 
         <MySelectSingle
+          value={[
+            { label: "Tất cả", value: "all" },
+            { label: "<50k", value: "<50k" },
+            { label: "50k-100k", value: "50k-100k" },
+            { label: "100k-200k", value: "100k-200k" },
+            { label: "200k-500k", value: "200k-500k" },
+            { label: ">500k", value: ">500k" },
+          ].filter((option) => option.value === budget)}
           placeholder="Ngân Sách"
           options={[
             { label: "Tất cả", value: "all" },

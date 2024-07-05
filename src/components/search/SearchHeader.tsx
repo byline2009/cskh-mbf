@@ -5,19 +5,20 @@ type PropsType = {
   textSearch: string;
   callback: (e: any) => void;
   textHolder?: string;
+  nameInput?: string;
 };
 const SearchHeader: FC<PropsType> = ({
   textSearch,
   callback,
   textHolder,
   className,
+  nameInput,
 }: any) => {
   const [keywords, setKeywords] = useState<string>(textSearch || "");
 
   useEffect(() => {
-    if (keywords) {
-    }
-  }, [keywords]);
+    setKeywords(textSearch);
+  }, [textSearch]);
 
   const submitSearch = (e: any) => {
     if (e.key === "Enter") {
@@ -37,7 +38,7 @@ const SearchHeader: FC<PropsType> = ({
         <i className="icon-search"></i>
         <input
           type="text"
-          name="searchName"
+          name={nameInput ? nameInput : "searchName"}
           placeholder={textHolder ? textHolder : "Nhập thông tin ..."}
           value={keywords || ""}
           onChange={(e: any) => setKeywords(e.target.value)}
