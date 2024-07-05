@@ -23,6 +23,7 @@ const Page = () => {
   const [arrayMem, setArrayMem] = useState([]);
   const [typeCycle, setTypeCycle] = useState("all");
   const [budget, setBudget] = useState("all");
+  const [namePackage, setNamePackage] = useState("");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -40,27 +41,52 @@ const Page = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       let arrayTemp = [];
-      if (typeCycle === "all") {
-        arrayTemp = arrayMem;
-        if (budget !== "all") {
+      if (namePackage !== "") {
+        arrayTemp = arrayMem.filter((item) => {
+          return item.code === namePackage.toUpperCase().trim();
+        });
+        console.log("check ne", arrayTemp);
+
+        if (typeCycle === "all") {
+          if (budget !== "all") {
+            arrayTemp = arrayTemp.filter((item) => {
+              return item.budget === budget;
+            });
+          }
+        } else {
           arrayTemp = arrayTemp.filter((item) => {
-            return item.budget === budget;
+            return item.typeCycle === typeCycle;
           });
+          if (budget !== "all") {
+            arrayTemp = arrayTemp.filter((item) => {
+              return item.budget === budget;
+            });
+          }
         }
       } else {
-        arrayTemp = arrayMem.filter((item) => {
-          return item.typeCycle === typeCycle;
-        });
-        if (budget !== "all") {
-          arrayTemp = arrayTemp.filter((item) => {
-            return item.budget === budget;
+        if (typeCycle === "all") {
+          arrayTemp = arrayMem;
+          if (budget !== "all") {
+            arrayTemp = arrayTemp.filter((item) => {
+              return item.budget === budget;
+            });
+          }
+        } else {
+          arrayTemp = arrayMem.filter((item) => {
+            return item.typeCycle === typeCycle;
           });
+          if (budget !== "all") {
+            arrayTemp = arrayTemp.filter((item) => {
+              return item.budget === budget;
+            });
+          }
         }
       }
+
       setTotalCount(arrayTemp.length);
       setArrSorted(arrayTemp);
     }
-  }, [budget, typeCycle]);
+  }, [budget, typeCycle, namePackage]);
 
   const handlePageChange = (event) => {
     setSkip(event.selected + 1 == -1 ? 0 : event.selected * limit);
@@ -83,6 +109,9 @@ const Page = () => {
             setSkip(0);
             setArrSorted([]);
             setArrPaginate([]);
+            setNamePackage("");
+            setBudget("all");
+            setTypeCycle("all");
             const response = await fetch(
               `${CHECK_PACKAGE_URL}/checkPackage?isdn=${e}`,
               {
@@ -167,16 +196,7 @@ const Page = () => {
           textHolder="Tìm gói cước"
           className="me-5"
           callback={async (e) => {
-            let arrayFilter = [];
-            if (e == "") {
-              arrayFilter = arrayMem;
-            } else {
-              arrayFilter = arrayMem.filter((item) => {
-                return item.code === e.toUpperCase().trim();
-              });
-            }
-            setTotalCount(arrayFilter.length);
-            setArrSorted(arrayFilter);
+            setNamePackage(e);
           }}
         />
         <MySelectSingle
