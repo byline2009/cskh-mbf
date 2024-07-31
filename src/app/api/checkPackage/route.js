@@ -6,7 +6,6 @@ import { xml2json } from "./../../../until/helper";
 export async function GET(req, context) {
   try {
     const isdn = getQSParamFromURL("isdn", req.url);
-
     const res = await checkPackage(isdn);
     return NextResponse.json(res);
   } catch (error) {

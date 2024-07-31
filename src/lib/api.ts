@@ -72,8 +72,10 @@ export function getUserByToken(token: string) {
   // })
 }
 
-export function checkPackage(searchVal?: string) {
-  return fetch(CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
+export async function checkPackage(searchVal?: string) {
+  console.log("CHECK_PACKAGE_URL", CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
+  const result = await fetch(CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
+  return result;
 }
 
 async function postData(url = "", data = {}) {

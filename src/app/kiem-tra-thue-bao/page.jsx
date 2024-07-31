@@ -5,9 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
 import { arrayPackage } from "@config/constants";
-
-const API_URL = process.env.NEXTAUTH_APP_API_URL;
-const CHECK_PACKAGE_URL = `${API_URL}/website/package`;
+import { getSearchSubscriber } from "../../until/functions";
 
 const limit = 10;
 const Page = () => {
@@ -92,6 +90,90 @@ const Page = () => {
     setForcePageIndex(event.selected);
   };
 
+  const handleSearch = async (e) => {
+    setTypeCycle("all");
+    setBudget("all");
+    setNamePackage("");
+    setTextSearch(e);
+    setLoading(true);
+    setForcePageIndex(0);
+    setPageTotal(0);
+    setTotalCount(0);
+    setSkip(0);
+    setArrSorted([]);
+    setArrPaginate([]);
+    setNamePackage("");
+    const response = await getSearchSubscriber(e);
+    setLoading(false);
+    if (response.result && response) {
+      const arrayResponse = response.result;
+      console.log("");
+      if (arrayResponse) {
+        if (arrayResponse.includes("Hien tai he thong dang ban")) {
+          setError("Hệ thống bận, xin vui lòng thử lại sau");
+          setArrPaginate([]);
+        } else {
+          setError("");
+          let arrTemp = arrayResponse.map((item, index) => {
+            const object = {
+              code: item.CODE,
+              price: item.CHARGE_PRICE,
+              type: item.PACKAGE_TYPE,
+            };
+
+            return object;
+          });
+          let arrayUpdated = arrTemp;
+
+          arrTemp.forEach((item, indexArrayItem) => {
+            const indexObject = arrayPackage.findIndex(
+              (o) => o.code == item.code
+            );
+            const o = arrayPackage[indexObject];
+            if (indexObject != -1) {
+              arrayUpdated[indexArrayItem] = {
+                code: o.code,
+                price: o.price,
+                date: o.date,
+                cycle: o.cycle,
+                revenueOld: o.revenueOld,
+                revenue: o.revenue,
+                type: o.type,
+                sms: o.sms,
+                inAudio: o.inAudio,
+                outAudio: o.outAudio,
+                data: o.data,
+                permission: o.permission,
+                subcriber: o.subcriber,
+                typeCycle: o.typeCycle,
+                unlimitEntertainment: o.unlimitEntertainment,
+                education: o.education,
+                mp3Television: o.mp3Television,
+                agriculture: o.agriculture,
+                budget: o.budget,
+                dataOnly: o.data_only,
+              };
+            }
+
+            if (indexObject != -1) {
+              const sortingFunction = (a, _) =>
+                a.code === item.code ? -1 : +1;
+              setArrSorted(arrayUpdated.sort(sortingFunction));
+              setArrayMem(arrayUpdated.sort(sortingFunction));
+            }
+          });
+          setTotalCount(arrayUpdated.length);
+        }
+      } else {
+        setError("Hệ thống bận, xin vui lòng thử lại sau");
+      }
+    } else {
+      setError("Hệ thống bận, xin vui lòng thử lại sau");
+      setLoading(false);
+      setArrPaginate([]);
+    }
+  };
+
   return (
     <div className="check_isdn  pt-5">
       <div className="d-flex flex-wrap flex-start justify-content-start align-items-center">
@@ -100,95 +182,7 @@ const Page = () => {
           textSearch={textSearch}
           textHolder="Nhập thông tin ..."
           callback={async (e) => {
-            setTypeCycle("all");
-            setBudget("all");
-            setNamePackage("");
-            setTextSearch(e);
-            setLoading(true);
-            setForcePageIndex(0);
-            setPageTotal(0);
-            setTotalCount(0);
-            setSkip(0);
-            setArrSorted([]);
-            setArrPaginate([]);
-            setNamePackage("");
-            const response = await fetch(
-              `${CHECK_PACKAGE_URL}/checkPackage?isdn=${e}`,
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
-            setLoading(false);
-            const res = await response.json();
-            if (res.result && res) {
-              const arrayResponse = res.result;
-              if (arrayResponse) {
-                if (arrayResponse.includes("Hien tai he thong dang ban")) {
-                  setError("Hệ thống bận, xin vui lòng thử lại sau");
-                  setArrPaginate([]);
-                } else {
-                  setError("");
-                  let arrTemp = arrayResponse.map((item, index) => {
-                    const object = {
-                      code: item.CODE,
-                      price: item.CHARGE_PRICE,
-                      type: item.PACKAGE_TYPE,
-                    };
-
-                    return object;
-                  });
-                  let arrayUpdated = arrTemp;
-
-                  arrTemp.forEach((item, indexArrayItem) => {
-                    const indexObject = arrayPackage.findIndex(
-                      (o) => o.code == item.code
-                    );
-                    const o = arrayPackage[indexObject];
-                    if (indexObject != -1) {
-                      arrayUpdated[indexArrayItem] = {
-                        code: o.code,
-                        price: o.price,
-                        date: o.date,
-                        cycle: o.cycle,
-                        revenueOld: o.revenueOld,
-                        revenue: o.revenue,
-                        type: o.type,
-                        sms: o.sms,
-                        inAudio: o.inAudio,
-                        outAudio: o.outAudio,
-                        data: o.data,
-                        permission: o.permission,
-                        subcriber: o.subcriber,
-                        typeCycle: o.typeCycle,
-                        unlimitEntertainment: o.unlimitEntertainment,
-                        education: o.education,
-                        mp3Television: o.mp3Television,
-                        agriculture: o.agriculture,
-                        budget: o.budget,
-                        dataOnly: o.data_only,
-                      };
-                    }
-
-                    if (indexObject != -1) {
-                      const sortingFunction = (a, _) =>
-                        a.code === item.code ? -1 : +1;
-                      setArrSorted(arrayUpdated.sort(sortingFunction));
-                      setArrayMem(arrayUpdated.sort(sortingFunction));
-                    }
-                  });
-                  setTotalCount(arrayUpdated.length);
-                }
-              } else {
-                setError("Hệ thống bận, xin vui lòng thử lại sau");
-              }
-            } else {
-              setError("Hệ thống bận, xin vui lòng thử lại sau");
-              setLoading(false);
-              setArrPaginate([]);
-            }
+            handleSearch(e);
           }}
         />
         <SearchHeader
