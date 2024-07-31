@@ -262,10 +262,12 @@ const Page = () => {
                     <th scope="col" style={{ minWidth: 180 }}>
                       Giá / Ngày sử dụng
                     </th>
-                    <th scope=" col col-2" style={{ minWidth: 180 }}>
+                    <th scope=" col col-2" style={{ minWidth: 300 }}>
                       Ưu đãi
                     </th>
-                    <th scope="col">Đối tượng</th>
+                    <th scope=" col col-2" style={{ minWidth: 500 }}>
+                      Đối tượng
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
