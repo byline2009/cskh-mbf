@@ -6,6 +6,7 @@ import { default as ReactSelect } from "react-select";
 const MySelectSingle = (props: any) => {
   return (
     <ReactSelect
+      instanceId={"wsad123wqwe"}
       className={props.className}
       {...props}
       isMulti={false}
@@ -13,7 +14,7 @@ const MySelectSingle = (props: any) => {
       onChange={(selected: any) => {
         return props.onChange(selected);
       }}
-      placeholder={props.placeholder}
+      placeholder={props.placeholder ? props.placeholder : "Chọn ..."}
       onInputChange={(e: any) => {
         props.onInputChange && props.onInputChange(e);
       }}
@@ -39,8 +40,5 @@ MySelectSingle.propTypes = {
   className: PropTypes.string,
 };
 
-MySelectSingle.defaultProps = {
-  placeholder: "Chọn ...",
-};
 
 export default MySelectSingle;

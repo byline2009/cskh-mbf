@@ -14,7 +14,7 @@ import Layout from "../components/layout/Layout";
 const RootLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <link rel="icon" type="image/png" href="imgs/favicon.png" />
       <title>Chăm sóc khách hàng Công ty MobiFone 7</title>
       <head>

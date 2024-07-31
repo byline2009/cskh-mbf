@@ -7,6 +7,7 @@ export const getSearchSubscriber = async (e) => {
     headers: {
       "Content-Type": "application/json",
     },
+    next: { revalidate: 10 },
   });
   const responseBody = await response.json();
   return responseBody;
