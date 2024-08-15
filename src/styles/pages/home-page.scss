@@ -24,13 +24,26 @@
       top: 0 !important;
       right: 0 !important;
     }
+
+    @media (max-width: 480px) {
+      position: relative;
+      width: 100% !important;
+      height: 150px;
+      left: 0 !important;
+      top: 0 !important;
+      right: 0 !important;
+      
+    }
     img {
       display: block;
       width: 100%;
-      object-fit: cover;
+      object-fit:cover;
       height: 100%;
       @media (max-width: 960px) {
         height: 386px !important;
+      }
+      @media (max-width: 480px) {
+        height: 150px !important;
       }
     }
     &::before {
@@ -102,6 +115,7 @@
         bottom: unset;
         top: $spacing-xxl;
         left: $spacing-l;
+        
       }
       img {
         width: 100%;

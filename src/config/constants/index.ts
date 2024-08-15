@@ -72,23 +72,23 @@ const menuCategory = [
 ];
 
 const topSliders = [
-  {
-    imgSrc: "imgs/sliders/slider-1.jpeg",
-  },
+  // {
+  //   imgSrc: "imgs/sliders/slider-1.jpeg",
+  // },
   {
     imgSrc: "imgs/sliders/slider-2.jpg",
   },
   {
-    imgSrc: "imgs/sliders/slider-3.jpeg",
+    imgSrc: "imgs/sliders/slider-6.jpg",
+  },
+  {
+    imgSrc: "imgs/sliders/slider-7.jpg",
   },
   {
     imgSrc: "imgs/sliders/slider-4.jpg",
   },
   {
     imgSrc: "imgs/sliders/slider-5.jpg",
-  },
-  {
-    imgSrc: "imgs/sliders/slider-6.jpeg",
   },
 ];
 

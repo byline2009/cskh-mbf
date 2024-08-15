@@ -38,9 +38,9 @@ const Page = () => {
           <div key={index}>
             <Link href={"/"} key={index} className="top-news-item">
               <img src={item.imgSrc} alt="top-new" />
-              {/* <div className="top-news-content">
-                    <h2>{item.title}</h2>
-                  </div> */}
+              <div className="top-news-content">
+                {/* <h2>{item.title}</h2> */}
+              </div>
             </Link>
           </div>
         ))}
