@@ -5579,6 +5579,30 @@ const arrayPackage = [
     budget: "50k-100k",
   },
 ];
+const listJob = [
+  {
+    location: "Đăk Lăk, Đăk Nông, Gia Lai, Khánh Hòa, Kon Tum",
+    title: "Chuyên viên an ninh thông tin",
+    imageUrl:
+      "https://it.mobifone.vn/wp-content/uploads/phát-triển-phần-mềm-2-scaled.jpg",
+    quantity: 1,
+    deadline: "31/08/2024",
+  },
+  {
+    location: "Đăk Lăk, Đăk Nông, Gia Lai, Khánh Hòa, Kon Tum",
+    title: "Chuyên viên kinh doanh",
+    imageUrl: "https://it.mobifone.vn/wp-content/uploads/DSC07880-scaled.jpg",
+    quantity: 2,
+    deadline: "31/08/2024",
+  },
+  {
+    location: "Đăk Lăk, Đăk Nông, Gia Lai, Khánh Hòa, Kon Tum",
+    title: "Chuyên viên kinh doanh sản phẩm CNTT",
+    imageUrl: "https://it.mobifone.vn/wp-content/uploads/Screenshot_2-1.png",
+    quantity: 5,
+    deadline: "31/08/2024",
+  },
+];
 
 export {
   infoLink,
@@ -5593,4 +5617,6 @@ export {
   questions1,
   errorMsale,
   arrayPackage,
+  listJob,
 };
+

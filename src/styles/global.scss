@@ -18,6 +18,7 @@
 @import "./pages/question.scss";
 @import "./pages/login-test.scss";
 @import "./pages/check_isdn.scss";
+@import "./pages/recruitment.scss";
 
 @tailwind base;
 @tailwind components;
@@ -207,4 +208,7 @@ a {
   top: 0;
   z-index: 99;
   animation: animateLoading 2s infinite;
+}
+.align--justify{
+  text-align: justify;
 }
