@@ -1,5 +1,5 @@
 import "../styles/global.scss";
-import HeaderApp from "src/components/header/HeaderApp";
+import HeaderAppNoAuth from "src/components/header/HeaderAppNoAuth";
 import React from "react";
 import "react-modern-drawer/dist/index.css";
 import MobileMenu from "@components/MobileMenu";

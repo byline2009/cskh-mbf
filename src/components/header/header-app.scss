@@ -85,6 +85,7 @@
       width: calc(100% - 100px);
       justify-content: center;
       left: 50px;
+      top: 20px;
     }
     .main-title {
       font-size: $headline-1;
@@ -101,15 +102,16 @@
   border-right: 1px solid #e5e5e5;
   padding-right: $spacing-m;
   margin-right: $spacing-m;
-  // @media (max-width: 960px) {
-  //   order: 2;
-  // }
+  @media (max-width: 480px) {
+          border: none;
+  }
   img {
     width: 157px;
     height: 32px;
     @media (max-width: 480px) {
-      width: 80px;
-      height: 24px;
+      width: 100px;
+      height: 32px;
+      border: none;
     }
   }
   &:hover {

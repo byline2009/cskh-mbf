@@ -45,6 +45,6 @@
     "src/app/kiem-tra-thue-bao/page.jsx",
     "src/lib/api.js",
     "src/app/cau-hoi-thuong-gap/page.jsx"
-  ],
+, "src/app/tuyen-dung/page.jsx"  ],
   "exclude": ["node_modules", ".next"]
 }

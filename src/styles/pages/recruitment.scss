@@ -1,5 +1,6 @@
 .career{
     .careerBanner {
+        
         @media (max-width : 640px) {
             position: relative;
             .bannerItem {
@@ -17,6 +18,7 @@
         flex-flow: column;
         justify-content: center;
         align-items: center;
+        margin-top: 66px;
         background-image: url("https://it.mobifone.vn/wp-content/uploads/2020/02/1493.jpg");
     }
     .pageBanner {
@@ -79,7 +81,7 @@
             margin-bottom: -1px;
             padding: 0;
             color: #0966B6;
-            transition: all 0.5s cubic-bezier(.04,1,.6,.97);
+            transition: all .3s ease-in-out; 
             background: #fff;
             text-decoration: none !important;
             .boxJobDesc{
@@ -115,6 +117,10 @@
                 
                 
             }
+        &:hover{
+            transform: scale(1.01);
+            border: 1px solid#007bff;
+        }
         }
         .boxJobImg {
             border-radius: 0;
@@ -143,10 +149,10 @@
     background-position: center;
 }
 .jobMetaItem {
-        padding: 4px 12px 4px 6px;
+    padding: 4px 12px 4px 6px;
     border-radius: 4px;
     background: rgba(9, 102, 182, .1);
-    color: #0966B6;
+    color: #0966B6 !important;
     margin-bottom: 8px;
     max-width: 100%;
 }

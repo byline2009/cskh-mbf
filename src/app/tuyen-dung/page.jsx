@@ -1,10 +1,15 @@
 import React from "react";
 import { listJob } from "../../config/constants";
 import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import HeaderNoAuth from "src/components/header/HeaderAppNoAuth";
+const page = async () => {
+  const session = await getServerSession(authOptions);
 
-const page = () => {
   return (
     <div>
+      {session ? <></> : <HeaderNoAuth />}
       <div className="career">
         <div className="careerBanner banner pageBanner">
           <div className="bannerItem lazyloaded">
@@ -108,10 +113,10 @@ const page = () => {
                       </span>
                     </div>
                     <div>
-                      <span>
+                      <strong style={{ fontSize: "20px" }}>
                         Trung tâm Công nghệ thông tin MobiFone luôn mở rộng cánh
                         cửa chào đón các bạn!
-                      </span>
+                      </strong>
                     </div>
                   </div>
                 </div>
@@ -220,7 +225,8 @@ const page = () => {
                             src={"imgs/svgs/checked-tick.svg"}
                           />
                           <span>
-                            Nộp hồ sơ online qua email: tuyendungct7@mobifone.vn
+                            Nộp hồ sơ online qua email:{" "}
+                            <strong>tuyendungct7@mobifone.vn</strong>
                           </span>
                         </div>
                         <div>
@@ -240,7 +246,13 @@ const page = () => {
                         </div>
                         <div className="boxJobMeta meta">
                           <div className="jobMetaItem number">
-                            <i className="icon-user"></i>
+                            <Image
+                              className="symbol-atl"
+                              width={20}
+                              height={20}
+                              alt="user"
+                              src={"imgs/svgs/user.svg"}
+                            />
                             <span>Số lượng : </span>
                             <span>&nbsp;</span>
                             <strong> {item.quantity}</strong>
