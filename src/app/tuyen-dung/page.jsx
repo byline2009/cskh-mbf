@@ -211,8 +211,8 @@ const page = async () => {
                             src={"imgs/svgs/hand-right.svg"}
                           />
                           <span>
-                            Về &quot;đại bản doanh&quot; của MobiFone tại Đăk
-                            lawk, Đăk Nông, Gia Lai, Khánh Hòa, Kon Tum bằng 2
+                            Về &quot;đại bản doanh&quot; của MobiFone tại Đắk
+                            Lắk, Đắk Nông , Gia Lai, Khánh Hòa, Kon Tum bằng 2
                             cách:
                           </span>
                         </div>
@@ -241,7 +241,7 @@ const page = async () => {
                             Nộp hồ sơ trực tiếp qua bưu điện tại địa chỉ Phòng
                             Tổng hợp, Công ty Dịch vụ MobiFone Khu vực 7 - 16
                             Trường Chinh, phường Tân Lợi, thành phố Buôn Ma
-                            Thuột, tỉnh Đăk Lặk.
+                            Thuột, tỉnh Đắk Lắk.
                           </span>
                         </div>
                         <div className="boxJobMeta meta">
