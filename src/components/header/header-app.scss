@@ -4,12 +4,12 @@
   top: 0;
   width: 100%;
   z-index: 999;
-  background: #fff;
+  background: #f9fbfc;
   transition: all 0.3s;
   padding: 0 $spacing-xxl;
   box-shadow: $shadow-light-20;
   @media (max-width: 480px) {
-    padding: 0 15px;
+    padding: 0px;
     height: 64px;
   }
   &-top {
@@ -20,6 +20,11 @@
     height: 66px;
     overflow: hidden;
     transition: all 0.3s;
+     @media (max-width: 480px) {
+    padding: 0 15px;
+    height: 64px;
+  }
+   
   }
   &-middle {
     position: relative;
@@ -198,6 +203,8 @@
     position: absolute;
     right: 8px;
     top: 8px;
+    min-width: 100px;
+
   }
   &.openSearch {
     width: 320px;

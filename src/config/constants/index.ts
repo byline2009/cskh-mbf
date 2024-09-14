@@ -69,6 +69,10 @@ const menuCategory = [
     label: "Tuyển dụng",
     link: "/tuyen-dung",
   },
+  {
+    label: "Chat với AI",
+    link: "/chat",
+  },
 ];
 
 const topSliders = [

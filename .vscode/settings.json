@@ -4,5 +4,6 @@
     "*.css": "tailwindcss"
   },
   "cSpell.words": ["isdn"],
-  "editor.formatOnSaveMode": "modifications"
+  "editor.formatOnSaveMode": "modifications",
+  "css.customData": [".vscode/tailwind.json"]
 }
