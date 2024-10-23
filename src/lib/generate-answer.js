@@ -2,7 +2,6 @@ import { ChatOpenAI } from "@langchain/openai";
 import { env } from "./config";
 import { embedDocs } from "./vector-store";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { getPineconeClient } from "./pinecone-client";
 import { HttpsProxyAgent } from "https-proxy-agent";
 const agent = new HttpsProxyAgent("http://10.39.152.30:3128");

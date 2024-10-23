@@ -6,11 +6,14 @@ import { Pinecone } from "@pinecone-database/pinecone";
 export async function embedDocs(docs) {
   /*create and store the embeddings in the vectorStore*/
   try {
-    const embedder = new OpenAIEmbeddings({
-      openAIApiKey: process.env.OPENAI_API_KEY,
-      batchSize: 512, // Default value if omitted is 512. Max is 2048
-      modelName: "text-embedding-3-large",
-    });
+    const embedder = new OpenAIEmbeddings(
+      {
+        openAIApiKey: process.env.OPENAI_API_KEY,
+        batchSize: 512, // Default value if omitted is 512. Max is 2048
+        modelName: "text-embedding-3-large",
+      },
+      { httpAgent: agent }
+    );
 
     //embed the PDF documents
     const embeddingsDataArr = []; //[{embedding: [], chunk: '}]
@@ -35,10 +38,6 @@ export async function embedDocs(docs) {
 
 export async function storeEmbeddings(client, embeddings) {
   const index = client.index(env.PINECONE_INDEX_NAME);
-  // const namespaceIndex = index.namespace(env.PINECONE_NAME_SPACE);
-
-  // await namespaceIndex.deleteAll();
-  // console.log("delele all");
   for (let i = 0; i < embeddings.length; i++) {
     await index.namespace(env.PINECONE_NAME_SPACE).upsert([
       {
@@ -53,11 +52,14 @@ export async function storeEmbeddings(client, embeddings) {
 // Returns vector-store handle to be used a retrievers on langchains
 export async function getVectorStore(client) {
   try {
-    const embeddings = new OpenAIEmbeddings({
-      openAIApiKey: process.env.OPENAI_API_KEY,
-      batchSize: 512, // Default value if omitted is 512. Max is 2048
-      modelName: "text-embedding-3-large",
-    });
+    const embeddings = new OpenAIEmbeddings(
+      {
+        openAIApiKey: process.env.OPENAI_API_KEY,
+        batchSize: 512, // Default value if omitted is 512. Max is 2048
+        modelName: "text-embedding-3-large",
+      },
+      { httpAgent: agent }
+    );
     const index = client.Index(env.PINECONE_INDEX_NAME);
 
     const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
