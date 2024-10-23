@@ -54,7 +54,7 @@ export async function retrieveRelevantChunks(query) {
 
   const config = {
     apiKey: process.env.PINECONE_API_KEY,
-    fetchApi: customFetch,
+    // fetchApi: customFetch,
   };
 
   const pc = new Pinecone(config);
