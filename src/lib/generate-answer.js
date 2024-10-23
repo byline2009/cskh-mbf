@@ -63,12 +63,13 @@ export async function retrieveRelevantChunks(
   const pc = new Pinecone(config);
   const index = pc.index(env.PINECONE_INDEX_NAME);
   const ns = index.namespace(namespace);
-  console.log("INDEX", ns, index);
-  const results = await index.namespace(namespace).query({
+  console.log("ns", ns);
+  const results = await ns.query({
     vector: embeddingDataArr[0].embedding,
     topK: 5, // Number of relevant chunks to retrieve
     includeValues: true,
     includeMetadata: true,
   });
+  console.log("results", results);
   return results.matches.map((match) => match.metadata.chunk);
 }
