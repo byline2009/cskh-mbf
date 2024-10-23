@@ -20,7 +20,7 @@ const customFetch = (input: string | URL | Request, init: any) => {
 };
 
 const config: PineconeConfiguration = {
-  apiKey: env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY!,
   fetchApi: customFetch,
 };
 
