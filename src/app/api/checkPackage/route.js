@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { checkPackage } from "./../../../lib/api";
 import { xml2json } from "./../../../until/helper";
+export const dynamic = "force-dynamic";
 
 export async function GET(req, context) {
   try {

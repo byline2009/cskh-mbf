@@ -3,7 +3,6 @@ import { embedDocs, storeEmbeddings } from "@/lib/vector-store";
 import { getPineconeClient } from "@/lib/pinecone-client";
 import { env } from "@/lib/config";
 import { ChatOpenAI } from "@langchain/openai";
-import { Dispatcher, ProxyAgent } from "undici";
 import { HttpsProxyAgent } from "https-proxy-agent";
 const agent = new HttpsProxyAgent("http://10.39.152.30:3128");
 
