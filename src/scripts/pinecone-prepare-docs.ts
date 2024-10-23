@@ -6,7 +6,11 @@ import { ChatOpenAI } from "@langchain/openai";
 import { HttpsProxyAgent } from "https-proxy-agent";
 const agent = new HttpsProxyAgent("http://10.39.152.30:3128");
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-
+import { Dispatcher, ProxyAgent } from "undici";
+import {
+  Pinecone,
+  type PineconeConfiguration,
+} from "@pinecone-database/pinecone";
 // This operation might fail because indexes likely need
 // more time to init, so give some 5 mins after index
 // creation and try again.
@@ -42,34 +46,52 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
     //   console.log(e);
     // }
 
-    const embedder = new OpenAIEmbeddings(
-      {
-        openAIApiKey: process.env.OPENAI_API_KEY,
-        batchSize: 512, // Default value if omitted is 512. Max is 2048
-        modelName: "text-embedding-3-large",
-      },
-      {
-        baseOptions: {
-          proxy: false,
-          httpAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
-          httpsAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
-        },
-      }
-    );
+    // const embedder = new OpenAIEmbeddings(
+    //   {
+    //     openAIApiKey: process.env.OPENAI_API_KEY,
+    //     batchSize: 512, // Default value if omitted is 512. Max is 2048
+    //     modelName: "text-embedding-3-large",
+    //   },
+    //   {
+    //     baseOptions: {
+    //       proxy: false,
+    //       httpAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+    //       httpsAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+    //     },
+    //   }
+    // );
 
-    //embed the PDF documents
-    const embeddingsDataArr = []; //[{embedding: [], chunk: '}]
-    const docs = ["thông tin gói D10"];
+    // //embed the PDF documents
+    // const embeddingsDataArr = []; //[{embedding: [], chunk: '}]
+    // const docs = ["thông tin gói D10"];
 
-    for (const chunk of docs) {
-      const embedding = await embedder.embedQuery(chunk);
-      // console.log("Embedding ", embedding);
-      embeddingsDataArr.push({
-        embedding,
-        chunk,
+    // for (const chunk of docs) {
+    //   const embedding = await embedder.embedQuery(chunk);
+    //   // console.log("Embedding ", embedding);
+    //   embeddingsDataArr.push({
+    //     embedding,
+    //     chunk,
+    //   });
+    //    console.log("Embedding value", embedding);
+    // }
+
+    const client = new ProxyAgent({
+      uri: "http://10.39.152.30:3128",
+    });
+    const customFetch = (input: string | URL | Request, init: any) => {
+      return fetch(input, {
+        ...init,
+        dispatcher: client as any,
+        keepalive: true,
       });
-       console.log("Embedding value", embedding);
-    }
+    };
+
+    const config: PineconeConfiguration = {
+      apiKey: env.OPENAI_API_KEY,
+      fetchApi: customFetch,
+    };
+
+    const pc = new Pinecone(config);
   } catch (error) {
     console.error("Init client script failed ", error);
   }
