@@ -74,9 +74,10 @@ async function initPineconeClient() {
 
 async function checkIndexExists(pc: Pinecone) {
   // List all indexes
+  console.log("Checking");
   const response = await pc.listIndexes();
   const indexes = response.indexes;
-  // console.log("Available indexes:", indexes);
+  console.log("Available indexes:", indexes);
 
   // Check if the desired index is in the list
   return indexes?.find((item) => item.name === env.PINECONE_INDEX_NAME);
