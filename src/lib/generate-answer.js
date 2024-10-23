@@ -46,27 +46,27 @@ export async function generateAnswer(query, retrievedChunks) {
 
 export async function retrieveRelevantChunks(query) {
   const embeddingDataArr = await embedDocs([query]);
-  const pc = await getPineconeClient();
-  // const client = new ProxyAgent({
-  //   uri: "http://10.39.152.30:3128",
-  // });
-  // const customFetch = (input, init) => {
-  //   return fetch(input, {
-  //     ...init,
-  //     dispatcher: client,
-  //     keepalive: true,
-  //   });
-  // };
+  // const pc = await getPineconeClient();
+  const client = new ProxyAgent({
+    uri: "http://10.39.152.30:3128",
+  });
+  const customFetch = (input, init) => {
+    return fetch(input, {
+      ...init,
+      dispatcher: client,
+      keepalive: true,
+    });
+  };
 
-  // const config = {
-  //   apiKey: process.env.PINECONE_API_KEY,
-  //   fetchApi: customFetch,
-  // };
+  const config = {
+    apiKey: "409e625d-dec0-4241-88bc-30efca393b76",
+    fetchApi: customFetch,
+  };
 
-  // const pc = new Pinecone(config);
+  const pc = new Pinecone(config);
 
-  const index = pc.index(env.PINECONE_INDEX_NAME);
-  const ns = index.namespace(env.PINECONE_NAME_SPACE);
+  const index = pc.index("index-start");
+  const ns = index.namespace("name-space");
   console.log("ns", ns);
   const results = await ns.query({
     vector: embeddingDataArr[0].embedding,
