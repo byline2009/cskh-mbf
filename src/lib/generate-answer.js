@@ -9,6 +9,10 @@ import { Pinecone } from "@pinecone-database/pinecone";
 const agent = new HttpsProxyAgent("http://10.39.152.30:3128");
 // https://js.langchain.com/v0.2/docs/integrations/chat/openai/
 // https://js.langchain.com/v0.2/docs/integrations/chat/azure/
+const cert = fs.readFileSync(
+  "/usr/local/ssl/certificate/tracuu7/cert_tracuu7_161024.crt"
+);
+
 export async function generateAnswer(query, retrievedChunks) {
   const llm = new ChatOpenAI(
     {
@@ -43,6 +47,11 @@ export async function retrieveRelevantChunks(query) {
   // const pc = await getPineconeClient();
   const client = new ProxyAgent({
     uri: "http://10.39.152.30:3128",
+    requestTls: {
+      port: "3128",
+      ca: cert,
+      host: "http://10.39.152.30",
+    },
   });
   const customFetch = (input, init) => {
     return fetch(input, {
@@ -59,7 +68,7 @@ export async function retrieveRelevantChunks(query) {
 
   const pc = new Pinecone(config);
 
-  const embeddingDataArr = await embedDocs(["thông tin gói D10"]);
+  const embeddingDataArr = await embedDocs([query]);
   const index = pc.index(env.PINECONE_INDEX_NAME);
   const ns = index.namespace(env.PINECONE_NAME_SPACE);
   console.log("ns", ns);
