@@ -68,7 +68,7 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
         embedding,
         chunk,
       });
-      // console.log('Embedding value', embedding)
+       console.log("Embedding value", embedding);
     }
   } catch (error) {
     console.error("Init client script failed ", error);
