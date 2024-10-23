@@ -62,7 +62,8 @@ export async function retrieveRelevantChunks(
 
   const pc = new Pinecone(config);
   const index = pc.index(env.PINECONE_INDEX_NAME);
-  console.log("INDEX", index);
+  const ns = index.namespace(namespace);
+  console.log("INDEX", ns, index);
   const results = await index.namespace(namespace).query({
     vector: embeddingDataArr[0].embedding,
     topK: 5, // Number of relevant chunks to retrieve
