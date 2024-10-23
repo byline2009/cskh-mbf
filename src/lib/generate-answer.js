@@ -38,10 +38,7 @@ export async function generateAnswer(query, retrievedChunks) {
   return answer;
 }
 
-export async function retrieveRelevantChunks(
-  query,
-  namespace = process.env.PINECONE_NAME_SPACE
-) {
+export async function retrieveRelevantChunks(query) {
   // const embeddingDataArr = await embedDocs([query]);
   // const pc = await getPineconeClient();
   const client = new ProxyAgent({

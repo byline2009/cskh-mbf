@@ -4,6 +4,7 @@ import { getPineconeClient } from "./pinecone-client";
 import { streamingModel, nonStreamingModel } from "./llm";
 import { STANDALONE_QUESTION_TEMPLATE, QA_TEMPLATE } from "./prompt-templates";
 import { retrieveRelevantChunks, generateAnswer } from "./generate-answer";
+import { retrieveRelevantChunks1 } from "../scripts/pinecone-prepare-docs";
 
 type callChainArgs = {
   question: string;
@@ -14,7 +15,7 @@ export async function callChain({ question }: callChainArgs) {
     // Question using chat-history
     // Reference https://js.langchain.com/docs/modules/chains/popular/chat_vector_db#externally-managed-memory
     // return streamingTextResponse;
-    const relevantChunks = await retrieveRelevantChunks(question);
+    const relevantChunks = await retrieveRelevantChunks1();
     const answers = await generateAnswer(question, relevantChunks);
 
     return answers;

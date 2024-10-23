@@ -14,8 +14,7 @@ import {
 // This operation might fail because indexes likely need
 // more time to init, so give some 5 mins after index
 // creation and try again.
-
-(async () => {
+export async   function retrieveRelevantChunks1() {
   try {
     // const pineconeClient = await getPineconeClient();
     // const index = pineconeClient.index(env.PINECONE_INDEX_NAME);
@@ -93,21 +92,20 @@ import {
 
     const pc = new Pinecone(config);
 
-      const embeddingDataArr = await embedDocs(["thông tin gói D10"]);
-      const index = pc.index(env.PINECONE_INDEX_NAME);
-      const ns = index.namespace(env.PINECONE_NAME_SPACE);
-      console.log("ns", ns);
-      const results = await ns.query({
-        vector: embeddingDataArr[0].embedding,
-        topK: 5, // Number of relevant chunks to retrieve
-        includeValues: true,
-        includeMetadata: true,
-      });
+    const embeddingDataArr = await embedDocs(["thông tin gói D10"]);
+    const index = pc.index(env.PINECONE_INDEX_NAME);
+    const ns = index.namespace(env.PINECONE_NAME_SPACE);
+    console.log("ns", ns);
+    const results = await ns.query({
+      vector: embeddingDataArr[0].embedding,
+      topK: 5, // Number of relevant chunks to retrieve
+      includeValues: true,
+      includeMetadata: true,
+    });
 
-      console.log("results", results);
-
-
+    console.log("results", results);
+    return results.matches.map((match) => match?.metadata?.chunk);
   } catch (error) {
     console.error("Init client script failed ", error);
   }
-})();
+};
