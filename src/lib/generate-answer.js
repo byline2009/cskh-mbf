@@ -40,9 +40,9 @@ export async function generateAnswer(query, retrievedChunks) {
 
 export async function retrieveRelevantChunks(
   query,
-  namespace = env.PINECONE_NAME_SPACE
+  namespace = process.env.PINECONE_NAME_SPACE
 ) {
-  const embeddingDataArr = await embedDocs([query]);
+  // const embeddingDataArr = await embedDocs([query]);
   // const pc = await getPineconeClient();
   const client = new ProxyAgent({
     uri: "http://10.39.152.30:3128",
@@ -61,8 +61,10 @@ export async function retrieveRelevantChunks(
   };
 
   const pc = new Pinecone(config);
+
+  const embeddingDataArr = await embedDocs(["thông tin gói D10"]);
   const index = pc.index(env.PINECONE_INDEX_NAME);
-  const ns = index.namespace(namespace);
+  const ns = index.namespace(env.PINECONE_NAME_SPACE);
   console.log("ns", ns);
   const results = await ns.query({
     vector: embeddingDataArr[0].embedding,
@@ -70,6 +72,7 @@ export async function retrieveRelevantChunks(
     includeValues: true,
     includeMetadata: true,
   });
+
   console.log("results", results);
   return results.matches.map((match) => match.metadata.chunk);
 }
