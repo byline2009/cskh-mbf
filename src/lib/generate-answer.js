@@ -56,7 +56,7 @@ export async function retrieveRelevantChunks(
   };
 
   const config = {
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.PINECONE_API_KEY,
     fetchApi: customFetch,
   };
 
