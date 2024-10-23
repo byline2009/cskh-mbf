@@ -2,6 +2,8 @@ import { env } from "./config";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { Pinecone } from "@pinecone-database/pinecone";
+import { HttpsProxyAgent } from "https-proxy-agent";
+
 const agent = new HttpsProxyAgent("http://10.39.152.30:3128");
 
 export async function embedDocs(docs) {
