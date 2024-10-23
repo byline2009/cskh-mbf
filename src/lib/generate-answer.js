@@ -4,6 +4,8 @@ import { embedDocs } from "./vector-store";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { getPineconeClient } from "./pinecone-client";
 import { HttpsProxyAgent } from "https-proxy-agent";
+import { Dispatcher, ProxyAgent } from "undici";
+import { Pinecone } from "@pinecone-database/pinecone";
 const agent = new HttpsProxyAgent("http://10.39.152.30:3128");
 // https://js.langchain.com/v0.2/docs/integrations/chat/openai/
 // https://js.langchain.com/v0.2/docs/integrations/chat/azure/
@@ -41,7 +43,24 @@ export async function retrieveRelevantChunks(
   namespace = env.PINECONE_NAME_SPACE
 ) {
   const embeddingDataArr = await embedDocs([query]);
-  const pc = await getPineconeClient();
+  // const pc = await getPineconeClient();
+  const client = new ProxyAgent({
+    uri: "http://10.39.152.30:3128",
+  });
+  const customFetch = (input, init) => {
+    return fetch(input, {
+      ...init,
+      dispatcher: client,
+      keepalive: true,
+    });
+  };
+
+  const config = {
+    apiKey: env.OPENAI_API_KEY,
+    fetchApi: customFetch,
+  };
+
+  const pc = new Pinecone(config);
   const index = pc.index(env.PINECONE_INDEX_NAME);
   const results = await index.namespace(namespace).query({
     vector: embeddingDataArr[0].embedding,
