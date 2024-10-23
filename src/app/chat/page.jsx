@@ -3,15 +3,15 @@ import { Chat } from "@/components/chat";
 import { getPineconeClient } from "../../lib/pinecone-client";
 
 const Page = () => {
-  async function fetchData() {
-    // You can await here
-    const pc = await getPineconeClient();
-    const listIndex = await pc.listIndexes();
-    console.log(listIndex[0].name);
+  // async function fetchData() {
+  //   // You can await here
+  //   const pc = await getPineconeClient();
+  //   const listIndex = await pc.listIndexes();
+  //   console.log(listIndex[0].name);
 
-    // ...
-  }
-  fetchData();
+  //   // ...
+  // }
+  // fetchData();
   return (
     <div className="container">
       <div className=" p-4 flex h-14 items-center justify-between supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
