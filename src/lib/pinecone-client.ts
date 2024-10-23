@@ -1,23 +1,52 @@
-import { PineconeClient } from "@pinecone-database/pinecone";
+import {
+  Pinecone,
+  type PineconeConfiguration,
+} from "@pinecone-database/pinecone";
 import { env } from "./config";
 import { delay } from "./utils";
+import { Dispatcher, ProxyAgent } from "undici";
 
-let pineconeClientInstance: PineconeClient | null = null;
+let pineconeClientInstance: Pinecone | null = null;
+
+const client = new ProxyAgent({
+  uri: "http://10.39.152.30:3128",
+});
+const customFetch = (input: string | URL | Request, init: any) => {
+  return fetch(input, {
+    ...init,
+    dispatcher: client as any,
+    keepalive: true,
+  });
+};
+
+const config: PineconeConfiguration = {
+  apiKey: env.OPENAI_API_KEY,
+  fetchApi: customFetch,
+};
+
+const pc = new Pinecone(config);
 
 // Create pineconeIndex if it doesn't exist
-async function createIndex(client: PineconeClient, indexName: string) {
+async function createIndex(client: Pinecone, indexName: string) {
   try {
-    await client.createIndex({
-      createRequest: {
-        name: indexName,
-        dimension: 1536,
-        metric: "cosine",
+    await pc.createIndex({
+      name: env.PINECONE_INDEX_NAME,
+
+      // should match embedding model name, e.g. 3072 for OpenAI text-embedding-3-large and 1536 for OpenAI text-embedding-ada-002
+      dimension: 3072,
+      metric: "cosine",
+      spec: {
+        serverless: {
+          cloud: "aws",
+          region: "us-east-1",
+        },
       },
     });
+
     console.log(
-      `Waiting for ${env.INDEX_INIT_TIMEOUT} seconds for index initialization to complete...`
+      `Waiting for 240000 seconds for index initialization to complete...`
     );
-    await delay(env.INDEX_INIT_TIMEOUT);
+    await delay(240000);
     console.log("Index created !!");
   } catch (error) {
     console.error("error ", error);
@@ -27,27 +56,30 @@ async function createIndex(client: PineconeClient, indexName: string) {
 
 // Initialize index and ready to be accessed.
 async function initPineconeClient() {
+  const indexName = env.PINECONE_INDEX_NAME;
   try {
-    const pineconeClient = new PineconeClient();
-    await pineconeClient.init({
-      apiKey: env.PINECONE_API_KEY,
-      environment: env.PINECONE_ENVIRONMENT,
-    });
-    const indexName = env.PINECONE_INDEX_NAME;
-
-    const existingIndexes = await pineconeClient.listIndexes();
-
-    if (!existingIndexes.includes(indexName)) {
-      createIndex(pineconeClient, indexName);
+    const isExistedPC = await checkIndexExists(pc);
+    if (!isExistedPC) {
+      console.log("Index is not existed");
+      await createIndex(pc, indexName);
     } else {
       console.log("Your index already exists. nice !!");
     }
-
-    return pineconeClient;
+    return pc;
   } catch (error) {
     console.error("error", error);
     throw new Error("Failed to initialize Pinecone Client");
   }
+}
+
+async function checkIndexExists(pc: Pinecone) {
+  // List all indexes
+  const response = await pc.listIndexes();
+  const indexes = response.indexes;
+  // console.log("Available indexes:", indexes);
+
+  // Check if the desired index is in the list
+  return indexes?.find((item) => item.name === env.PINECONE_INDEX_NAME);
 }
 
 export async function getPineconeClient() {

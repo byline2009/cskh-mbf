@@ -44,7 +44,9 @@
     "src/until/helper.js",
     "src/app/kiem-tra-thue-bao/page.jsx",
     "src/lib/api.js",
-    "src/app/cau-hoi-thuong-gap/page.jsx"
-, "src/app/tuyen-dung/page.jsx"  ],
+    "src/app/cau-hoi-thuong-gap/page.jsx",
+    "src/app/tuyen-dung/page.jsx",
+    "src/lib/vector-store.js"
+  ],
   "exclude": ["node_modules", ".next"]
 }

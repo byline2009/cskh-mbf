@@ -1,21 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { callChain } from "@/lib/langchain";
-import { Message } from "ai";
-
-const formatMessage = (message: Message) => {
-  return `${message.role === "user" ? "Human" : "Assistant"}: ${
-    message.content
-  }`;
-};
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const messages: Message[] = body.messages ?? [];
-  console.log("Messages ", messages);
-  const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
-  const question = messages[messages.length - 1].content;
-
-  console.log("Chat history ", formattedPreviousMessages.join("\n"));
+  const question = body.message;
 
   if (!question) {
     return NextResponse.json("Error: No question in the request", {
@@ -24,12 +12,11 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const streamingTextResponse = callChain({
+    const textResponse = await callChain({
       question,
-      chatHistory: formattedPreviousMessages.join("\n"),
     });
 
-    return streamingTextResponse;
+    return NextResponse.json({ message: textResponse }, { status: 200 });
   } catch (error) {
     console.error("Internal server error ", error);
     return NextResponse.json("Error: Something went wrong. Try again!", {
