@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { callChain } from "@/lib/langchain";
+import { generateAnswer, retrieveRelevantChunks } from "@/lib/generate-answer";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -12,11 +13,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const textResponse = await callChain({
-      question,
-    });
-
-    return NextResponse.json({ message: textResponse }, { status: 200 });
+    const relevantChunks = await retrieveRelevantChunks(question);
+    const answers = await generateAnswer(question, relevantChunks);
+    return NextResponse.json({ message: answers }, { status: 200 });
   } catch (error) {
     console.error("Internal server error ", error);
     return NextResponse.json("Error: Something went wrong. Try again!", {

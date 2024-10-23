@@ -14,7 +14,7 @@ import {
 // This operation might fail because indexes likely need
 // more time to init, so give some 5 mins after index
 // creation and try again.
-export async   function retrieveRelevantChunks1() {
+(async () => {
   try {
     // const pineconeClient = await getPineconeClient();
     // const index = pineconeClient.index(env.PINECONE_INDEX_NAME);
@@ -108,4 +108,4 @@ export async   function retrieveRelevantChunks1() {
   } catch (error) {
     console.error("Init client script failed ", error);
   }
-};
+})();
