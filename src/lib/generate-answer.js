@@ -49,11 +49,6 @@ export async function retrieveRelevantChunks(query) {
   // const pc = await getPineconeClient();
   const client = new ProxyAgent({
     uri: "http://10.39.152.30:3128",
-    requestTls: {
-      port: "3128",
-      ca: cert,
-      host: "http://10.39.152.30",
-    },
   });
   const customFetch = (input, init) => {
     return fetch(input, {
@@ -65,7 +60,7 @@ export async function retrieveRelevantChunks(query) {
 
   const config = {
     apiKey: process.env.PINECONE_API_KEY,
-    // fetchApi: customFetch,
+    fetchApi: customFetch,
   };
 
   const pc = new Pinecone(config);
