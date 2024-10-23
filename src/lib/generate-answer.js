@@ -48,7 +48,7 @@ export async function retrieveRelevantChunks(query) {
   // const embeddingDataArr = await embedDocs([query]);
   // const pc = await getPineconeClient();
   const client = new ProxyAgent({
-    uri: "http://10.39.152.30",
+    uri: "http://10.39.152.30:3128",
     requestTls: {
       port: "3128",
       ca: cert,
