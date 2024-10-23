@@ -92,6 +92,21 @@ import {
     };
 
     const pc = new Pinecone(config);
+
+      const embeddingDataArr = await embedDocs(["thông tin gói D10"]);
+      const index = pc.index(env.PINECONE_INDEX_NAME);
+      const ns = index.namespace(env.PINECONE_NAME_SPACE);
+      console.log("ns", ns);
+      const results = await ns.query({
+        vector: embeddingDataArr[0].embedding,
+        topK: 5, // Number of relevant chunks to retrieve
+        includeValues: true,
+        includeMetadata: true,
+      });
+
+      console.log("results", results);
+
+
   } catch (error) {
     console.error("Init client script failed ", error);
   }
