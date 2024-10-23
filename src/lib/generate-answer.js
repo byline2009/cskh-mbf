@@ -6,11 +6,13 @@ import { getPineconeClient } from "./pinecone-client";
 import { HttpsProxyAgent } from "https-proxy-agent";
 import { Dispatcher, ProxyAgent } from "undici";
 import { Pinecone } from "@pinecone-database/pinecone";
+import * as fs from "fs";
+
 const agent = new HttpsProxyAgent("http://10.39.152.30:3128");
 // https://js.langchain.com/v0.2/docs/integrations/chat/openai/
 // https://js.langchain.com/v0.2/docs/integrations/chat/azure/
 const cert = fs.readFileSync(
-  "/usr/local/ssl/certificate/tracuu7/cert_tracuu7_161024.crt"
+  "/usr/local/ssl/certificate/tracuu7/cert_tracuu7_161024.pem"
 );
 
 export async function generateAnswer(query, retrievedChunks) {
@@ -46,7 +48,7 @@ export async function retrieveRelevantChunks(query) {
   // const embeddingDataArr = await embedDocs([query]);
   // const pc = await getPineconeClient();
   const client = new ProxyAgent({
-    uri: "http://10.39.152.30:3128",
+    uri: "http://10.39.152.30",
     requestTls: {
       port: "3128",
       ca: cert,
