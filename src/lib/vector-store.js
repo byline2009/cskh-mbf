@@ -15,7 +15,13 @@ export async function embedDocs(docs) {
         batchSize: 512, // Default value if omitted is 512. Max is 2048
         modelName: "text-embedding-3-large",
       },
-      { httpAgent: agent }
+      {
+        baseOptions: {
+          proxy: false,
+          httpAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+          httpsAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+        },
+      }
     );
 
     //embed the PDF documents
@@ -61,7 +67,13 @@ export async function getVectorStore(client) {
         batchSize: 512, // Default value if omitted is 512. Max is 2048
         modelName: "text-embedding-3-large",
       },
-      { httpAgent: agent }
+      {
+        baseOptions: {
+          proxy: false,
+          httpAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+          httpsAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+        },
+      }
     );
     const index = client.Index(env.PINECONE_INDEX_NAME);
 
