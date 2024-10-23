@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { Chat } from "@/components/chat";
 import { getPineconeClient } from "../../lib/pinecone-client";
