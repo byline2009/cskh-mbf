@@ -84,7 +84,7 @@ export async function POST(req) {
       const response2 = await axios.post(
         API_URL_PINECONE,
         {
-          vector: embeddings[0], // The embedding vector you are querying
+          vector: embeddings, // The embedding vector you are querying
           top_k: 5, // Return top 5 matches
           namespace: process.env.PINECONE_NAME_SPACE,
           include_metadata: true, // If you want metadata to be returned
