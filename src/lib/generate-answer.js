@@ -1,3 +1,4 @@
+"use server";
 import { ChatOpenAI } from "@langchain/openai";
 import { env } from "./config";
 import { embedDocs } from "./vector-store";
@@ -47,7 +48,7 @@ export async function generateAnswer(query, retrievedChunks) {
 export async function retrieveRelevantChunks(query) {
   const embeddingDataArr = await embedDocs([query]);
   // const pc = await getPineconeClient();
-  const client = new HttpsProxyAgent("http://10.39.152.30:3128");
+  const client = new ProxyAgent("http://10.39.152.30:3128");
   const customFetch = (input, init) => {
     return fetch(input, {
       ...init,
