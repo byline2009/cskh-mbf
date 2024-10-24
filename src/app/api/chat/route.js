@@ -69,13 +69,15 @@ export async function POST(req) {
         }
       );
       console.log("response.data", response.data);
-      let embeddings = [];
+        console.log("check", response.data.data["embedding"]);
 
-if (response.data?.data?.embedding) {
-  embeddings = response.data.data.embedding.map((item) => item.embedding);
-} else {
-  embeddings = response.data.embedding;
-}
+        let embeddings = [];
+
+            if (response.data?.data["embedding"]) {
+              embeddings = response.data.data["embedding"];
+            } else {
+              embeddings = response.data.embedding;
+            }
       // console.log("embeddings", embeddings[0]);
 
       // Send query request to Pinecone
