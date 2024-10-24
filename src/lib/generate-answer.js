@@ -16,6 +16,7 @@ const cert = fs.readFileSync(
   "/usr/local/ssl/certificate/tracuu7/cert_tracuu7_161024.pem"
 );
 
+
 export async function generateAnswer(query, retrievedChunks) {
   const llm = new ChatOpenAI(
     {

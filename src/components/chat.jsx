@@ -7,6 +7,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Spinner } from "./ui/spinner";
 import { useEffect, useRef, useState } from "react";
+import { NextResponse } from "next/server";
 
 export function Chat() {
   const containerRef = useRef(null);
@@ -16,9 +17,8 @@ export function Chat() {
   const [input, setInput] = useState("");
 
   useEffect(() => {
-    console.log("messages", messages);
-    if(messages.length >1 && isLoading){
-      callAPIChat()
+    if (messages.length > 1 && isLoading) {
+      callAPIChat();
     }
     setTimeout(() => scrollToBottom(containerRef), 100);
   }, [messages, isLoading]);
@@ -28,31 +28,37 @@ export function Chat() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessages([...messages, { role: "human", content: input }]);
-    setIsLoading(true)
+    setIsLoading(true);
   };
 
   const callAPIChat = async () => {
     setIsLoading(true);
     const mes = input;
-    setInput("");
-    const res = await fetch("api/chat", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+    if (!mes || !Array.isArray(mes)) {
+      setIsLoading(true);
+      setInput("");
+      const res = await fetch("api/chat", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
 
-      //make sure to serialize your JSON body
-      body: JSON.stringify({
-        message: mes,
-      }),
-    });
-    const text = await res.json();
-    if(text){
-      setIsLoading(false);
-      setMessages([...messages, { role: "assistant", content: text.message }]);
+        //make sure to serialize your JSON body
+        body: JSON.stringify({
+          message: mes,
+        }),
+      });
+      const text = await res.json();
+      console.log("text.message", text.message);
+      if (text) {
+        setIsLoading(false);
+        setMessages([
+          ...messages,
+          { role: "assistant", content: text.message },
+        ]);
+      }
     }
-   
   };
 
   return (
