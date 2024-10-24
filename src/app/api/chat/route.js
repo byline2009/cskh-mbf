@@ -68,7 +68,7 @@ export async function POST(req) {
           }),
         }
       );
-      console.log("response.data", response);
+      console.log("response.data", response.data);
 
       const embeddings = response.data.data.map((item) => item.embedding);
       // console.log("embeddings", embeddings[0]);
@@ -88,13 +88,13 @@ export async function POST(req) {
             "Content-Type": "application/json",
             "Api-Key": process.env.PINECONE_API_KEY,
           },
-        },
-        ...(proxyUrl && {
-          proxy: {
-            host: proxyUrl.split("//")[1].split(":")[0],
-            port: proxyUrl.split(":")[2],
-          },
-        })
+          ...(proxyUrl && {
+            proxy: {
+              host: proxyUrl.split("//")[1].split(":")[0],
+              port: proxyUrl.split(":")[2],
+            },
+          }),
+        }
       );
       const dataRes = response2.data.matches;
       // console.log("response.data.matches", dataRes);
