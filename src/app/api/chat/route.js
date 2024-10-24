@@ -69,14 +69,14 @@ export async function POST(req) {
         }
       );
       console.log("response.data", response.data);
-        console.log("check", response.data.data[0].embedding);
+        console.log("check", response.data[0].embedding);
 
         let embeddings = [];
 
-        if (response.data.data[0].embedding) {
-          embeddings = response.data.data[0].embedding;
+        if (response.data[0].embedding) {
+          embeddings = response.data[0].embedding;
         } else {
-          embeddings = response.data.embedding;
+          embeddings = response.data.data[0].embedding;
         }
       // console.log("embeddings", embeddings[0]);
 
