@@ -103,7 +103,13 @@ export async function POST(req) {
           }),
         }
       );
-      const dataRes = response2.data.matches;
+      console.log("dataRes", dataRes);
+      let dataRes;
+      if (response2.matches) {
+        dataRes = response2.matches;
+      } else {
+        dataRes = response2.data.matches;
+      }
       // console.log("response.data.matches", dataRes);
       // Send the response back to the client
       const retrievedChunks = dataRes.map((match) => match.metadata.chunk);
