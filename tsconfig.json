@@ -46,7 +46,8 @@
     "src/lib/api.js",
     "src/app/cau-hoi-thuong-gap/page.jsx",
     "src/app/tuyen-dung/page.jsx",
-    "src/lib/vector-store.js"
+    "src/lib/vector-store.js",
+    "src/app/api/chat/route.js"
   ],
   "exclude": ["node_modules", ".next"]
 }
