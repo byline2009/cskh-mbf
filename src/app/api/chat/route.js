@@ -60,12 +60,12 @@ export async function POST(req) {
             Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
             "Content-Type": "application/json",
           },
-          // ...(proxyUrl && {
-          //   proxy: {
-          //     host: proxyUrl.split("//")[1].split(":")[0],
-          //     port: proxyUrl.split(":")[2],
-          //   },
-          // }),
+          ...(proxyUrl && {
+            proxy: {
+              host: proxyUrl.split("//")[1].split(":")[0],
+              port: proxyUrl.split(":")[2],
+            },
+          }),
         }
       );
       console.log("response.data", response);
@@ -88,13 +88,13 @@ export async function POST(req) {
             "Content-Type": "application/json",
             "Api-Key": process.env.PINECONE_API_KEY,
           },
-        }
-        // ...(proxyUrl && {
-        //   proxy: {
-        //     host: proxyUrl.split("//")[1].split(":")[0],
-        //     port: proxyUrl.split(":")[2],
-        //   },
-        // })
+        },
+        ...(proxyUrl && {
+          proxy: {
+            host: proxyUrl.split("//")[1].split(":")[0],
+            port: proxyUrl.split(":")[2],
+          },
+        })
       );
       const dataRes = response2.data.matches;
       // console.log("response.data.matches", dataRes);
@@ -105,8 +105,8 @@ export async function POST(req) {
       const llm = new ChatOpenAI(
         {
           model: "gpt-4o-mini",
-        }
-        // { httpAgent: agent }
+        },
+        { httpAgent: agent }
       );
 
       // Join retrieved chunks into a single context string
