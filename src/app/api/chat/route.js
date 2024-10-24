@@ -71,10 +71,10 @@ export async function POST(req) {
       console.log("response.data", response.data);
       let embeddings = [];
 
-if (response.data?.embedding) {
-  embeddings = response.data.embedding;
-} else {
+if (response.data?.data?.embedding) {
   embeddings = response.data.data.embedding.map((item) => item.embedding);
+} else {
+  embeddings = response.data.embedding;
 }
       // console.log("embeddings", embeddings[0]);
 
