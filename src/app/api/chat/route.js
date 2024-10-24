@@ -69,8 +69,14 @@ export async function POST(req) {
         }
       );
       console.log("response.data", response.data);
+      let embeddings = [];
 
-      const embeddings = response.data.data.map((item) => item.embedding);
+if (response?.data?.embedding) {
+  embeddings = response.data.embedding;
+} else {
+  embeddings = response.data.data.embedding.map((item) => item.embedding);
+}
+embeddings = response.data.embedding.map((item) => item.embedding);
       // console.log("embeddings", embeddings[0]);
 
       // Send query request to Pinecone
