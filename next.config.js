@@ -3,7 +3,7 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     NEXTAUTH_APP_API_URL: process.env.NEXTAUTH_APP_API_URL,
   },
