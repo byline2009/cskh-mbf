@@ -52,7 +52,11 @@ const LoginForm = () => {
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-right" href={"/register"}>
+          <Link
+            className="text-sm mt-3 text-right"
+            href={"/register"}
+            as={"/register"}
+          >
             {" "}
             Dont Have an account? <span className="underline">Register</span>
           </Link>

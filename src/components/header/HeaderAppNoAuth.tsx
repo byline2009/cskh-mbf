@@ -25,7 +25,7 @@ const HeaderAppNoAuth = () => {
         <div className="logo-group">
           <div className="block-center">
             <div className="logo">
-              <Link href="/" passHref>
+              <Link href="/" as="/" passHref>
                 <img src={`/imgs/logo-primary.png`} alt="logo" />
               </Link>
             </div>

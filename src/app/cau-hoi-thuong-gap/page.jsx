@@ -60,6 +60,7 @@ const Page = () => {
           <Link
             className="tab_btn"
             href={"/cau-hoi-thuong-gap?type=goi-cuoc"}
+            as={"/cau-hoi-thuong-gap?type=goi-cuoc"}
             passHref
           >
             <div className="nav-item__thumb">
@@ -80,6 +81,7 @@ const Page = () => {
           <Link
             className="tab_btn"
             href={"/cau-hoi-thuong-gap?type=msale"}
+            as={"/cau-hoi-thuong-gap?type=msale"}
             passHref
           >
             <div className="nav-item__thumb">
@@ -100,6 +102,7 @@ const Page = () => {
           <Link
             className="tab_btn"
             href={"/cau-hoi-thuong-gap?type=thanh-toan-cuoc"}
+            as={"/cau-hoi-thuong-gap?type=thanh-toan-cuoc"}
             passHref
           >
             <div className="nav-item__thumb">
@@ -120,6 +123,7 @@ const Page = () => {
           <Link
             className="tab_btn"
             href={"/cau-hoi-thuong-gap?type=nap-tien"}
+            as={"/cau-hoi-thuong-gap?type=nap-tien"}
             passHref
           >
             <div className="nav-item__thumb">

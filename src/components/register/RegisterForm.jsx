@@ -85,7 +85,7 @@ const RegisterForm = () => {
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-right" href={"/"}>
+          <Link className="text-sm mt-3 text-right" href={"/"} as="/">
             {" "}
             Already have an account? <span className="underline">Login</span>
           </Link>

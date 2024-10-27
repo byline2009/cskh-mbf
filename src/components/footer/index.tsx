@@ -112,10 +112,18 @@ const Footer: FC = () => {
           Copyright 2022 © MobiFone - All Rights Reserved
         </div>
         <div className="term-policy">
-          <Link href={"https://mobifone.vn/dieu-khoan-su-dung"} passHref>
+          <Link
+            href={"https://mobifone.vn/dieu-khoan-su-dung"}
+            as={"https://mobifone.vn/dieu-khoan-su-dung"}
+            passHref
+          >
             <span>Điều khoản sử dụng</span>
           </Link>
-          <Link href={"https://mobifone.vn"} passHref>
+          <Link
+            href={"https://mobifone.vn"}
+            as={"https://mobifone.vn"}
+            passHref
+          >
             <span>Chính sách bảo mật</span>
           </Link>
           <a

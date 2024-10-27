@@ -46,7 +46,11 @@ const CollapseCategory: FC<CategoryProps> = ({ subject, listLink }) => {
         <ul className="list-category-footer">
           {listLink.map((item, index) => (
             <li key={index}>
-              <Link href={item.link} target={item.newTab ? "_blank" : "_self"}>
+              <Link
+                href={item.link}
+                as={item.link}
+                target={item.newTab ? "_blank" : "_self"}
+              >
                 <span>{item.label}</span>
               </Link>
               {item.isFunc && (

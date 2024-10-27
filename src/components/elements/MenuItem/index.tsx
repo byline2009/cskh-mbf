@@ -42,7 +42,7 @@ const MenuItem: FC<MenuProps> = ({ itemMenuLink }) => {
         <div>
           {
             itemMenuLink.children.map((item: IMenuItem, index: any) => (
-              <Link key={index} href={item.link}>
+              <Link key={index} href={item.link} as={item.link}>
                 <div className="sub-menu-item">
                   <b>{item.label}</b>
                   <br />
@@ -58,7 +58,9 @@ const MenuItem: FC<MenuProps> = ({ itemMenuLink }) => {
     <div
       className={`menu-item ${itemMenuLink.link === pathname ? "active" : ""}`}
     >
-      <Link href={itemMenuLink.link}>{itemMenuLink.label}</Link>
+      <Link href={itemMenuLink.link} as={itemMenuLink.link}>
+        {itemMenuLink.label}
+      </Link>
     </div>
   );
 };

@@ -36,7 +36,7 @@ const Page = () => {
       <Slider {...settingTopnews}>
         {topNews.map((item, index) => (
           <div key={index}>
-            <Link href={"/"} key={index} className="top-news-item">
+            <Link href={"/"} as={"/"} key={index} className="top-news-item">
               <img src={item.imgSrc} alt="top-new" />
               <div className="top-news-content">
                 {/* <h2>{item.title}</h2> */}

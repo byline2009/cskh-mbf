@@ -67,7 +67,7 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
           </button>
           <div className="block-center">
             <div className="logo">
-              <Link href="/" passHref>
+              <Link href="/" as="/" passHref>
                 <img src={`/imgs/logo-primary.png`} alt="logo" />
               </Link>
             </div>
@@ -99,7 +99,7 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
               key={index}
               className={`nav-item ${item.link === pathname && "active"}`}
             >
-              <Link href={item.link}>
+              <Link href={item.link} as={item.link}>
                 <span>{item.label} </span>
               </Link>
             </div>
