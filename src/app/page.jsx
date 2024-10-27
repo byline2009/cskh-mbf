@@ -53,7 +53,7 @@ const Page = () => {
                 <img src="news/mobifone1.jpg" alt="hot-news" />
               </div>
               <div className="news-content">
-                <span class="project-status on-sale-status">
+                <span className="project-status on-sale-status">
                   Khuyến Mãi Hiện Hành
                 </span>
                 <h3>
