@@ -68,7 +68,7 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
           <div className="block-center">
             <div className="logo">
               <Link href="/" passHref>
-                <img src={`imgs/logo-primary.png`} alt="logo" />
+                <img src={`/imgs/logo-primary.png`} alt="logo" />
               </Link>
             </div>
             <div className="main-title">7</div>

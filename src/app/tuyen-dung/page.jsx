@@ -168,7 +168,7 @@ const page = async () => {
                             width={20}
                             height={20}
                             alt="writting-hand"
-                            src={"imgs/svgs/writing-hand.svg"}
+                            src={"/imgs/svgs/writing-hand.svg"}
                           />
                           <span>
                             Tha hồ lên &quot;level&quot; nghiệp vụ chuyên môn
@@ -181,7 +181,7 @@ const page = async () => {
                             width={20}
                             height={20}
                             alt="heart"
-                            src={"imgs/svgs/heart.svg"}
+                            src={"/imgs/svgs/heart.svg"}
                           />
                           <span>
                             Chế độ chăm sóc &quot;đỉnh nóc&quot; như đi du lịch
@@ -194,7 +194,7 @@ const page = async () => {
                             width={20}
                             height={20}
                             alt="victory-hand"
-                            src={"imgs/svgs/victory-hand.svg"}
+                            src={"/imgs/svgs/victory-hand.svg"}
                           />
                           <span>
                             Hưởng chế độ đặc biệt dành cho cán bộ công nhân viên
@@ -208,7 +208,7 @@ const page = async () => {
                             width={20}
                             height={20}
                             alt="hand-right"
-                            src={"imgs/svgs/hand-right.svg"}
+                            src={"/imgs/svgs/hand-right.svg"}
                           />
                           <span>
                             Về &quot;đại bản doanh&quot; của MobiFone tại Đắk
@@ -222,7 +222,7 @@ const page = async () => {
                             width={20}
                             height={20}
                             alt="checked-tick"
-                            src={"imgs/svgs/checked-tick.svg"}
+                            src={"/imgs/svgs/checked-tick.svg"}
                           />
                           <span>
                             Nộp hồ sơ online qua email:{" "}
@@ -235,7 +235,7 @@ const page = async () => {
                             width={20}
                             height={20}
                             alt="checked-tick"
-                            src={"imgs/svgs/checked-tick.svg"}
+                            src={"/imgs/svgs/checked-tick.svg"}
                           />
                           <span>
                             Nộp hồ sơ trực tiếp qua bưu điện tại địa chỉ Phòng
@@ -251,7 +251,7 @@ const page = async () => {
                               width={20}
                               height={20}
                               alt="user"
-                              src={"imgs/svgs/user.svg"}
+                              src={"/imgs/svgs/user.svg"}
                             />
                             <span>Số lượng : </span>
                             <span>&nbsp;</span>
