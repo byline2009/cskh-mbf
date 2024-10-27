@@ -17,7 +17,7 @@ const Footer: FC = () => {
               <div className="info-footer">
                 <div className="logo-footer">
                   <Image
-                    src="/imgs/logo-mbf.png"
+                    src="imgs/logo-mbf.png"
                     alt="logo"
                     width="150"
                     height="40"

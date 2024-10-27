@@ -18,7 +18,7 @@ const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
         <div className="group-logo">
           <Link href="/" passHref>
             <img
-              src="/imgs/logo-primary.png"
+              src="imgs/logo-primary.png"
               alt="logo"
               width="80"
               height="24"
