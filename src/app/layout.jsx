@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import "../styles/global.scss";
 import HeaderAppNoAuth from "src/components/header/HeaderAppNoAuth";
 import React, { Suspense } from "react";

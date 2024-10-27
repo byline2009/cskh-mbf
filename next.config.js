@@ -4,7 +4,6 @@ const nextConfig = {
     serverActions: true,
   },
   reactStrictMode: true,
-  output: "standalone",
   env: {
     NEXTAUTH_APP_API_URL: process.env.NEXTAUTH_APP_API_URL,
   },
