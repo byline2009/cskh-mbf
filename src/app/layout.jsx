@@ -1,6 +1,6 @@
 import "../styles/global.scss";
 import HeaderAppNoAuth from "src/components/header/HeaderAppNoAuth";
-import React from "react";
+import React, { Suspense } from "react";
 import "react-modern-drawer/dist/index.css";
 import MobileMenu from "@components/MobileMenu";
 import dynamic from "next/dynamic";
@@ -46,7 +46,9 @@ const RootLayout = async ({ children }) => {
           crossOrigin="anonymous"
         ></script>
         <AuthProvider>
-          {session ? <Layout>{children}</Layout> : children}
+          <Suspense fallback={<p>Fetching user details...</p>}>
+            {session ? <Layout>{children}</Layout> : children}
+          </Suspense>
         </AuthProvider>
       </body>
     </html>
