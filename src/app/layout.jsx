@@ -11,7 +11,6 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Layout from "../components/layout/Layout";
-import ErrorBoundary from "./errorBoundary";
 
 const RootLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
@@ -48,9 +47,7 @@ const RootLayout = async ({ children }) => {
           crossOrigin="anonymous"
         ></script>
         <AuthProvider>
-          <ErrorBoundary>
-            {session ? <Layout>{children}</Layout> : children}
-          </ErrorBoundary>
+          {session ? <Layout>{children}</Layout> : children}
         </AuthProvider>
       </body>
     </html>
