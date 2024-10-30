@@ -13,12 +13,11 @@ const Page = () => {
       const response = await getSearchTypeSubscriber(e);
       console.log("response check", response);
       if (response) {
-        setTextResult(response.result);
+        setTextResult("oại" + " " + response.result);
       } else {
         setTextResult("");
       }
     }
-   
   };
   return (
     <div className="check_isdn  pt-5">
@@ -34,7 +33,7 @@ const Page = () => {
         />
       </div>
       <p>
-        <span>Kết quả :</span>
+        <span>Kết quả: </span>
         <span>{textResult}</span>
       </p>
       <div className="table-responsive table-type">
