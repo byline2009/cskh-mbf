@@ -5,7 +5,6 @@ import Link from "next/link";
 import { menuCategory } from "@config/constants";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const HeaderAppNoAuth = () => {

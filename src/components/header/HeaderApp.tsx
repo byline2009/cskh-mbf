@@ -88,7 +88,10 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             <span>18001090</span>
           </a>
           <button
-            onClick={() => signOut({ callbackUrl: "/login", redirect: true })}
+            onClick={() => {
+              signOut({ redirect: false });
+              router.push("/login");
+            }}
             className={`btn-houze btn-solid`}
           >
             <span>Logout</span>

@@ -50,7 +50,8 @@
     "src/app/api/chat/route.js",
     "src/components/chat.jsx",
     "_next/types/**/*.ts",
-    "src/app/kiem-tra-loai-thue-bao/page.jsx"
+    "src/app/kiem-tra-loai-thue-bao/page.jsx",
+    "src/app/api/auth/logout/logout.js"
   ],
   "exclude": ["node_modules", ".next"]
 }
