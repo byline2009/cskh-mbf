@@ -9,13 +9,16 @@ const Page = () => {
   const [textResult, setTextResult] = useState("");
 
   const handleSearch = async (e) => {
-    const response = await getSearchTypeSubscriber(e);
-    console.log("response check", response);
-    if (response) {
-      setTextResult(response.result);
-    } else {
-      setTextResult("");
+    if (e && e.length > 0) {
+      const response = await getSearchTypeSubscriber(e);
+      console.log("response check", response);
+      if (response) {
+        setTextResult(response.result);
+      } else {
+        setTextResult("");
+      }
     }
+   
   };
   return (
     <div className="check_isdn  pt-5">
