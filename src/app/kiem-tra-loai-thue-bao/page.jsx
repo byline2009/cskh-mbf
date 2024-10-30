@@ -40,12 +40,10 @@ const Page = () => {
         <table className="table table-row-dashed table-striped  table-row-gray-300 align-middle gs-0 gy-3 ">
           <thead className="thead-light">
             <tr>
-              <th scope="col" style={{ width: "100px !important" }}>
+              <th scope="col" style={{ width: 100 }}>
                 Loại số
               </th>
-              <th scope="col" style={{ width: 200 }}>
-                Mức cam kết
-              </th>
+              <th scope="col">Mức cam kết</th>
             </tr>
           </thead>
           <tbody>
