@@ -87,7 +87,10 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             <i className="icon-call-connecting" />
             <span>18001090</span>
           </a>
-          <button onClick={() => signOut()} className={`btn-houze btn-solid`}>
+          <button
+            onClick={() => signOut({ callbackUrl: "/login", redirect: true })}
+            className={`btn-houze btn-solid`}
+          >
             <span>Logout</span>
           </button>
         </div>
