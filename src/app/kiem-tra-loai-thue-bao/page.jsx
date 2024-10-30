@@ -13,7 +13,7 @@ const Page = () => {
       const response = await getSearchTypeSubscriber(e);
       console.log("response check", response);
       if (response) {
-        setTextResult("oại" + " " + response.result);
+        setTextResult("Loại" + " " + response.result);
       } else {
         setTextResult("");
       }
