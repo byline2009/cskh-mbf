@@ -8,6 +8,7 @@ export const LOGIN_URL = `${API_URL}/login`;
 export const REGISTER_URL = `${API_URL}/register`;
 export const REQUEST_PASSWORD_URL = `${API_URL}/forgot_password`;
 export const CHECK_PACKAGE_URL = `${API_URL}/website/package`;
+export const CHECK_TYPE_PACKAGE_URL = `${API_URL}/website/type`;
 
 axios.interceptors.response.use(
   function (response) {
@@ -75,6 +76,15 @@ export function getUserByToken(token: string) {
 export async function checkPackage(searchVal?: string) {
   console.log("CHECK_PACKAGE_URL", CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
   const result = await fetch(CHECK_PACKAGE_URL + `?isdn=${searchVal}`);
+  return result;
+}
+
+export async function checkTypePackage(searchVal?: string) {
+  console.log(
+    "CHECK_TYPE_PACKAGE_URL",
+    CHECK_TYPE_PACKAGE_URL + `?isdn=${searchVal}`
+  );
+  const result = await fetch(CHECK_TYPE_PACKAGE_URL + `?isdn=${searchVal}`);
   return result;
 }
 

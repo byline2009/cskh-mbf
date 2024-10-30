@@ -62,6 +62,10 @@ const menuCategory = [
     link: "/kiem-tra-thue-bao",
   },
   {
+    label: "Kiểm tra loại thuê bao",
+    link: "/kiem-tra-loai-thue-bao",
+  },
+  {
     label: "Câu hỏi thường gặp",
     link: "/cau-hoi-thuong-gap",
   },
@@ -5607,6 +5611,18 @@ const listJob = [
     deadline: "31/08/2024",
   },
 ];
+const listRangeType = [
+  { value: 1, label: "CK1500 Giá 1,500,000 đ" },
+  { value: 2, label: "CK1200 Giá 1,200,000 đ" },
+  { value: 3, label: "CK1000 Giá 1,000,000 đ" },
+  { value: 4, label: "CK800 Giá 800,000 đ" },
+  { value: 5, label: "CK500 Giá 500,000 đ" },
+  { value: 6, label: "CK400 Giá 400,000 đ" },
+  { value: 7, label: "CK300 Giá 300,000 đ" },
+  { value: 8, label: "CK250 Giá 250,000 đ" },
+  { value: 9, label: "CK150 Giá 150,000 đ" },
+  { value: 10, label: "Số tự do" },
+];
 
 export {
   infoLink,
@@ -5622,5 +5638,6 @@ export {
   errorMsale,
   arrayPackage,
   listJob,
+  listRangeType,
 };
 

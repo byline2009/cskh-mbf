@@ -8,19 +8,17 @@ export const authOptions = {
       credentials: {},
       async authorize(credentials) {
         const { email, password } = credentials;
-        try {
-          // await connectMongoDB();
-          // const user = await User.findOne({ email });
-          const user = await login(email, password);
+        let newStringEmail = email;
+        if (!checkIfEmailInString(email)) {
+          newStringEmail = email + "@mobifone.vn";
+        }
 
+        try {
+          const user = await login(newStringEmail, password);
           if (!user) {
             return null;
           }
           console.log("user", user);
-          // const passwordMatch = await bcrypt.compare(password, user.password);
-          // if (!passwordMatch) {
-          //   return null;
-          // }
           return user;
         } catch (error) {
           console.log("Error", error);
@@ -40,5 +38,11 @@ export const authOptions = {
     signIn: "/login",
   },
 };
+
+function checkIfEmailInString(text) {
+  var re =
+    /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+  return re.test(text);
+}
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

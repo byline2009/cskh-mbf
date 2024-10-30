@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": [
-      "DOM",
-      "ES6",
-      "DOM.Iterable",
-      "ScriptHost",
-      "ES2016.Array.Include"
-    ],
+    "lib": ["DOM", "ES6", "DOM.Iterable", "ScriptHost", "ES2016.Array.Include"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,30 +16,14 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@public/*": [
-        "./public/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@styles/*": [
-        "./styles/*"
-      ],
-      "@config/*": [
-        "./src/config/*"
-      ],
-      "@helpers/*": [
-        "./helpers/*"
-      ],
-      "@redux/*": [
-        "./redux/*"
-      ],
-      "@api/*": [
-        "./src/api/*"
-      ],
-      "@/*": [
-        "./src/*"
-      ]
+      "@public/*": ["./public/*"],
+      "@components/*": ["./src/components/*"],
+      "@styles/*": ["./styles/*"],
+      "@config/*": ["./src/config/*"],
+      "@helpers/*": ["./helpers/*"],
+      "@redux/*": ["./redux/*"],
+      "@api/*": ["./src/api/*"],
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {
@@ -71,10 +49,8 @@
     "src/lib/vector-store.js",
     "src/app/api/chat/route.js",
     "src/components/chat.jsx",
-    "_next/types/**/*.ts"
+    "_next/types/**/*.ts",
+    "src/app/kiem-tra-loai-thue-bao/page.jsx"
   ],
-  "exclude": [
-    "node_modules",
-    ".next"
-  ]
+  "exclude": ["node_modules", ".next"]
 }
