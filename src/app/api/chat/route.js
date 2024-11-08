@@ -38,11 +38,7 @@ const API_URL_PINECONE =
 
 export async function POST(req) {
   const body = await req.json();
-  // const { texts } = req.body;
 
-  // if (!texts || !Array.isArray(texts)) {
-  //   return res.status(400).json({ error: "Invalid input" });
-  // }
   const question = body.message;
 
   console.log("body", body);
@@ -69,16 +65,15 @@ export async function POST(req) {
         }
       );
       console.log("response.data", response.data);
-        console.log("check", response.data[0].embedding);
+      console.log("check", response.data[0].embedding);
 
-        let embeddings = [];
+      let embeddings = [];
 
-        if (response.data[0].embedding) {
-          embeddings = response.data[0].embedding;
-        } else {
-          embeddings = response.data.data[0].embedding;
-        }
-      // console.log("embeddings", embeddings[0]);
+      if (response.data[0].embedding) {
+        embeddings = response.data[0].embedding;
+      } else {
+        embeddings = response.data.data[0].embedding;
+      }
 
       // Send query request to Pinecone
       const response2 = await axios.post(
@@ -110,7 +105,6 @@ export async function POST(req) {
       } else {
         dataRes = response2.data.matches;
       }
-      // console.log("response.data.matches", dataRes);
       // Send the response back to the client
       const retrievedChunks = dataRes.map((match) => match.metadata.chunk);
       console.log("retrievedChunks", retrievedChunks);

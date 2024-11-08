@@ -4,7 +4,7 @@ import MySelectSingle from "@components/selects/MySelectSingle";
 import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
-import { arrayPackage } from "@config/constants";
+import { arrayPackage, arrayPackage5G } from "@config/constants";
 import { getSearchSubscriber } from "../../until/functions";
 
 const limit = 10;
@@ -107,7 +107,6 @@ const Page = () => {
     setLoading(false);
     if (response.result && response) {
       const arrayResponse = response.result;
-      console.log("");
       if (arrayResponse) {
         if (arrayResponse.includes("Hien tai he thong dang ban")) {
           setError("Hệ thống bận, xin vui lòng thử lại sau");
@@ -127,6 +126,10 @@ const Page = () => {
 
           arrTemp.forEach((item, indexArrayItem) => {
             const indexObject = arrayPackage.findIndex(
+              (o) => o.code == item.code
+            );
+
+            const indexObject5G = arrayPackage5G.findIndex(
               (o) => o.code == item.code
             );
             const o = arrayPackage[indexObject];
@@ -155,12 +158,48 @@ const Page = () => {
               };
             }
 
-            if (indexObject != -1) {
-              const sortingFunction = (a, _) =>
-                a.code === item.code ? -1 : +1;
-              setArrSorted(arrayUpdated.sort(sortingFunction));
-              setArrayMem(arrayUpdated.sort(sortingFunction));
+            const o5G = arrayPackage5G[indexObject5G];
+            if (indexObject5G != -1) {
+              arrayUpdated[indexArrayItem] = {
+                code: o5G.code,
+                price: o5G.price,
+                date: o5G.date,
+                cycle: o5G.cycle,
+                revenueOld: o5G.revenueOld,
+                revenue: o5G.revenue,
+                type: o5G.type,
+                sms: o5G.sms,
+                inAudio: o5G.inAudio,
+                outAudio: o5G.outAudio,
+                data: o5G.data,
+                permission: o5G.permission,
+                subcriber: o5G.subcriber,
+                typeCycle: o5G.typeCycle,
+                unlimitEntertainment: o5G.unlimitEntertainment,
+                education: o5G.education,
+                mp3Television: o5G.mp3Television,
+                agriculture: o5G.agriculture,
+                budget: o5G.budget,
+                dataOnly: o5G.data_only,
+              };
             }
+
+            if (indexObject5G != -1) {
+              arrayUpdated.unshift(arrayUpdated.splice(indexArrayItem, 1)[0]);
+              setArrSorted(arrayUpdated);
+              setArrayMem(arrayUpdated)
+              // const sortingFunction = (a, _) => {
+              //   const indexSort = arrayPackage5G.findIndex(
+              //     (o) => o.code == a.code
+              //   );
+              //   indexSort != -1 ? -1 : +1;
+              // };
+
+              // setArrSorted(arrayUpdated.sort(sortingFunction));
+              // setArrayMem(arrayUpdated.sort(sortingFunction));
+            }
+
+          
           });
           setTotalCount(arrayUpdated.length);
         }
