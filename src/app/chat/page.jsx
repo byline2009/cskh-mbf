@@ -6,10 +6,10 @@ const Page = () => {
   useEffect(() => {
     let sun = document.querySelector(".sun");
     let body = document.querySelector("body");
-    console.log("sun", sun);
-    sun.onclick = function () {
-      body.classList.toggle("dark");
-    };
+    // console.log("sun", sun);
+    // sun.onclick = function () {
+    //   body.classList.toggle("dark");
+    // };
   }, []);
   return (
     <div className="scene">
