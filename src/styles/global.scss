@@ -3,9 +3,7 @@
 @import "fonts";
 @import "mbf-icon";
 @import "mixin";
-
 @import "./pages/app.scss";
-
 @import "./components/button.scss";
 @import "../components/header/header-app.scss";
 @import "../components/MobileMenu/mobile-menu.scss";
@@ -19,6 +17,7 @@
 @import "./pages/login-test.scss";
 @import "./pages/check_isdn.scss";
 @import "./pages/recruitment.scss";
+@import "./pages/chat.scss";
 
 @tailwind base;
 @tailwind components;
@@ -96,7 +95,6 @@
     @apply bg-background text-foreground;
   }
 }
-
 
 html,
 body {
@@ -283,6 +281,6 @@ a {
   z-index: 99;
   animation: animateLoading 2s infinite;
 }
-.align--justify{
+.align--justify {
   text-align: justify;
 }

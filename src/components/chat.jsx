@@ -1,5 +1,5 @@
 "use client";
-
+"use strict";
 import { scrollToBottom, initialMessages, getSources } from "@/lib/utils";
 import { ChatLine } from "./chat-line";
 import { useChat, Message } from "ai-stream-experimental/react";
@@ -62,8 +62,9 @@ export function Chat() {
   };
 
   return (
-    <div className="rounded-2xl border h-[75vh] flex flex-col justify-between">
-      <div className="p-6 overflow-auto" ref={containerRef}>
+    <div className=" bg-white rounded-2xl border h-[75vh] flex flex-col justify-between backdrop-filter backdrop-blur-sm md:backdrop-blur-l ">
+      <h4 className="title-chat">Chat with MobiFone 7</h4>
+      <div className="p-2 overflow-auto" ref={containerRef}>
         {messages.map((mes, index) => (
           <div key={index}>
             <ChatLine role={mes.role} content={mes.content} />

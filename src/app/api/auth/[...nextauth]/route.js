@@ -14,6 +14,7 @@ export const authOptions = {
         if (!checkIfEmailInString(email)) {
           newStringEmail = email + "@mobifone.vn";
         }
+        console.log("email + passs", email, password);
 
         try {
           const user = await login(newStringEmail, password);
