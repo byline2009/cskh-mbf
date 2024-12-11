@@ -77,6 +77,10 @@ const menuCategory = [
     label: "Chat với AI",
     link: "/chat",
   },
+  {
+    label: "Khai Báo Điểm Bán Lẻ",
+    link: "/form-retail",
+  },
 ];
 
 const topSliders = [

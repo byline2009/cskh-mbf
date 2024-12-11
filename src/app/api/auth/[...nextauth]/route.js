@@ -22,7 +22,8 @@ export const authOptions = {
             return null;
           }
           console.log("user", user);
-          return user;
+
+          return { ...user, email: newStringEmail }; // Đảm bảo trả về thông tin người dùng hợp lệ
         } catch (error) {
           console.log("Error", error);
         }
