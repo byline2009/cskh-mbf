@@ -281,7 +281,7 @@ export const useFormData = () => {
       console.error("Error sending data:", error);
 
       // Lưu thông báo lỗi từ server vào state
-      const errorMsg = error.response?.data?.errors?.map((err: any) => err.msg).join(", ") || "Đã có lỗi xảy ra. Vui lòng thử lại.";
+      const errorMsg = error.response?.data?.errors?.map((err: any) => err.msg).join(", ") || "Lỗi không xác định.";
       setErrorMessage(errorMsg);  // Lưu lỗi vào state
   
       // Hiển thị modal lỗi
