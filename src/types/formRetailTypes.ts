@@ -18,8 +18,8 @@ export interface FormRetailData  {
   district: string; // Tên Huyện
   ward: string; // Tên Phường
   address: string; // Địa chỉ
-  latitude: Number; // Vĩ độ
-  longitude: Number; // Kinh độ
+  latitude: number; // Vĩ độ
+  longitude: number; // Kinh độ
   images: File[]; // Danh sách ảnh (mảng các file ảnh)
   [key: string]: any;  // Index signature, cho phép truy cập với key là string
 
