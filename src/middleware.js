@@ -1,6 +1,7 @@
 export { default } from "next-auth/middleware";
 export const config = {
   matcher: [
+    "/form-retail",
     "/dashboard",
     "/",
     "/kiem-tra-thue-bao",

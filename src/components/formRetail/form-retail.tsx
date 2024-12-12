@@ -68,6 +68,7 @@ const FormRetail: React.FC = () => {
           <div>
             <label htmlFor="Avata">Ảnh đại diện điểm bán</label>
             <input
+              id="avata"
               type="file"
               accept="image/*"
               onChange={handleImageAvata}
@@ -125,7 +126,7 @@ const FormRetail: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="idDiemBan">Mã User</label>
+            <label htmlFor="staffCode">Mã User</label>
             <input
               type="text"
               id="staffCode"
