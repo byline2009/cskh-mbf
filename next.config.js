@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: true,
-  },
+  // experimental: {
+  //   serverActions: true,
+  // },
   reactStrictMode: false,
   env: {
     NEXTAUTH_APP_API_URL: process.env.NEXTAUTH_APP_API_URL,
