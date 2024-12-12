@@ -278,14 +278,12 @@ export const useFormData = () => {
 
     })
     .catch(error => {
-      console.error("Error sending data:", error);
-
-      // Lưu thông báo lỗi từ server vào state
-      const errorMsg = error.response?.data?.errors?.map((err: any) => err.msg).join(", ") || "Lỗi không xác định.";
-      setErrorMessage(errorMsg);  // Lưu lỗi vào state
-  
-      // Hiển thị modal lỗi
-      setErrorModalShow(true);
+      console.error("Error response:", error.response); // In ra lỗi đầy đủ
+      const errorMsg = error.response?.data?.errors 
+        ? error.response.data.errors.map((err: any) => err.msg).join(", ") 
+        : error.message || "Lỗi không xác định.";  
+      setErrorMessage(errorMsg);  
+      setErrorModalShow(true);  
     });
   };
 
