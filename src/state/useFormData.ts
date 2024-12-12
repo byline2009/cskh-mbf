@@ -4,7 +4,6 @@ import { FormRetailData } from '@/types/formRetailTypes';
 import axios from 'axios';
 import { useSession } from 'next-auth/react'; // Hook của next-auth
 const defaultCenter = { lat: 12.6883602, lng: 108.0557606 };
-const API_URL = process.env.NEXTAUTH_APP_API_URL;
 
 export const useFormData = () => {
 
@@ -238,7 +237,7 @@ export const useFormData = () => {
     //     'Content-Type': 'multipart/form-data' 
     //   } 
 
-    axios.post(`${API_URL}/website/createSalePoint`, formDataToSend, { 
+    axios.post(`${process.env.NEXTAUTH_APP_API_URL}/website/createSalePoint`, formDataToSend, { 
       headers: { 
         'Content-Type': 'multipart/form-data' 
       } 
