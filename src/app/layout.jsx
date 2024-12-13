@@ -16,8 +16,8 @@ const RootLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
   return (
     <html lang="en" suppressHydrationWarning>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="icon" type="image/png" href="imgs/favicon.png" />
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/> 
+<link rel="icon" type="image/png" href="imgs/favicon.png" />
       <title>Chăm sóc khách hàng Công ty MobiFone 7</title>
 
       <head>
