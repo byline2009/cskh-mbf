@@ -1,6 +1,7 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { login } from "@/lib/api";
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 export const LOGIN_URL = `${API_URL}/login`;
 export const authOptions = {
