@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+export const LOGIN_URL = `${API_URL}/login`;
 const Page = () => {
   const [typePassword, setTypePassword] = useState("password");
   const [password, setPassword] = useState("");
@@ -14,24 +16,58 @@ const Page = () => {
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  function checkIfEmailInString(text) {
+    var re =
+      /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+    return re.test(text);
+  }
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
     console.log("check login", email, password);
-    try {
-      const res = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
-      setLoading(false);
-      if (res && res.error) {
-        setError("Invalid credentials");
-        return;
+   
+      let newStringEmail = email;
+      if (!checkIfEmailInString(email)) {
+        newStringEmail = email + "@mobifone.vn";
       }
-      router.replace("/");
-      router.refresh();
-    } catch (e) {}
+      try {
+        const result = await fetch(LOGIN_URL, {
+          rejectUnauthorized: false,
+            method: "POST",// *GET, POST, PUT, DELETE, etc
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({
+              username: newStringEmail,
+            password,
+           }), // body data type must match "Content-Type" header
+          });
+        if (!result) {
+          setError("Invalid credentials");
+          setLoading(false);
+          return;
+        }else {
+          const user = await result.json();
+          console.log("user", user);
+          await signIn("credentials", {
+            newStringEmail,
+            password,
+            user,
+            redirect: false,
+          });
+        }
+        setLoading(false);
+       
+        router.replace("/");
+        router.refresh();
+        
+      } catch (error) {
+        setError("Invalid credentials");
+        setLoading(false);
+        return null;
+      }
+    
   };
   useEffect(() => {}, []);
   const handleNextClick = (e) => {
