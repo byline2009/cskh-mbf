@@ -221,6 +221,9 @@ const FormRetail: React.FC = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+    console.log("check submit");
+
     // In thông tin người tạo trước khi gửi form
     console.log("Thông tin người tạo:", formData.createdBy);
     // Kiểm tra dữ liệu formData trước khi gửi
@@ -243,8 +246,9 @@ const FormRetail: React.FC = () => {
 
     // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
     console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
+
     axios
-      .post(`${API_URL_FORM}/website/createSalePoint`, formData, {
+      .post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
@@ -323,7 +327,7 @@ const FormRetail: React.FC = () => {
 
       <div className="form-container">
         <h2>Khai Báo Thông Tin Điểm Bán Lẻ</h2>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div>
             <label htmlFor="Avata">Ảnh đại diện điểm bán</label>
             <input
@@ -545,45 +549,10 @@ const FormRetail: React.FC = () => {
               onChange={handleImages}
             />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
         </form>
-
-        {/* <button
-          type="submit"
-          onClick={() => {
-            axios.post(
-              `${API_URL_FORM}/website/createSalePoint`,
-              {
-                createdBy: "huy.pham2@mobifone.vn",
-                shopID: "C2C_033833",
-                nameShop: "Mỹ Nghiệm (Nguyễn Thị Mỹ)",
-                staffSupport: "Mai Kiều Ngọc Hải",
-                personalID: "066091015887",
-                staffCode: "7DLABDOMBP0014",
-                shopCode: "7DLABDOMBP0014",
-                email: "tesst@gmail.com",
-                phone: "782557883",
-                province: "Tỉnh Nam Định",
-                provinceCode: "36",
-                district: "Huyện Hải Hậu",
-                districtCode: "366",
-                ward: "Xã Hải Lộc",
-                wardCode: "14263",
-                address: "Thôn 2, Krong Na, Buôn Đôn, Đăk Lăk",
-                latitude: "12.6883602",
-                longitude: "108.0557606",
-              },
-              {
-                headers: {
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            );
-          }}
-        >
-          test
-        </button> */}
-
         <Modal show={modalShow} onHide={() => setModalShow(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Nhập liệu thành công!</Modal.Title>
