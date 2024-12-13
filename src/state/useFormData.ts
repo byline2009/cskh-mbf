@@ -209,6 +209,7 @@ export const useFormData = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     
+    const response = await postFormRetail()
     // // In thông tin người tạo trước khi gửi form
     // console.log("Thông tin người tạo:", formData.createdBy);
     // // Kiểm tra dữ liệu formData trước khi gửi
@@ -239,7 +240,6 @@ export const useFormData = () => {
     // //   body: formDataToSend,
     // // })
 
-    const response = await postFormRetail()
 
     // .then(response => {
     //   console.log("Response from server:", response);
