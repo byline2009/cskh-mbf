@@ -238,7 +238,7 @@ export const useFormData = () => {
     //     'Content-Type': 'multipart/form-data' 
     //   } 
 
-    axios.post(`${API_URL}/website/createSalePoint/`, formDataToSend, { 
+    axios.post(`${API_URL}/website/createSalePoint`, formDataToSend, { 
       headers: { 
         'Content-Type': 'multipart/form-data' 
       } 

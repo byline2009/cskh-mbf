@@ -18,7 +18,7 @@ const RootLayout = async ({ children }) => {
     <html lang="en" suppressHydrationWarning>
       <link rel="icon" type="image/png" href="imgs/favicon.png" />
       <title>Chăm sóc khách hàng Công ty MobiFone 7</title>
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
       <head>
         <link
