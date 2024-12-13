@@ -14,7 +14,7 @@ const client = new ProxyAgent({
 const customFetch = (input: string | URL | Request, init: any) => {
   return fetch(input, {
     ...init,
-    dispatcher: client as any,
+    // dispatcher: client as any,
     keepalive: true,
   });
 };
@@ -31,7 +31,6 @@ async function createIndex(client: Pinecone, indexName: string) {
   try {
     await pc.createIndex({
       name: env.PINECONE_INDEX_NAME,
-
       // should match embedding model name, e.g. 3072 for OpenAI text-embedding-3-large and 1536 for OpenAI text-embedding-ada-002
       dimension: 3072,
       metric: "cosine",
@@ -59,6 +58,7 @@ async function initPineconeClient() {
   const indexName = env.PINECONE_INDEX_NAME;
   try {
     const isExistedPC = await checkIndexExists(pc);
+
     if (!isExistedPC) {
       console.log("Index is not existed");
       await createIndex(pc, indexName);
@@ -74,7 +74,6 @@ async function initPineconeClient() {
 
 async function checkIndexExists(pc: Pinecone) {
   // List all indexes
-  console.log("Checking");
   const response = await pc.listIndexes();
   const indexes = response.indexes;
   console.log("Available indexes:", indexes);

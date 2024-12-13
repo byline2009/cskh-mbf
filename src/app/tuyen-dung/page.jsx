@@ -4,12 +4,23 @@ import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import HeaderNoAuth from "src/components/header/HeaderAppNoAuth";
+import { arrayPackage5G } from "../../config/constants";
+
 const page = async () => {
   const session = await getServerSession(authOptions);
 
   return (
     <div>
       {session ? <></> : <HeaderNoAuth />}
+      {arrayPackage5G.map((object, index) => (
+        <div key={index}>
+          <p>
+            Gói cước: {object.code} - Giá gói: {object.price} đồng /
+            {object.cycle} ngày. Miễn phí {object.data}.{object.permission}.{" "}
+            {object.inAudio}
+          </p>
+        </div>
+      ))}
       <div className="career">
         <div className="careerBanner banner pageBanner">
           <div className="bannerItem lazyloaded">

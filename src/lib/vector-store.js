@@ -14,28 +14,25 @@ export async function embedDocs(docs) {
         openAIApiKey: process.env.OPENAI_API_KEY,
         batchSize: 512, // Default value if omitted is 512. Max is 2048
         modelName: "text-embedding-3-large",
-      },
-      {
-        baseOptions: {
-          proxy: false,
-          httpAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
-          httpsAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
-        },
       }
+      // {
+      //   baseOptions: {
+      //     proxy: false,
+      //     httpAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+      //     httpsAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+      //   },
+      // }
     );
 
     //embed the PDF documents
     const embeddingsDataArr = []; //[{embedding: [], chunk: '}]
-    console.log("docs", docs);
 
     for (const chunk of docs) {
       const embedding = await embedder.embedQuery(chunk);
-      // console.log("Embedding ", embedding);
       embeddingsDataArr.push({
         embedding,
         chunk,
       });
-      // console.log('Embedding value', embedding)
     }
 
     return embeddingsDataArr;

@@ -14,8 +14,8 @@ export async function getChunkedDocsFromPDF() {
     // const loader = new PDFLoader(env.PDF_PATH);
     // const docs = await loader.load();
     console.log("check docs", docs.length)
-    const chunkSize=1000;
-    const overlapSize=200;
+    const chunkSize = 10000;
+    const overlapSize = 1000;
 
     // // From the docs https://www.pinecone.io/learn/chunking-strategies/
     // const textSplitter = new RecursiveCharacterTextSplitter({

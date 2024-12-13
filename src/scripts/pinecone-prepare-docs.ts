@@ -17,7 +17,6 @@ import {
 (async () => {
   try {
     // const pineconeClient = await getPineconeClient();
-    // const index = pineconeClient.index(env.PINECONE_INDEX_NAME);
     // console.log("Preparing chunks from PDF file");
     // const docs = await getChunkedDocsFromPDF();
     // console.log(`Loading ${docs.length} chunks into pinecone...`);
@@ -50,61 +49,70 @@ import {
     //     openAIApiKey: process.env.OPENAI_API_KEY,
     //     batchSize: 512, // Default value if omitted is 512. Max is 2048
     //     modelName: "text-embedding-3-large",
-    //   },
-    //   {
-    //     baseOptions: {
-    //       proxy: false,
-    //       httpAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
-    //       httpsAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
-    //     },
     //   }
+    //   // {
+    //   //   baseOptions: {
+    //   //     proxy: false,
+    //   //     httpAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+    //   //     httpsAgent: new HttpsProxyAgent("http://10.39.152.30:3128"),
+    //   //   },
+    //   // }
     // );
 
-    // //embed the PDF documents
+    // // embed the PDF documents
     // const embeddingsDataArr = []; //[{embedding: [], chunk: '}]
-    // const docs = ["thông tin gói D10"];
+    // const docs = ["thông tin gói AG100"];
 
-    // for (const chunk of docs) {
-    //   const embedding = await embedder.embedQuery(chunk);
-    //   // console.log("Embedding ", embedding);
-    //   embeddingsDataArr.push({
-    //     embedding,
-    //     chunk,
+    // const embedding = await embedder.embedQuery(docs.toString());
+    // // console.log("Embedding ", embedding);
+    // // embeddingsDataArr.push({
+    // //   embedding,
+    // //   chunk,
+    // // });
+
+    // const pineconeClient = await getPineconeClient();
+
+    // const index = pineconeClient.index("index-start");
+    // const ns = index.namespace("name-space");
+    // const results = await ns.query({
+    //   vector: embedding,
+    //   topK: 1, // Number of relevant chunks to retrieve
+    //   includeValues: true,
+    //   includeMetadata: true,
+    // });
+    // results.matches.map((object) => {
+    //   console.log("object.metata", object.metadata);
+    // });
+    // console.log("results", results);
+
+    // const client = new ProxyAgent({
+    //   uri: "http://10.39.152.30:3128",
+    // });
+    // const customFetch = (input: string | URL | Request, init: any) => {
+    //   return fetch(input, {
+    //     ...init,
+    //     // dispatcher: client as any,
+    //     keepalive: true,
     //   });
-    //    console.log("Embedding value", embedding);
-    // }
+    // };
 
-    const client = new ProxyAgent({
-      uri: "http://10.39.152.30:3128",
-    });
-    const customFetch = (input: string | URL | Request, init: any) => {
-      return fetch(input, {
-        ...init,
-        dispatcher: client as any,
-        keepalive: true,
-      });
-    };
+    // const config: PineconeConfiguration = {
+    //   apiKey: process.env.PINECONE_API_KEY!,
+    //   fetchApi: customFetch,
+    // };
 
-    const config: PineconeConfiguration = {
-      apiKey: process.env.PINECONE_API_KEY!,
-      fetchApi: customFetch,
-    };
-
-    const pc = new Pinecone(config);
-
-    const embeddingDataArr = await embedDocs(["thông tin gói D10"]);
-    const index = pc.index(env.PINECONE_INDEX_NAME);
+    const pineconeClient = await getPineconeClient();
+    const docs = await getChunkedDocsFromPDF();
+    console.log(`Loading ${docs.length} chunks into pinecone...`);
+    const embedData = await embedDocs(docs);
+    console.log("complete embed");
+    const index = pineconeClient.index(env.PINECONE_INDEX_NAME);
     const ns = index.namespace(env.PINECONE_NAME_SPACE);
-    console.log("ns", ns);
-    const results = await ns.query({
-      vector: embeddingDataArr[0].embedding,
-      topK: 5, // Number of relevant chunks to retrieve
-      includeValues: true,
-      includeMetadata: true,
-    });
-
-    console.log("results", results);
-    return results.matches.map((match) => match?.metadata?.chunk);
+    if (ns) {
+      await ns.deleteAll();
+      console.log("delete data");
+    }
+    await storeEmbeddings(pineconeClient, embedData);
   } catch (error) {
     console.error("Init client script failed ", error);
   }
