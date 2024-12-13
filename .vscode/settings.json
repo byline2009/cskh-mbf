@@ -5,5 +5,9 @@
   },
   "cSpell.words": ["isdn"],
   "editor.formatOnSaveMode": "modifications",
-  "css.customData": [".vscode/tailwind.json"]
+  "css.customData": [".vscode/tailwind.json"],
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true
+  }
 }
