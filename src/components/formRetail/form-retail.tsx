@@ -253,6 +253,8 @@ const FormRetail: React.FC = () => {
       })
       .then((response) => {
         console.log("Response from server:", response);
+        console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
+
         setModalShow(true);
 
         // Reset formData và các thông tin liên quan
@@ -287,6 +289,9 @@ const FormRetail: React.FC = () => {
       })
       .catch((error) => {
         console.error("Error response:", error.response); // In ra lỗi đầy đủ
+
+        console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
+
         const errorMsg = error.response?.data?.errors
           ? error.response.data.errors.map((err: any) => err.msg).join(", ")
           : error.message || "Lỗi không xác định.";
