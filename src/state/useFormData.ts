@@ -233,16 +233,16 @@ export const useFormData = () => {
   
     // Gửi yêu cầu API tới server
 
+    fetch(`${API_URL}/website/createSalePoint`, {
+      method: 'POST',
+      body: formDataToSend,
+    })
+
     // axios.post(`${API_URL}/website/createSalePoint`, formDataToSend, { 
     //   headers: { 
     //     'Content-Type': 'multipart/form-data' 
     //   } 
-
-    axios.post(`${API_URL}/website/createSalePoint`, formDataToSend, { 
-      headers: { 
-        'Content-Type': 'multipart/form-data' 
-      } 
-    })
+    // })
 
     .then(response => {
       console.log("Response from server:", response);
