@@ -11,7 +11,7 @@ import { ProvinceData, DistrictData, WardData } from "@/types/locationTypes";
 import { Modal, Button } from "react-bootstrap";
 import { postFormRetail } from "@/until/functions";
 import axios from "axios";
-const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL;
+const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL_SSL;
 const defaultCenter = { lat: 12.6883602, lng: 108.0557606 };
 import { FormRetailData } from "@/types/formRetailTypes";
 const https = require("https");
@@ -237,12 +237,25 @@ const FormRetail: React.FC = () => {
 
     // Tạo FormData để gửi với axios (multipart/form-data)
 
+    const formDataToSend = new FormData();
 
+    // Duyệt qua formData và thêm vào FormData object
+    Object.keys(formData).forEach((key, index) => {
+      if (Array.isArray(formData[key])) {
+        // Nếu là mảng (ví dụ như ảnh), thêm ảnh vào FormData
+        formData[key].forEach((image: string | File, index: number) => {
+          formDataToSend.append(key, image); // Đảm bảo ảnh được gửi chính xác
+        });
+      } else {
+        formDataToSend.append(key, formData[key]); // Thêm từng trường vào FormData
+      }
+
+    });
     // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
-    console.log("Dữ liệu FormData sẽ được gửi:", formData);
-    axios.post("api/salePoint", formData, {
+    console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
+    axios.post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data'
       },
     }).then((response) => {
       console.log("Response from server:", response);
@@ -282,8 +295,8 @@ const FormRetail: React.FC = () => {
       .catch((error) => {
         console.error("Error response:", error.response); // In ra lỗi đầy đủ
         console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
-        const errorMsg = error.response?.data?.message
-          ? error.response.data.message.map((err: any) => err.msg).join(", ")
+        const errorMsg = error.response?.data?.errors
+          ? error.response.data.errors.map((err: any) => err.msg).join(", ")
           : error.message || "Lỗi không xác định.";
         setErrorMessage(errorMsg);
         setErrorModalShow(true);

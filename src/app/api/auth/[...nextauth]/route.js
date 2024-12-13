@@ -1,8 +1,8 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { login } from "@/lib/api";
-
-
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+export const LOGIN_URL = `${API_URL}/login`;
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -17,7 +17,20 @@ export const authOptions = {
         console.log("email + passs", email, password);
 
         try {
-          const user = await login(newStringEmail, password);
+
+          const result = await fetch(LOGIN_URL, {
+            rejectUnauthorized: false,
+              method: "POST",// *GET, POST, PUT, DELETE, etc
+              headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: JSON.stringify({
+                username: email,
+              password,
+             }), // body data type must match "Content-Type" header
+            });
+          const user = result.json();
           if (!user) {
             return null;
           }
