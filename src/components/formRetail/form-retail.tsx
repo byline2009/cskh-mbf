@@ -260,7 +260,7 @@ const FormRetail: React.FC = () => {
       console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
 
       axios
-        .post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, {
+        .post(`${API_URL_FORM}/website/createSalePoint/`, formDataToSend, {
           headers: { "Content-Type": "application/json" },
           httpsAgent: agent,
         })
