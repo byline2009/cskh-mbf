@@ -208,8 +208,9 @@ export const useFormData = () => {
   // Hàm xử lý gửi form
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    
-    const response = await postFormRetail()
+    console.log("handleSubmit")
+      await postFormRetail( )
+
     // // In thông tin người tạo trước khi gửi form
     // console.log("Thông tin người tạo:", formData.createdBy);
     // // Kiểm tra dữ liệu formData trước khi gửi
