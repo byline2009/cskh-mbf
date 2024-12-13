@@ -18,7 +18,7 @@ export const authOptions = {
         console.log("email + passs", email, password);
 
         try {
-
+          console.log('LOGIN_URL', LOGIN_URL);
           const result = await fetch(LOGIN_URL, {
             rejectUnauthorized: false,
               method: "POST",// *GET, POST, PUT, DELETE, etc
