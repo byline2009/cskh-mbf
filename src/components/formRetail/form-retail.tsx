@@ -237,81 +237,109 @@ const FormRetail: React.FC = () => {
 
     // Tạo FormData để gửi với axios (multipart/form-data)
 
-    const formDataToSend = new FormData();
 
+    // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
+    console.log("Dữ liệu FormData sẽ được gửi:", formData);
+    axios.post("api/salePoint", formData, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then((response) => {
+      console.log("Response from server:", response);
 
-    // Duyệt qua formData và thêm vào FormData object
-    const resultArray = new Promise<void>((resolve, reject) => {
-      Object.keys(formData).forEach((key, index) => {
-        if (Array.isArray(formData[key])) {
-          // Nếu là mảng (ví dụ như ảnh), thêm ảnh vào FormData
-          formData[key].forEach((image: string | File, index: number) => {
-            formDataToSend.append(key, image); // Đảm bảo ảnh được gửi chính xác
-          });
-        } else {
-          formDataToSend.append(key, formData[key]); // Thêm từng trường vào FormData
-        }
-        if (index === Object.keys(formData).length
-          - 1) { resolve() }
+      setModalShow(true);
+
+      // Reset formData và các thông tin liên quan
+      setFormData({
+        avatar: null,
+        nameShop: "",
+        shopID: "",
+        staffSupport: "",
+        personalID: "",
+        staffCode: "",
+        shopCode: "",
+        email: "",
+        phone: "",
+        provinceCode: "",
+        districtCode: "",
+        wardCode: "",
+        province: "",
+        district: "",
+        ward: "",
+        address: "",
+        latitude: defaultCenter.lat,
+        longitude: defaultCenter.lng,
+        images: [],
+        createdBy: session?.user?.email || "", // Giữ thông tin người tạo
       });
-    });
-    await resultArray.then(() => {
-      // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
-      console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
 
-      axios
-        .post(`${API_URL_FORM}/website/createSalePoint/`, formDataToSend, {
-          headers: { "Content-Type": "application/json" },
-          httpsAgent: agent,
-        })
-        .then((response) => {
-          console.log("Response from server:", response);
-          console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
-
-          setModalShow(true);
-
-          // Reset formData và các thông tin liên quan
-          setFormData({
-            avatar: null,
-            nameShop: "",
-            shopID: "",
-            staffSupport: "",
-            personalID: "",
-            staffCode: "",
-            shopCode: "",
-            email: "",
-            phone: "",
-            provinceCode: "",
-            districtCode: "",
-            wardCode: "",
-            province: "",
-            district: "",
-            ward: "",
-            address: "",
-            latitude: defaultCenter.lat,
-            longitude: defaultCenter.lng,
-            images: [],
-            createdBy: session?.user?.email || "", // Giữ thông tin người tạo
-          });
-
-          // Reset ảnh xem trước (preview)
-          setImagePreview(null);
-          setImagePreviews([]);
-          // Reset avatarFile sau khi submit thành công
-          setAvatarFile(null);
-        })
-        .catch((error) => {
-          console.error("Error response:", error.response); // In ra lỗi đầy đủ
-          console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
-          const errorMsg = error.response?.data?.errors
-            ? error.response.data.errors.map((err: any) => err.msg).join(", ")
-            : error.message || "Lỗi không xác định.";
-          setErrorMessage(errorMsg);
-          setErrorModalShow(true);
-        });
-
-
+      // Reset ảnh xem trước (preview)
+      setImagePreview(null);
+      setImagePreviews([]);
+      // Reset avatarFile sau khi submit thành công
+      setAvatarFile(null);
     })
+      .catch((error) => {
+        console.error("Error response:", error.response); // In ra lỗi đầy đủ
+        console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
+        const errorMsg = error.response?.data?.message
+          ? error.response.data.message.map((err: any) => err.msg).join(", ")
+          : error.message || "Lỗi không xác định.";
+        setErrorMessage(errorMsg);
+        setErrorModalShow(true);
+      });
+    // axios
+    //   .post(`api/salePoint`, formDataToSend, {
+    //     headers: { "Content-Type": "application/json" },
+    //     httpsAgent: agent,
+    //   })
+    //   .then((response) => {
+    //     console.log("Response from server:", response);
+
+    //     setModalShow(true);
+
+    //     // Reset formData và các thông tin liên quan
+    //     setFormData({
+    //       avatar: null,
+    //       nameShop: "",
+    //       shopID: "",
+    //       staffSupport: "",
+    //       personalID: "",
+    //       staffCode: "",
+    //       shopCode: "",
+    //       email: "",
+    //       phone: "",
+    //       provinceCode: "",
+    //       districtCode: "",
+    //       wardCode: "",
+    //       province: "",
+    //       district: "",
+    //       ward: "",
+    //       address: "",
+    //       latitude: defaultCenter.lat,
+    //       longitude: defaultCenter.lng,
+    //       images: [],
+    //       createdBy: session?.user?.email || "", // Giữ thông tin người tạo
+    //     });
+
+    //     // Reset ảnh xem trước (preview)
+    //     setImagePreview(null);
+    //     setImagePreviews([]);
+    //     // Reset avatarFile sau khi submit thành công
+    //     setAvatarFile(null);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error response:", error.response); // In ra lỗi đầy đủ
+    //     console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
+    //     const errorMsg = error.response?.data?.errors
+    //       ? error.response.data.errors.map((err: any) => err.msg).join(", ")
+    //       : error.message || "Lỗi không xác định.";
+    //     setErrorMessage(errorMsg);
+    //     setErrorModalShow(true);
+    //   });
+
+
+    // })
 
   };
 

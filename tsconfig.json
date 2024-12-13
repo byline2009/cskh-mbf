@@ -52,6 +52,6 @@
     "_next/types/**/*.ts",
     "src/app/kiem-tra-loai-thue-bao/page.jsx",
     "src/app/api/auth/logout/logout.js"
-  ],
+, "src/app/api/salePoint/route.ts"  ],
   "exclude": ["node_modules", ".next"]
 }
