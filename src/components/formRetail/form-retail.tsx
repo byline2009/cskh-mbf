@@ -14,6 +14,7 @@ import axios from "axios";
 const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL;
 const defaultCenter = { lat: 12.6883602, lng: 108.0557606 };
 import { FormRetailData } from "@/types/formRetailTypes";
+const https = require("https");
 
 const FormRetail: React.FC = () => {
   const [submittedData, setSubmittedData] = useState<any>(null);
@@ -22,6 +23,9 @@ const FormRetail: React.FC = () => {
   const [wards, setWards] = useState<WardData[]>([]);
   const { data: session } = useSession(); // Lấy thông tin session người dùng
 
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
   // In ra session để kiểm tra thông tin
   useEffect(() => {
     console.log("Thông tin session: ", session);
@@ -250,6 +254,7 @@ const FormRetail: React.FC = () => {
     axios
       .post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, {
         headers: { "Content-Type": "application/json" },
+        httpsAgent: agent,
       })
       .then((response) => {
         console.log("Response from server:", response);
