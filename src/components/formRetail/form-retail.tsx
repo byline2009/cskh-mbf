@@ -244,7 +244,7 @@ const FormRetail: React.FC = () => {
     // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
     console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
     axios
-      .post("http://10.0.154.2:8100/website/createSalePoint", formData, {
+      .post(`${API_URL_FORM}/website/createSalePoint`, formData, {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
