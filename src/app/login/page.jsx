@@ -53,7 +53,7 @@ const Page = () => {
           await signIn("credentials", {
             newStringEmail,
             password,
-            user,
+            user : {...user, email: newStringEmail},
             redirect: false,
           });
         }
