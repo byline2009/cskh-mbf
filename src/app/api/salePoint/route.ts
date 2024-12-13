@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     });
     // not needed in NextJS v12+
     console.log("formDataToSend", formDataToSend)
-    const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL;
+    const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL_LOCAL;
     console.log("API_URL_FORM", API_URL_FORM);
     const result = await axios
       .post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, {
