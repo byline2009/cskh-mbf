@@ -11,6 +11,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Layout from "../components/layout/Layout";
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 const RootLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);

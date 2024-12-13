@@ -9,7 +9,6 @@ import tinhData from "../../mock/tinh-tp/tinh_tp.json"; // Dữ liệu tỉnh
 import Image from "next/image";
 import { ProvinceData, DistrictData, WardData } from "@/types/locationTypes";
 import { Modal, Button } from "react-bootstrap";
-import { postFormRetail } from "@/until/functions";
 import axios from "axios";
 const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL_SSL;
 const defaultCenter = { lat: 12.6883602, lng: 108.0557606 };
