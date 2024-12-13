@@ -51,9 +51,9 @@ const Page = () => {
           const user = await result.json();
           console.log("user", user);
           await signIn("credentials", {
-            newStringEmail,
+            email:newStringEmail,
             password,
-            user : {...user, email: newStringEmail},
+            user : user,
             redirect: false,
           });
         }

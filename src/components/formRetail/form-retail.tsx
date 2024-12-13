@@ -229,6 +229,7 @@ const FormRetail: React.FC = () => {
     e.preventDefault();
 
     console.log("check submit");
+    console.log("check seesion", session)
 
     // In thông tin người tạo trước khi gửi form
     console.log("Thông tin người tạo:", formData.createdBy);

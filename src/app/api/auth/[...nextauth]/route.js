@@ -10,16 +10,10 @@ export const authOptions = {
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const { email, password,user } = credentials;
-       
-        console.log("email + passs", email, password);
+        const { email, password, user } = credentials;
+        console.log("email + passs", email, password, user);
+        return { ...user, email: email }; // Đảm bảo trả về thông tin người dùng hợp lệ
 
-        try {
-        
-          return { ...user, email: email }; // Đảm bảo trả về thông tin người dùng hợp lệ
-        } catch (error) {
-          console.log("Error", error);
-        }
       },
     }),
   ],
