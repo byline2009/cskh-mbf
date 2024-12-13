@@ -209,81 +209,81 @@ export const useFormData = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     
-    // In thông tin người tạo trước khi gửi form
-    console.log("Thông tin người tạo:", formData.createdBy);
-    // Kiểm tra dữ liệu formData trước khi gửi
-    console.log("Dữ liệu formData trước khi gửi:", formData);
+    // // In thông tin người tạo trước khi gửi form
+    // console.log("Thông tin người tạo:", formData.createdBy);
+    // // Kiểm tra dữ liệu formData trước khi gửi
+    // console.log("Dữ liệu formData trước khi gửi:", formData);
   
-    // Tạo FormData để gửi với axios (multipart/form-data)
-    const formDataToSend = new FormData();
+    // // Tạo FormData để gửi với axios (multipart/form-data)
+    // const formDataToSend = new FormData();
   
-    // Duyệt qua formData và thêm vào FormData object
-    Object.keys(formData).forEach(key => {
-      if (Array.isArray(formData[key])) {
-        // Nếu là mảng (ví dụ như ảnh), thêm ảnh vào FormData
-        formData[key].forEach((image: string | File, index: number) => {
-          formDataToSend.append(key, image);  // Đảm bảo ảnh được gửi chính xác
-        });
-      } else {
-        formDataToSend.append(key, formData[key]);  // Thêm từng trường vào FormData
-      }
-    });
+    // // Duyệt qua formData và thêm vào FormData object
+    // Object.keys(formData).forEach(key => {
+    //   if (Array.isArray(formData[key])) {
+    //     // Nếu là mảng (ví dụ như ảnh), thêm ảnh vào FormData
+    //     formData[key].forEach((image: string | File, index: number) => {
+    //       formDataToSend.append(key, image);  // Đảm bảo ảnh được gửi chính xác
+    //     });
+    //   } else {
+    //     formDataToSend.append(key, formData[key]);  // Thêm từng trường vào FormData
+    //   }
+    // });
   
-    // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
-    console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
+    // // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
+    // console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
   
-    // Gửi yêu cầu API tới server
+    // // Gửi yêu cầu API tới server
 
-    // fetch(`${API_URL}/website/createSalePoint`, {
-    //   method: 'POST',
-    //   body: formDataToSend,
+    // // fetch(`${API_URL}/website/createSalePoint`, {
+    // //   method: 'POST',
+    // //   body: formDataToSend,
+    // // })
+
+    const response = await postFormRetail()
+
+    // .then(response => {
+    //   console.log("Response from server:", response);
+    //   setModalShow(true);
+  
+    //   // Reset formData và các thông tin liên quan
+    //   setFormData({
+    //     avatar: null,
+    //     nameShop: "",
+    //     shopID: "",
+    //     staffSupport: "",
+    //     personalID: "",
+    //     staffCode: "",
+    //     shopCode: "",  
+    //     email: "",
+    //     phone: "",
+    //     provinceCode: "",
+    //     districtCode: "",
+    //     wardCode: "",
+    //     province: "",
+    //     district: "",
+    //     ward: "",
+    //     address: "",
+    //     latitude: defaultCenter.lat,
+    //     longitude: defaultCenter.lng,
+    //     images: [],
+    //     createdBy: session?.user?.email || "", // Giữ thông tin người tạo
+    //   });
+  
+    //   // Reset ảnh xem trước (preview)
+    //   setImagePreview(null);
+    //   setImagePreviews([]);
+    //   // Reset avatarFile sau khi submit thành công
+    //   setAvatarFile(null);
+
     // })
-
-    const response = await postFormRetail(e)
-
-    .then(response => {
-      console.log("Response from server:", response);
-      setModalShow(true);
-  
-      // Reset formData và các thông tin liên quan
-      setFormData({
-        avatar: null,
-        nameShop: "",
-        shopID: "",
-        staffSupport: "",
-        personalID: "",
-        staffCode: "",
-        shopCode: "",  
-        email: "",
-        phone: "",
-        provinceCode: "",
-        districtCode: "",
-        wardCode: "",
-        province: "",
-        district: "",
-        ward: "",
-        address: "",
-        latitude: defaultCenter.lat,
-        longitude: defaultCenter.lng,
-        images: [],
-        createdBy: session?.user?.email || "", // Giữ thông tin người tạo
-      });
-  
-      // Reset ảnh xem trước (preview)
-      setImagePreview(null);
-      setImagePreviews([]);
-      // Reset avatarFile sau khi submit thành công
-      setAvatarFile(null);
-
-    })
-    .catch(error => {
-      console.error("Error response:", error.response); // In ra lỗi đầy đủ
-      const errorMsg = error.response?.data?.errors 
-        ? error.response.data.errors.map((err: any) => err.msg).join(", ") 
-        : error.message || "Lỗi không xác định.";  
-      setErrorMessage(errorMsg);  
-      setErrorModalShow(true);  
-    });
+    // .catch(error => {
+    //   console.error("Error response:", error.response); // In ra lỗi đầy đủ
+    //   const errorMsg = error.response?.data?.errors 
+    //     ? error.response.data.errors.map((err: any) => err.msg).join(", ") 
+    //     : error.message || "Lỗi không xác định.";  
+    //   setErrorMessage(errorMsg);  
+    //   setErrorModalShow(true);  
+    // });
   };
 
   return {

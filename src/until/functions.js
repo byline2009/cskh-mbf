@@ -31,7 +31,7 @@ export const getSearchTypeSubscriber = async (e) => {
 };
 
 
-export const postFormRetail = async (e) => {
+export const postFormRetail = async () => {
   const response = await axios.post( `${API_URL}/website/createSalePoint`, 
     {
       createdBy: "huy.pham2@mobifone.vn",
