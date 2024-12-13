@@ -1,6 +1,5 @@
-"use server";
 import axios from "axios"
-const API_URL = process.env.NEXTAUTH_APP_API_URL;
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 const CHECK_PACKAGE_URL = `${API_URL}/website/package`;
 const CHECK_TYPE_URL = `${API_URL}/website/type`;
 
@@ -30,15 +29,3 @@ export const getSearchTypeSubscriber = async (e) => {
   return responseBody;
 };
 
-
-export const postFormRetail = async () => {
-  console.log("FormRetail");
-  const response = await axios.post("http://localhost:8100/website/createSalePoint", {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-    next: { revalidate: 10 },
-  });
-  const responseBody = await response.json();
-  return responseBody;
-};
