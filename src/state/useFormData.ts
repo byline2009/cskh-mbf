@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react'; // Hook của next-auth
 const defaultCenter = { lat: 12.6883602, lng: 108.0557606 };
 const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL;
-import { postFormRetail } from "../until/functions";
 
 export const useFormData = () => {
   
@@ -209,7 +208,6 @@ export const useFormData = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log("handleSubmit")
-      await postFormRetail( )
 
     // // In thông tin người tạo trước khi gửi form
     // console.log("Thông tin người tạo:", formData.createdBy);
