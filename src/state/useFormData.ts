@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react'; // Hook của next-auth
 const defaultCenter = { lat: 12.6883602, lng: 108.0557606 };
 const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL;
+import { postFormRetail } from "../until/functions";
 
 export const useFormData = () => {
   
@@ -205,7 +206,7 @@ export const useFormData = () => {
   const [errorMessage, setErrorMessage] = useState<string>(""); // State chứa lỗi từ server
 
   // Hàm xử lý gửi form
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     
     // In thông tin người tạo trước khi gửi form
@@ -238,11 +239,7 @@ export const useFormData = () => {
     //   body: formDataToSend,
     // })
 
-    axios.post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, { 
-      headers: { 
-        'Content-Type': 'multipart/form-data' 
-      } 
-    })
+    const response = await postFormRetail(e)
 
     .then(response => {
       console.log("Response from server:", response);

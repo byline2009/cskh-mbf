@@ -7,8 +7,10 @@ import MapComponent from "@components/map/map";
 import tinhData from "../../mock/tinh-tp/tinh_tp.json"; // Dữ liệu tỉnh
 import { useFormData } from "@/state/useFormData";
 import Image from "next/image";
-
+import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
+const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL;
+import { useFormik } from "formik";
 
 const FormRetail: React.FC = () => {
   const {
@@ -288,6 +290,43 @@ const FormRetail: React.FC = () => {
           </div>
           <button type="submit">Submit</button>
         </form>
+
+        <button
+          type="submit"
+          onClick={() => {
+            axios.post(
+              `${API_URL_FORM}/website/createSalePoint`,
+              {
+                createdBy: "huy.pham2@mobifone.vn",
+                shopID: "C2C_033833",
+                nameShop: "Mỹ Nghiệm (Nguyễn Thị Mỹ)",
+                staffSupport: "Mai Kiều Ngọc Hải",
+                personalID: "066091015887",
+                staffCode: "7DLABDOMBP0014",
+                shopCode: "7DLABDOMBP0014",
+                email: "tesst@gmail.com",
+                phone: "782557883",
+                province: "Tỉnh Nam Định",
+                provinceCode: "36",
+                district: "Huyện Hải Hậu",
+                districtCode: "366",
+                ward: "Xã Hải Lộc",
+                wardCode: "14263",
+                address: "Thôn 2, Krong Na, Buôn Đôn, Đăk Lăk",
+                latitude: "12.6883602",
+                longitude: "108.0557606",
+              },
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            );
+          }}
+        >
+          test
+        </button>
+
         <Modal show={modalShow} onHide={() => setModalShow(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Nhập liệu thành công!</Modal.Title>
