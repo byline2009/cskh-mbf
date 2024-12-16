@@ -135,6 +135,76 @@ const FormRetail: React.FC = () => {
     });
   };
 
+  const resizeImage = (
+    file: File,
+    maxWidth: number = 800,
+    maxHeight: number = 800,
+    maxSizeKB: number = 100
+  ): Promise<File> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const img = new window.Image(); // Dùng `window.Image` thay vì chỉ `Image`
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          let width = img.width;
+          let height = img.height;
+
+          // Tính toán tỷ lệ co lại để giữ nguyên tỷ lệ ảnh khi resize
+          if (width > maxWidth || height > maxHeight) {
+            const ratio = Math.min(maxWidth / width, maxHeight / height);
+            width = width * ratio;
+            height = height * ratio;
+          }
+
+          // Cài đặt lại kích thước canvas
+          canvas.width = width;
+          canvas.height = height;
+
+          // Vẽ ảnh vào canvas
+          ctx?.drawImage(img, 0, 0, width, height);
+
+          // Chuyển canvas thành blob
+          canvas.toBlob((blob) => {
+            if (blob) {
+              const resizedFile = new File([blob], file.name, {
+                type: file.type,
+              });
+              const sizeInKB = resizedFile.size / 1024; // Convert size to KB
+
+              // Nếu ảnh vẫn quá lớn, tiếp tục giảm kích thước
+              if (sizeInKB > maxSizeKB) {
+                // Tạo lại ảnh với kích thước nhỏ hơn
+                resizeImage(resizedFile, maxWidth, maxHeight, maxSizeKB)
+                  .then(resolve)
+                  .catch(reject);
+              } else {
+                resolve(resizedFile);
+              }
+            } else {
+              reject("Không thể tạo blob từ ảnh");
+            }
+          }, file.type);
+        };
+
+        img.onerror = (error) => {
+          reject("Lỗi khi xử lý ảnh");
+        };
+
+        img.src = reader.result as string;
+      };
+
+      reader.onerror = (error) => {
+        reject("Lỗi khi đọc file");
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
+
   // Hàm xử lý thay đổi dữ liệu các trường khác
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -159,24 +229,25 @@ const FormRetail: React.FC = () => {
   const [avatarFile, setAvatarFile] = useState<File | null>(null); // Để theo dõi file avatar
 
   // Cập nhật giá trị khi người dùng chọn ảnh
-  const handleImageAvata = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageAvata = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
     if (file) {
-      const maxSize = 1 * 1024 * 1024; // 1MB
-      if (file.size > maxSize) {
-        alert("Ảnh quá lớn, vui lòng chọn ảnh dưới 1MB.");
-        return;
+      try {
+        // Resize ảnh và chờ kết quả trả về dưới 100KB
+        const resizedFile = await resizeImage(file, 800, 800, 100);
+        setFormData({
+          ...formData,
+          avatar: resizedFile,
+        });
+
+        // Tạo URL preview và hiển thị ảnh đã resize
+        const imageUrl = URL.createObjectURL(resizedFile);
+        setImagePreview(imageUrl);
+      } catch (error) {
+        console.error("Lỗi khi resize ảnh:", error);
+        alert("Lỗi khi xử lý ảnh, vui lòng thử lại.");
       }
-
-      setFormData({
-        ...formData,
-        avatar: file,
-      });
-
-      setAvatarFile(file); // Cập nhật file đã chọn
-      const imageUrl = URL.createObjectURL(file);
-      setImagePreview(imageUrl);
     } else {
       setImagePreview(null);
       setAvatarFile(null); // Reset file nếu không có file nào
@@ -185,30 +256,33 @@ const FormRetail: React.FC = () => {
   // Upload nhiều ảnh
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
-  const handleImages = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
       const previews: string[] = [];
       const fileList: File[] = [];
 
-      Array.from(files).forEach((file) => {
-        const maxSize = 1 * 1024 * 1024;
-        if (file.size > maxSize) {
-          alert("Ảnh quá lớn, vui lòng chọn ảnh dưới 1MB.");
-          return;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        try {
+          // Resize ảnh và chờ kết quả trả về dưới 100KB
+          const resizedFile = await resizeImage(file, 800, 800, 100);
+          previews.push(URL.createObjectURL(resizedFile));
+          fileList.push(resizedFile);
+        } catch (error) {
+          console.error("Lỗi khi resize ảnh:", error);
+          alert("Lỗi khi xử lý ảnh, vui lòng thử lại.");
+          break;
         }
+      }
 
-        previews.push(URL.createObjectURL(file));
-        fileList.push(file);
-
-        if (previews.length === files.length) {
-          setFormData({
-            ...formData,
-            images: fileList,
-          });
-          setImagePreviews(previews);
-        }
-      });
+      if (previews.length === files.length) {
+        setFormData({
+          ...formData,
+          images: fileList,
+        });
+        setImagePreviews(previews);
+      }
     } else {
       setImagePreviews([]);
       setFormData({
@@ -222,13 +296,11 @@ const FormRetail: React.FC = () => {
   const [errorModalShow, setErrorModalShow] = useState(false); // Modal không thành công
   const [errorMessage, setErrorMessage] = useState<string>(""); // State chứa lỗi từ serve
 
-
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     console.log("check submit");
-    console.log("check seesion", session)
+    console.log("check seesion", session);
 
     // In thông tin người tạo trước khi gửi form
     console.log("Thông tin người tạo:", formData.createdBy);
@@ -249,49 +321,50 @@ const FormRetail: React.FC = () => {
       } else {
         formDataToSend.append(key, formData[key]); // Thêm từng trường vào FormData
       }
-
     });
     // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
     console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
-    axios.post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-    }).then((response) => {
-      console.log("Response from server:", response);
+    axios
+      .post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log("Response from server:", response);
 
-      setModalShow(true);
+        setModalShow(true);
 
-      // Reset formData và các thông tin liên quan
-      setFormData({
-        avatar: null,
-        nameShop: "",
-        shopID: "",
-        staffSupport: "",
-        personalID: "",
-        staffCode: "",
-        shopCode: "",
-        email: "",
-        phone: "",
-        provinceCode: "",
-        districtCode: "",
-        wardCode: "",
-        province: "",
-        district: "",
-        ward: "",
-        address: "",
-        latitude: defaultCenter.lat,
-        longitude: defaultCenter.lng,
-        images: [],
-        createdBy: session?.user?.email || "", // Giữ thông tin người tạo
-      });
+        // Reset formData và các thông tin liên quan
+        setFormData({
+          avatar: null,
+          nameShop: "",
+          shopID: "",
+          staffSupport: "",
+          personalID: "",
+          staffCode: "",
+          shopCode: "",
+          email: "",
+          phone: "",
+          provinceCode: "",
+          districtCode: "",
+          wardCode: "",
+          province: "",
+          district: "",
+          ward: "",
+          address: "",
+          latitude: defaultCenter.lat,
+          longitude: defaultCenter.lng,
+          images: [],
+          createdBy: session?.user?.email || "", // Giữ thông tin người tạo
+        });
 
-      // Reset ảnh xem trước (preview)
-      setImagePreview(null);
-      setImagePreviews([]);
-      // Reset avatarFile sau khi submit thành công
-      setAvatarFile(null);
-    })
+        // Reset ảnh xem trước (preview)
+        setImagePreview(null);
+        setImagePreviews([]);
+        // Reset avatarFile sau khi submit thành công
+        setAvatarFile(null);
+      })
       .catch((error) => {
         console.error("Error response:", error.response); // In ra lỗi đầy đủ
         console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
@@ -351,9 +424,7 @@ const FormRetail: React.FC = () => {
     //     setErrorModalShow(true);
     //   });
 
-
     // })
-
   };
 
   return (
