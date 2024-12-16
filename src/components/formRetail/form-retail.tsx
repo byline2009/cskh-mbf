@@ -375,15 +375,6 @@ const FormRetail: React.FC = () => {
             <div className="placeholder">Vui lòng chọn ảnh để hiển thị</div>
           )}
         </div>
-        <div className="map">
-          {/* code cho map */}
-          <h3>Xem Trước Địa Chỉ Được Ghim:</h3>
-          <MapComponent
-            latitude={formData.latitude}
-            longitude={formData.longitude}
-            onMapClick={handleMapClick}
-          />
-        </div>
       </div>
 
       <div className="form-container">
@@ -396,7 +387,6 @@ const FormRetail: React.FC = () => {
               type="file"
               accept="image/*"
               onChange={handleImageAvata}
-
             />
           </div>
           <div>
@@ -419,7 +409,7 @@ const FormRetail: React.FC = () => {
               name="shopID"
               value={formData.shopID}
               onChange={handleChange}
-              placeholder="Chủ Sở Hữu"
+              placeholder="Mã Điểm Bán"
               required
             />
           </div>
@@ -600,7 +590,15 @@ const FormRetail: React.FC = () => {
               required
             />
           </div>
-
+          <div className="map">
+            {/* code cho map */}
+            <h3>Xem Trước Địa Chỉ Được Ghim:</h3>
+            <MapComponent
+              latitude={formData.latitude}
+              longitude={formData.longitude}
+              onMapClick={handleMapClick}
+            />
+          </div>
           <div>
             <label htmlFor="multipleImages">Ảnh minh họa (nhiều ảnh)</label>
             <input
