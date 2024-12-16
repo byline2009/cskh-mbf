@@ -300,132 +300,106 @@ const FormRetail: React.FC = () => {
     e.preventDefault();
 
     console.log("check submit");
-    console.log("check seesion", session);
-
-    // In thông tin người tạo trước khi gửi form
-    console.log("Thông tin người tạo:", formData.createdBy);
-    // Kiểm tra dữ liệu formData trước khi gửi
-    console.log("Dữ liệu formData trước khi gửi:", formData);
-
-    // Tạo FormData để gửi với axios (multipart/form-data)
+    console.log("check session", session);
 
     const formDataToSend = new FormData();
 
-    // Duyệt qua formData và thêm vào FormData object
-    Object.keys(formData).forEach((key, index) => {
-      if (Array.isArray(formData[key])) {
-        // Nếu là mảng (ví dụ như ảnh), thêm ảnh vào FormData
-        formData[key].forEach((image: string | File, index: number) => {
-          formDataToSend.append(key, image); // Đảm bảo ảnh được gửi chính xác
+    // Resize ảnh đại diện (avatar) nếu có
+    if (avatarFile && avatarFile instanceof File) {
+      try {
+        const resizedAvatar = await resizeImage(avatarFile, 500, 500); // Resize ảnh
+        formDataToSend.append("avatar", resizedAvatar); // Đính kèm avatar đã resize vào FormData
+      } catch (error) {
+        console.error("Error resizing avatar:", error);
+      }
+    }
+
+    // Resize các ảnh trong mảng images nếu có
+    if (formData.images && Array.isArray(formData.images)) {
+      const resizedImagesPromises = formData.images.map(
+        (image: File) => resizeImage(image, 500, 500) // Resize từng ảnh
+      );
+
+      try {
+        const resizedImages = await Promise.all(resizedImagesPromises);
+        resizedImages.forEach((image: File) => {
+          formDataToSend.append("images", image); // Đính kèm ảnh đã resize vào FormData
+        });
+      } catch (error) {
+        console.error("Error resizing images:", error);
+      }
+    }
+
+    // Duyệt qua các trường formData khác và thêm vào FormData
+    Object.keys(formData).forEach((key) => {
+      const value = formData[key];
+      if (Array.isArray(value)) {
+        value.forEach((image: string | File) => {
+          if (image instanceof File) {
+            formDataToSend.append(key, image); // Đảm bảo ảnh được gửi chính xác
+          }
         });
       } else {
-        formDataToSend.append(key, formData[key]); // Thêm từng trường vào FormData
+        formDataToSend.append(key, value); // Thêm từng trường vào FormData
       }
     });
-    // Kiểm tra dữ liệu sẽ được gửi (chỉ kiểm tra mà không thực sự gửi)
+
     console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
-    axios
-      .post(`${API_URL_FORM}/website/createSalePoint`, formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log("Response from server:", response);
 
-        setModalShow(true);
+    try {
+      const response = await axios.post(
+        `${API_URL_FORM}/website/createSalePoint`,
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-        // Reset formData và các thông tin liên quan
-        setFormData({
-          avatar: null,
-          nameShop: "",
-          shopID: "",
-          staffSupport: "",
-          personalID: "",
-          staffCode: "",
-          shopCode: "",
-          email: "",
-          phone: "",
-          provinceCode: "",
-          districtCode: "",
-          wardCode: "",
-          province: "",
-          district: "",
-          ward: "",
-          address: "",
-          latitude: defaultCenter.lat,
-          longitude: defaultCenter.lng,
-          images: [],
-          createdBy: session?.user?.email || "", // Giữ thông tin người tạo
-        });
+      console.log("Response from server:", response);
+      setModalShow(true);
 
-        // Reset ảnh xem trước (preview)
-        setImagePreview(null);
-        setImagePreviews([]);
-        // Reset avatarFile sau khi submit thành công
-        setAvatarFile(null);
-      })
-      .catch((error) => {
-        console.error("Error response:", error.response); // In ra lỗi đầy đủ
-        console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
-        const errorMsg = error.response?.data?.errors
-          ? error.response.data.errors.map((err: any) => err.msg).join(", ")
-          : error.message || "Lỗi không xác định.";
-        setErrorMessage(errorMsg);
-        setErrorModalShow(true);
+      // Reset formData và các thông tin liên quan
+      setFormData({
+        avatar: null,
+        nameShop: "",
+        shopID: "",
+        staffSupport: "",
+        personalID: "",
+        staffCode: "",
+        shopCode: "",
+        email: "",
+        phone: "",
+        provinceCode: "",
+        districtCode: "",
+        wardCode: "",
+        province: "",
+        district: "",
+        ward: "",
+        address: "",
+        latitude: defaultCenter.lat,
+        longitude: defaultCenter.lng,
+        images: [],
+        createdBy: session?.user?.email || "",
       });
-    // axios
-    //   .post(`api/salePoint`, formDataToSend, {
-    //     headers: { "Content-Type": "application/json" },
-    //     httpsAgent: agent,
-    //   })
-    //   .then((response) => {
-    //     console.log("Response from server:", response);
 
-    //     setModalShow(true);
+      // Reset ảnh xem trước (preview)
+      setImagePreview(null);
+      setImagePreviews([]);
+      setAvatarFile(null);
+    } catch (error: any) {
+      console.error("Error response:", error.response);
+      console.log("API URL:", `${API_URL_FORM}/website/createSalePoint`);
 
-    //     // Reset formData và các thông tin liên quan
-    //     setFormData({
-    //       avatar: null,
-    //       nameShop: "",
-    //       shopID: "",
-    //       staffSupport: "",
-    //       personalID: "",
-    //       staffCode: "",
-    //       shopCode: "",
-    //       email: "",
-    //       phone: "",
-    //       provinceCode: "",
-    //       districtCode: "",
-    //       wardCode: "",
-    //       province: "",
-    //       district: "",
-    //       ward: "",
-    //       address: "",
-    //       latitude: defaultCenter.lat,
-    //       longitude: defaultCenter.lng,
-    //       images: [],
-    //       createdBy: session?.user?.email || "", // Giữ thông tin người tạo
-    //     });
+      const errorMsg = error.response?.data?.errors
+        ? error.response.data.errors.map((err: any) => err.msg).join(", ")
+        : error.message || "Lỗi không xác định.";
 
-    //     // Reset ảnh xem trước (preview)
-    //     setImagePreview(null);
-    //     setImagePreviews([]);
-    //     // Reset avatarFile sau khi submit thành công
-    //     setAvatarFile(null);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error response:", error.response); // In ra lỗi đầy đủ
-    //     console.log("api:", `${API_URL_FORM}/website/createSalePoint`); // In đường dẫn ra sau khi gửi yêu cầu
-    //     const errorMsg = error.response?.data?.errors
-    //       ? error.response.data.errors.map((err: any) => err.msg).join(", ")
-    //       : error.message || "Lỗi không xác định.";
-    //     setErrorMessage(errorMsg);
-    //     setErrorModalShow(true);
-    //   });
-
-    // })
-  };
+      setErrorMessage(errorMsg);
+      setErrorModalShow(true);
+    }
+  }; 
 
   return (
     <div className="container">
