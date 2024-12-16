@@ -3,15 +3,25 @@ import SearchHeader from "@components/search/SearchHeader";
 import React, { useState } from "react";
 import { getSearchTypeSubscriber } from "../../until/functions";
 import { listRangeType } from "../../config/constants";
-
+import { useSession } from "next-auth/react";
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+const CHECK_TYPE_URL = `${API_URL}/website/type`;
 const Page = () => {
   const [textSearch, setTextSearch] = useState("");
   const [textResult, setTextResult] = useState("");
+  const { data: session, status } = useSession();
 
   const handleSearch = async (e) => {
     if (e && e.length > 0) {
-      const response = await getSearchTypeSubscriber(e);
-      console.log("response check", response);
+      const res = await fetch(`${CHECK_TYPE_URL}?isdn=${e}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${session.user?.accessToken || null}`,
+        },
+        next: { revalidate: 10 },
+      });
+      const response = await res.json();     
       if (response) {
         setTextResult("Loại" + " " + response.result);
       } else {
