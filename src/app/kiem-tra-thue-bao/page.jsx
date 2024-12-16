@@ -5,7 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { TailSpin } from "react-loader-spinner";
 import { arrayPackage, arrayPackage5G } from "@config/constants";
-import { getSearchSubscriber } from "../../until/functions";
+import { useSession } from "next-auth/react";
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+const CHECK_PACKAGE_URL = `${API_URL}/website/package`;
 
 const limit = 10;
 const Page = () => {
@@ -22,6 +24,7 @@ const Page = () => {
   const [typeCycle, setTypeCycle] = useState("all");
   const [budget, setBudget] = useState("all");
   const [namePackage, setNamePackage] = useState("");
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -103,7 +106,16 @@ const Page = () => {
     setArrSorted([]);
     setArrPaginate([]);
     setNamePackage("");
-    const response = await getSearchSubscriber(e);
+
+    const res = await fetch(`${CHECK_PACKAGE_URL}?isdn=${e}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${session.user?.accessToken || null}`,
+      },
+      next: { revalidate: 10 },
+    });
+    const response= await res.json();
     setLoading(false);
     if (response.result && response) {
       const arrayResponse = response.result;
