@@ -1,8 +1,11 @@
+"use client"; // Đặt ở dòng đầu tiên
 import React, { FC } from "react";
 import Link from "next/link";
 import { menuCategory } from "@config/constants";
 import PhoneComponent from "@components/elements/PhoneComponent";
 import MenuItem from "../elements/MenuItem/index";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type MenuProps = {
   toggleMenu: () => void;
@@ -11,6 +14,7 @@ type MenuProps = {
 
 const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
   // const [isOpenMenu, setIsOpenMenu] = useState()
+  const router = useRouter(); // Khởi tạo useRouter
 
   return (
     <div className="menu-mobile">
@@ -40,6 +44,19 @@ const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
           <span>18001090 </span>
         </a>
       </div>
+      <div className="logout-menu-mobile">
+        <button
+          onClick={() => {
+            signOut({ redirect: false });
+            router.push("/login");
+          }}
+        >
+          <a className={`btn-houze btn-solid`}>
+            <span>Logout </span>
+          </a>
+        </button>
+      </div>
+
       <div className="mbf-mb">
         {/* <b>MobiFone.vn</b> */}
         <a href="https://mobifone.vn/" target="_blank" rel="noreferrer">
