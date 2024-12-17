@@ -252,7 +252,7 @@ const FormRetail: React.FC = () => {
         // Nếu kích thước file lớn hơn 1MB, tiến hành resize
         if (file.size > maxSizeBytes) {
           console.log("File lớn hơn 1MB, tiến hành resize...");
-          finalAvatar = await resizeImage(file, 500, 500, 100);
+          finalAvatar = await resizeImage(file, 500, 500, 200);
           console.log("File sau khi resize:", finalAvatar);
         }
 
@@ -287,7 +287,7 @@ const FormRetail: React.FC = () => {
         // Resize ảnh nếu cần
         if (file.size > maxAllowedSize) {
           try {
-            const resizedImage = await resizeImage(file, 500, 500, 100);
+            const resizedImage = await resizeImage(file, 500, 500, 200);
             fileList.push(resizedImage);
           } catch (error) {
             console.error("Error resizing image:", error);
