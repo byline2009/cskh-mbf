@@ -235,43 +235,35 @@ const FormRetail: React.FC = () => {
     const file = e.target.files?.[0];
 
     if (file) {
-      const maxSizeMB = 3; // Kích thước tối đa 3MB
-      const maxSizeBytes = maxSizeMB * 1024 * 1024; // Chuyển đổi thành byte
+      const maxSizeBytes = 1 * 1024 * 1024; // 1MB
 
-      // Bước 1: Cập nhật ảnh gốc để hiển thị trong phần xem trước
+      // Tạo preview
       const imageUrl = URL.createObjectURL(file);
       setImagePreview(imageUrl);
 
-      // Bước 2: Kiểm tra và resize ảnh nếu vượt quá 3MB
-      if (file.size > maxSizeBytes) {
-        console.log(`Ảnh vượt quá ${maxSizeMB}MB. Đang tiến hành resize...`);
+      try {
+        let finalAvatar = file; // Mặc định dùng file gốc
 
-        try {
-          const resizedImage = await resizeImage(file, 500, 500, 100); // Resize với max 100KB
-          setFormData({
-            ...formData,
-            avatar: resizedImage, // Lưu ảnh đã resize vào formData
-          });
-
-          console.log("Ảnh đã được resize thành công:", resizedImage);
-        } catch (error) {
-          console.error("Lỗi khi resize ảnh:", error);
+        // Nếu kích thước file lớn hơn 1MB, tiến hành resize
+        if (file.size > maxSizeBytes) {
+          console.log("File lớn hơn 1MB, tiến hành resize...");
+          finalAvatar = await resizeImage(file, 500, 500, 100);
+          console.log("File sau khi resize:", finalAvatar);
         }
-      } else {
-        // Ảnh không cần resize, giữ nguyên ảnh gốc
-        setFormData({
-          ...formData,
-          avatar: file,
-        });
-        console.log("Ảnh dưới 3MB, không cần resize.");
+
+        // Cập nhật formData
+        setFormData((prev) => ({ ...prev, avatar: finalAvatar }));
+        console.log("Avatar đã được cập nhật vào formData:", finalAvatar);
+      } catch (error) {
+        console.error("Lỗi khi xử lý avatar:", error);
       }
     } else {
-      // Reset nếu không có file nào được chọn
+      console.log("Không có file nào được chọn.");
       setImagePreview(null);
-      setAvatarFile(null);
-      console.log("Không có ảnh nào được chọn.");
+      setFormData((prev) => ({ ...prev, avatar: null }));
     }
   };
+
   // Upload nhiều ảnh
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
@@ -279,54 +271,35 @@ const FormRetail: React.FC = () => {
     const files = e.target.files;
 
     if (files && files.length > 0) {
-      const previews: string[] = []; // Mảng chứa URL xem trước
-      const fileList: File[] = []; // Mảng chứa các file đã xử lý
+      const previews: string[] = []; // URL xem trước
+      const fileList: File[] = []; // Danh sách file đã xử lý
 
-      const maxAllowedSize = 3 * 1024 * 1024; // Kích thước tối đa: 3MB
-      const targetSizeKB = 100; // Mục tiêu resize: dưới 100KB
-
+      const maxAllowedSize = 3 * 1024 * 1024; // 3MB
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-
-        // Tạo preview từ ảnh gốc
         previews.push(URL.createObjectURL(file));
 
-        // Kiểm tra kích thước ảnh, resize nếu vượt quá 3MB
+        // Resize ảnh nếu cần
         if (file.size > maxAllowedSize) {
-          console.log(`Ảnh ${file.name} vượt quá 3MB. Đang resize...`);
           try {
-            const resizedImage = await resizeImage(
-              file,
-              500,
-              500,
-              targetSizeKB
-            );
-            fileList.push(resizedImage); // Lưu ảnh đã resize
-            console.log(`Ảnh ${file.name} đã được resize thành công.`);
+            const resizedImage = await resizeImage(file, 500, 500, 100);
+            fileList.push(resizedImage);
           } catch (error) {
-            console.error(`Lỗi khi resize ảnh ${file.name}:`, error);
-            fileList.push(file); // Trong trường hợp lỗi, giữ nguyên ảnh gốc
+            console.error("Error resizing image:", error);
+            fileList.push(file); // Nếu lỗi, dùng file gốc
           }
         } else {
-          fileList.push(file); // Nếu ảnh < 3MB, giữ nguyên ảnh gốc
+          fileList.push(file); // Không cần resize
         }
       }
 
-      // Cập nhật formData với danh sách ảnh đã xử lý
-      setFormData({
-        ...formData,
-        images: fileList,
-      });
-
-      // Cập nhật phần xem trước ảnh
+      // Cập nhật state formData và image previews
+      setFormData((prev) => ({ ...prev, images: fileList }));
       setImagePreviews(previews);
     } else {
-      // Reset nếu không có ảnh nào được chọn
+      // Reset nếu không có file nào được chọn
+      setFormData((prev) => ({ ...prev, images: [] }));
       setImagePreviews([]);
-      setFormData({
-        ...formData,
-        images: [],
-      });
     }
   };
 
@@ -337,54 +310,37 @@ const FormRetail: React.FC = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    console.log("check submit");
-    console.log("check session", session);
+    console.log("Bắt đầu gửi dữ liệu...");
+    console.log("Dữ liệu session:", session);
 
     const formDataToSend = new FormData();
 
-    // Resize ảnh đại diện (avatar) nếu có
-    if (avatarFile && avatarFile instanceof File) {
-      try {
-        const resizedAvatar = await resizeImage(avatarFile, 500, 500); // Resize ảnh
-        formDataToSend.append("avatar", resizedAvatar); // Đính kèm avatar đã resize vào FormData
-      } catch (error) {
-        console.error("Error resizing avatar:", error);
-      }
-    }
-
-    // Resize các ảnh trong mảng images nếu có
-    if (formData.images && Array.isArray(formData.images)) {
-      const resizedImagesPromises = formData.images.map(
-        (image: File) => resizeImage(image, 500, 500) // Resize từng ảnh
-      );
-
-      try {
-        const resizedImages = await Promise.all(resizedImagesPromises);
-        resizedImages.forEach((image: File) => {
-          formDataToSend.append("images", image); // Đính kèm ảnh đã resize vào FormData
-        });
-      } catch (error) {
-        console.error("Error resizing images:", error);
-      }
-    }
-
-    // Duyệt qua các trường formData khác và thêm vào FormData
-    Object.keys(formData).forEach((key) => {
-      const value = formData[key];
-      if (Array.isArray(value)) {
-        value.forEach((image: string | File) => {
-          if (image instanceof File) {
-            formDataToSend.append(key, image); // Đảm bảo ảnh được gửi chính xác
-          }
-        });
-      } else {
-        formDataToSend.append(key, value); // Thêm từng trường vào FormData
-      }
-    });
-
-    console.log("Dữ liệu FormData sẽ được gửi:", formDataToSend);
-
     try {
+      // Kiểm tra và thêm avatar vào FormData
+      if (formData.avatar) {
+        console.log("Đang gửi avatar...");
+        formDataToSend.append("avatar", formData.avatar);
+      }
+
+      // Thêm images vào FormData
+      if (formData.images && formData.images.length > 0) {
+        console.log("Đang gửi images...");
+        for (const image of formData.images) {
+          formDataToSend.append("images", image);
+        }
+      }
+
+      // Thêm các trường còn lại vào FormData
+      const excludedKeys = ["avatar", "images"];
+      Object.keys(formData).forEach((key) => {
+        if (!excludedKeys.includes(key) && formData[key] !== null) {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
+
+      console.log("FormData chuẩn bị gửi:", formDataToSend);
+
+      // Gửi dữ liệu lên server
       const response = await axios.post(
         `${API_URL_FORM}/website/createSalePoint`,
         formDataToSend,
@@ -395,10 +351,10 @@ const FormRetail: React.FC = () => {
         }
       );
 
-      console.log("Response from server:", response);
+      console.log("Phản hồi từ server:", response);
       setModalShow(true);
 
-      // Reset formData và các thông tin liên quan
+      // Reset form và ảnh
       setFormData({
         avatar: null,
         nameShop: "",
@@ -421,14 +377,11 @@ const FormRetail: React.FC = () => {
         images: [],
         createdBy: session?.user?.email || "",
       });
-
-      // Reset ảnh xem trước (preview)
       setImagePreview(null);
       setImagePreviews([]);
-      setAvatarFile(null);
+      console.log("Form đã được reset.");
     } catch (error: any) {
-      console.error("Error response:", error.response);
-      console.log("API URL:", `${API_URL_FORM}/website/createSalePoint`);
+      console.error("Lỗi khi gửi form:", error.response || error.message);
 
       const errorMsg = error.response?.data?.errors
         ? error.response.data.errors.map((err: any) => err.msg).join(", ")
@@ -438,7 +391,8 @@ const FormRetail: React.FC = () => {
       setErrorModalShow(true);
     }
   };
-
+  
+  
   return (
     <div className="container">
       <div className="map-column">
