@@ -46,17 +46,6 @@ const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
           Truy cập mobifone.vn
         </a>
       </div>
-      <div>
-        <button
-          onClick={() => {
-            signOut({ redirect: false });
-            router.push("/login");
-          }}
-          className={`btn-houze btn-solid`}
-        >
-          <span>Logout</span>
-        </button>
-      </div>
       <div className="navigation-menu no-line">
         {/* <MenuItem itemMenuLink={{ label: 'Trang chủ', link: '/' }} /> */}
         {menuCategory.map((item: any, index) => (
