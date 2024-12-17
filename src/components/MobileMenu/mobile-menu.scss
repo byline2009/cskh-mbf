@@ -156,6 +156,67 @@
   }
 }
 
+.logout-menu-mobile {
+  padding: 24px 20px;
+  width: 100%;
+  max-width: 400px;
+  /* Giới hạn chiều dài tối đa */
+  margin: 0 auto;
+  /* Canh giữa khung trên màn hình */
+  border-bottom: 4px solid #f8f8f8;
+
+  .btn-houze {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    /* Canh giữa icon và text theo chiều dọc */
+    justify-content: center;
+    /* Canh giữa nội dung theo chiều ngang */
+  }
+
+  svg {
+    margin-right: 10px;
+    /* Khoảng cách giữa icon và chữ */
+    flex-shrink: 0;
+    /* Ngăn icon bị thu nhỏ */
+  }
+
+  span {
+    font-size: 16px;
+    /* Cỡ chữ phù hợp */
+    color: #fff;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    padding: 0;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+    /* Tạo khoảng cách bên trong nút */
+    background-color: #237bd3;
+    /* Màu nền cho nút (tùy chỉnh) */
+    border-radius: 8px;
+    /* Bo góc nút */
+    text-decoration: none;
+    /* Loại bỏ gạch chân */
+    color: #fff;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  a:hover {
+    background-color: #0056b3;
+    /* Màu nền khi hover */
+  }
+}
 .menu-houzevn {
   width: 100%;
   border-top: 4px solid #f8f8f8;
