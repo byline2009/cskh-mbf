@@ -140,7 +140,7 @@ const FormRetail: React.FC = () => {
     file: File,
     maxWidth: number,
     maxHeight: number,
-    maxSizeKB: number = 100
+    maxSizeKB: number = 200 // Thay đổi giá trị mặc định thành 200KB
   ): Promise<File> => {
     return new Promise((resolve, reject) => {
       const img = new window.Image(); // Dùng `window.Image`
@@ -160,18 +160,24 @@ const FormRetail: React.FC = () => {
 
           const processImage = () => {
             // Tính toán tỷ lệ để resize
-            const ratio = Math.min(
-              maxWidth / img.width,
-              maxHeight / img.height
-            );
+            const widthRatio = maxWidth / img.width;
+            const heightRatio = maxHeight / img.height;
+
+            // Chọn tỷ lệ nhỏ hơn để đảm bảo không làm vỡ hình
+            const ratio = Math.min(widthRatio, heightRatio);
+
+            // Tính toán kích thước mới giữ tỉ lệ khung hình
             const width = img.width * ratio;
             const height = img.height * ratio;
 
+            // Gán kích thước mới cho canvas
             canvas.width = width;
             canvas.height = height;
-            ctx.clearRect(0, 0, width, height);
-            ctx.drawImage(img, 0, 0, width, height);
 
+            ctx.clearRect(0, 0, width, height); // Xóa vùng vẽ cũ
+            ctx.drawImage(img, 0, 0, width, height); // Vẽ ảnh vào canvas
+
+            // Chuyển canvas thành blob và kiểm tra kích thước
             canvas.toBlob(
               (blob) => {
                 if (blob) {
@@ -206,7 +212,6 @@ const FormRetail: React.FC = () => {
       reader.readAsDataURL(file); // Đọc file ảnh dưới dạng DataURL
     });
   };
-
   // Hàm xử lý thay đổi dữ liệu các trường khác
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -274,7 +279,7 @@ const FormRetail: React.FC = () => {
       const previews: string[] = []; // URL xem trước
       const fileList: File[] = []; // Danh sách file đã xử lý
 
-      const maxAllowedSize = 3 * 1024 * 1024; // 3MB
+      const maxAllowedSize = 1 * 1024 * 1024; // 1MB
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         previews.push(URL.createObjectURL(file));
