@@ -136,14 +136,14 @@ const FormRetail: React.FC = () => {
   };
 
   // Hàm để resize ảnh
-  // Hàm resize ảnh với chiều rộng và chiều cao
   const resizeImage = (
     file: File,
     maxWidth: number,
-    maxHeight: number
+    maxHeight: number,
+    maxSizeKB: number = 100
   ): Promise<File> => {
     return new Promise((resolve, reject) => {
-      const img = new window.Image(); // Dùng `window.Image` thay vì chỉ `Image`
+      const img = new window.Image(); // Dùng `window.Image`
       const reader = new FileReader();
 
       reader.onload = () => {
@@ -153,30 +153,50 @@ const FormRetail: React.FC = () => {
       img.onload = () => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
+
         if (ctx) {
-          const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
-          const width = img.width * ratio;
-          const height = img.height * ratio;
+          let quality = 0.8; // Chất lượng ban đầu (80%)
+          let resizedFile: File;
 
-          canvas.width = width;
-          canvas.height = height;
-          ctx.drawImage(img, 0, 0, width, height);
+          const processImage = () => {
+            // Tính toán tỷ lệ để resize
+            const ratio = Math.min(
+              maxWidth / img.width,
+              maxHeight / img.height
+            );
+            const width = img.width * ratio;
+            const height = img.height * ratio;
 
-          canvas.toBlob(
-            (blob) => {
-              if (blob) {
-                const resizedFile = new File([blob], file.name, {
-                  type: file.type,
-                  lastModified: Date.now(),
-                });
-                resolve(resizedFile);
-              } else {
-                reject(new Error("Failed to resize image"));
-              }
-            },
-            file.type,
-            0.8 // Chất lượng nén ảnh (0.8 là 80% chất lượng gốc)
-          );
+            canvas.width = width;
+            canvas.height = height;
+            ctx.clearRect(0, 0, width, height);
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(
+              (blob) => {
+                if (blob) {
+                  if (blob.size / 1024 <= maxSizeKB || quality <= 0.1) {
+                    // Tạo file cuối cùng khi đạt yêu cầu hoặc giảm chất lượng xuống quá thấp
+                    resizedFile = new File([blob], file.name, {
+                      type: file.type,
+                      lastModified: Date.now(),
+                    });
+                    resolve(resizedFile);
+                  } else {
+                    // Giảm chất lượng và thử lại
+                    quality -= 0.1;
+                    processImage();
+                  }
+                } else {
+                  reject(new Error("Failed to resize image"));
+                }
+              },
+              file.type,
+              quality
+            );
+          };
+
+          processImage(); // Bắt đầu quá trình xử lý ảnh
         } else {
           reject(new Error("Canvas context not available"));
         }
@@ -215,26 +235,41 @@ const FormRetail: React.FC = () => {
     const file = e.target.files?.[0];
 
     if (file) {
-      const maxSize = 100 * 1024; // 100KB
-      setFormData({
-        ...formData,
-        avatar: file, // Lưu ảnh gốc vào formData cho xem trước
-      });
+      const maxSizeMB = 3; // Kích thước tối đa 3MB
+      const maxSizeBytes = maxSizeMB * 1024 * 1024; // Chuyển đổi thành byte
 
-      const imageUrl = URL.createObjectURL(file); // Hiển thị ảnh gốc trong phần xem trước
+      // Bước 1: Cập nhật ảnh gốc để hiển thị trong phần xem trước
+      const imageUrl = URL.createObjectURL(file);
       setImagePreview(imageUrl);
 
-      // Nếu ảnh quá lớn, resize ảnh trước khi gửi
-      if (file.size > maxSize) {
-        const resizedImage = await resizeImage(file, 500, 500); // Resize xuống kích thước nhất định
+      // Bước 2: Kiểm tra và resize ảnh nếu vượt quá 3MB
+      if (file.size > maxSizeBytes) {
+        console.log(`Ảnh vượt quá ${maxSizeMB}MB. Đang tiến hành resize...`);
+
+        try {
+          const resizedImage = await resizeImage(file, 500, 500, 100); // Resize với max 100KB
+          setFormData({
+            ...formData,
+            avatar: resizedImage, // Lưu ảnh đã resize vào formData
+          });
+
+          console.log("Ảnh đã được resize thành công:", resizedImage);
+        } catch (error) {
+          console.error("Lỗi khi resize ảnh:", error);
+        }
+      } else {
+        // Ảnh không cần resize, giữ nguyên ảnh gốc
         setFormData({
           ...formData,
-          avatar: resizedImage, // Đặt ảnh đã resize vào formData để gửi lên server
+          avatar: file,
         });
+        console.log("Ảnh dưới 3MB, không cần resize.");
       }
     } else {
+      // Reset nếu không có file nào được chọn
       setImagePreview(null);
-      setAvatarFile(null); // Reset nếu không có file nào được chọn
+      setAvatarFile(null);
+      console.log("Không có ảnh nào được chọn.");
     }
   };
   // Upload nhiều ảnh
@@ -242,34 +277,55 @@ const FormRetail: React.FC = () => {
 
   const handleImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
+
     if (files && files.length > 0) {
-      const previews: string[] = [];
-      const fileList: File[] = [];
+      const previews: string[] = []; // Mảng chứa URL xem trước
+      const fileList: File[] = []; // Mảng chứa các file đã xử lý
+
+      const maxAllowedSize = 3 * 1024 * 1024; // Kích thước tối đa: 3MB
+      const targetSizeKB = 100; // Mục tiêu resize: dưới 100KB
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const maxSize = 100 * 1024; // 100KB
 
-        previews.push(URL.createObjectURL(file)); // Hiển thị ảnh gốc trong phần xem trước
-        fileList.push(file); // Lưu ảnh gốc vào fileList
+        // Tạo preview từ ảnh gốc
+        previews.push(URL.createObjectURL(file));
 
-        // Resize ảnh nếu cần
-        if (file.size > maxSize) {
-          const resizedImage = await resizeImage(file, 500, 500); // Resize ảnh nếu cần
-          fileList[i] = resizedImage; // Thay thế ảnh đã resize vào danh sách file
+        // Kiểm tra kích thước ảnh, resize nếu vượt quá 3MB
+        if (file.size > maxAllowedSize) {
+          console.log(`Ảnh ${file.name} vượt quá 3MB. Đang resize...`);
+          try {
+            const resizedImage = await resizeImage(
+              file,
+              500,
+              500,
+              targetSizeKB
+            );
+            fileList.push(resizedImage); // Lưu ảnh đã resize
+            console.log(`Ảnh ${file.name} đã được resize thành công.`);
+          } catch (error) {
+            console.error(`Lỗi khi resize ảnh ${file.name}:`, error);
+            fileList.push(file); // Trong trường hợp lỗi, giữ nguyên ảnh gốc
+          }
+        } else {
+          fileList.push(file); // Nếu ảnh < 3MB, giữ nguyên ảnh gốc
         }
       }
 
+      // Cập nhật formData với danh sách ảnh đã xử lý
       setFormData({
         ...formData,
-        images: fileList, // Lưu ảnh vào formData
+        images: fileList,
       });
-      setImagePreviews(previews); // Hiển thị preview của tất cả ảnh
+
+      // Cập nhật phần xem trước ảnh
+      setImagePreviews(previews);
     } else {
+      // Reset nếu không có ảnh nào được chọn
       setImagePreviews([]);
       setFormData({
         ...formData,
-        images: [], // Reset danh sách ảnh
+        images: [],
       });
     }
   };
